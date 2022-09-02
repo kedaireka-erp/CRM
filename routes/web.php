@@ -18,10 +18,10 @@ use App\Http\Controllers\KontakController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.admin');
 });
 
-Route::resource('memos', MemoController::class);
+Route::resource('memo', MemoController::class);
 
 Route::resource('ncr', NcrController::class);
 
