@@ -17,7 +17,7 @@ use App\Http\Controllers\KontakController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/layouts.admin', function () {
     return view('welcome');
 });
 
@@ -26,5 +26,3 @@ Route::resource('memos', MemoController::class);
 Route::resource('ncr', NcrController::class);
 
 Route::resource('kontak', KontakController::class);
-
-Auth::routes();
