@@ -13,7 +13,11 @@
                     <span class="user-name">Ross C. Lopez</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                    <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+                    {{-- <a class="dropdown-item" href="{{ route('login') }}"><i class="dw dw-logout"></i>Log Out</a> --}}
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                        <button type="submit" class="dropdown-item" ><i class="dw dw-logout"></i>Log Out</button>
+                    </form>
                 </div>
             </div>
         </div>
