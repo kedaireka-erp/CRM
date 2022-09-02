@@ -12,22 +12,22 @@
         <div class="sidebar-menu">
             <ul id="accordion-menu">
                 <li>
-                    <a href="/ncr" class="dropdown-toggle no-arrow">
+                    <a href="/ncr" class="dropdown-toggle no-arrow {{ $slot == 'Home' ? 'active' : '' }}">
                         <i class="micon bi bi-house"></i> Home
                     </a>
                 </li>
                 <li>
-                    <a href="/ncr" class="dropdown-toggle no-arrow">
+                    <a href="/ncr" class="dropdown-toggle no-arrow {{ $slot == 'NCR' ? 'active' : '' }}">
                         <i class="micon bi bi-people"></i> NCR
                     </a>
                 </li>
                 <li>
-                    <a href="/kontak" class="dropdown-toggle no-arrow">
+                    <a href="/kontak" class="dropdown-toggle no-arrow {{ $slot == 'Kontak' ? 'active' : '' }}">
                         <i class="micon bi bi-people"></i> Kontak
                     </a>
                 </li>
                 <li>
-                    <a href="/memo" class="dropdown-toggle no-arrow">
+                    <a href="/memo" class="dropdown-toggle no-arrow {{ $slot == 'Memo' ? 'active' : '' }}">
                         <i class="micon bi bi-card-heading"></i> Memo
                     </a>
                 </li>
