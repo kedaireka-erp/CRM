@@ -18,7 +18,7 @@ use App\Http\Controllers\KontakController;
 */
 
 Route::get('/', function () {
-    return view('layouts.admin');
+    return view('dashboard');
 });
 
 Route::resource('memo', MemoController::class);

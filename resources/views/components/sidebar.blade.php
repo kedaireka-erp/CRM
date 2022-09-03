@@ -1,8 +1,8 @@
 <div class="left-side-bar sidebar-light">
     <div class="brand-logo">
         <a href="/">
-            <img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
-            <img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo" />
+            <img src="https://allureindustries.com/files/uploads/2016/03/600.png" alt="" class="dark-logo" />
+            <img src="https://allureindustries.com/files/uploads/2016/03/600.png" alt="" class="light-logo" />
         </a>
         <div class="close-sidebar" data-toggle="left-sidebar-close">
             <i class="ion-close-round"></i>
@@ -18,7 +18,7 @@
                 </li>
                 <li>
                     <a href="/ncr" class="dropdown-toggle no-arrow {{ $slot == 'NCR' ? 'active' : '' }}">
-                        <i class="micon bi bi-people"></i> NCR
+                        <i class="micon bi bi-archive"></i> NCR
                     </a>
                 </li>
                 <li>
