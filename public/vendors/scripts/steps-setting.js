@@ -28,6 +28,6 @@ $(".tab-wizard2").steps({
 		$('.steps .current').prevAll().addClass('disabled');
 	},
 	onFinished: function(event, currentIndex) {
-		$('#success-modal-btn').trigger('click');
+		$('#submit').trigger('click');
 	}
 });

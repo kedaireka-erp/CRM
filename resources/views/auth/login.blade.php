@@ -79,14 +79,10 @@
 				class="container-fluid d-flex justify-content-between align-items-center"
 			>
 				<div class="brand-logo">
-					<a href="/login.html">
-						<img src="vendors/images/deskapp-logo.svg" alt="" />
+					<a href="/">
+						<img src="https://allureindustries.com/files/uploads/2016/03/600.png" style="height: 50%;" alt="" />
+						<h3 class="m-3"><strong>CRM</strong></h3>
 					</a>
-				</div>
-				<div class="login-menu">
-					<ul>
-						<li><a href="register">Register</a></li>
-					</ul>
 				</div>
 			</div>
 		</div>
@@ -139,19 +135,6 @@
 												class="btn btn-primary btn-lg btn-block"
 												type="submit"
 												>Sign In</<button
-											>
-										</div>
-										<div
-											class="font-16 weight-600 pt-10 pb-10 text-center"
-											data-color="#707373"
-										>
-											OR
-										</div>
-										<div class="input-group mb-0">
-											<a
-												class="btn btn-outline-primary btn-lg btn-block"
-												href="/register"
-												>Register To Create Account</a
 											>
 										</div>
 									</div>

@@ -1,77 +1,165 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<head>
+	<!-- Basic Page Info -->
+	<meta charset="utf-8" />
+	<title>CRM - Register</title>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+	<x-style></x-style>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+	<link rel="stylesheet" type="text/css" href="src/plugins/jquery-steps/jquery.steps.css" />
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+</head>
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+<body class="login-page">
+	<div class="login-header box-shadow">
+		<div class="container-fluid d-flex justify-content-between align-items-center">
+			<div class="brand-logo">
+				<a href="/">
+					<img src="https://allureindustries.com/files/uploads/2016/03/600.png" style="height: 50%;" alt="" />
+					<h3 class="m-3"><strong>CRM</strong></h3>
+				</a>
+			</div>
+			<div class="login-menu">
+				<ul>
+					<li><a href="/login">Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="register-page-wrap d-flex align-items-center flex-wrap justify-content-center">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-6 col-lg-7">
+					<img src="vendors/images/register-page-img.png" alt="" />
+				</div>
+				<div class="col-md-6 col-lg-5">
+					<div class="register-box bg-white box-shadow border-radius-10">
+						<div class="wizard-content">
+							<form class="tab-wizard2 wizard-circle wizard" id="register" method="post" action="/register">
+								@csrf
+								<h5>Daftar</h5>
+								<section>
+									<div class="form-wrap max-width-600 mx-auto">
+										<div class="form-group row">
+											<label class="col-sm-4 col-form-label">Name*</label>
+											<div class="col-sm-8">
+												<input type="text"
+													class="form-control name @error('name') is-invalid @enderror"
+													name="name" value="{{ old('name') }}"/>
+												@error('name')
+													<small class="text-danger">{{ $message }}</small>
+												@enderror
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-4 col-form-label">Email Address*</label>
+											<div class="col-sm-8">
+												<input type="email"
+													class="form-control email @error('email') is-invalid @enderror"
+													name="email" value="{{ old('email') }}" />
+													@error('email')
+														<small class="text-danger">{{ $message }}</small>
+													@enderror
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-4 col-form-label">Password*</label>
+											<div class="col-sm-8">
+												<input type="password"
+													class="form-control password @error('password') is-invalid @enderror"
+													name="password" />
+													@error('password')
+														<small class="text-danger">{{ $message }}</small>
+													@enderror
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-4 col-form-label">Confirm Password*</label>
+											<div class="col-sm-8">
+												<input type="password" class="form-control" id="confirm_password"
+													name="password_confirmation" />
+											</div>
+										</div>
+									</div>
+								</section>
+								<!-- Step 4 -->
+								<h5>Overview</h5>
+								<section>
+									<div class="form-wrap max-width-600 mx-auto">
+										<ul class="register-info">
+											<li>
+												<div class="row">
+													<div class="col-sm-4 weight-600">Name</div>
+													<div class="col-sm-8" id="name"></div>
+												</div>
+											</li>
+											<li>
+												<div class="row">
+													<div class="col-sm-4 weight-600">Email Address</div>
+													<div class="col-sm-8" id="email"></div>
+												</div>
+											</li>
+											<li>
+												<div class="row">
+													<div class="col-sm-4 weight-600">Password</div>
+													<div class="col-sm-8" id="password"></div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</section>
+								<button type="submit" id="submit" hidden></button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+	<x-script></x-script>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+	<script src="/src/plugins/jquery-steps/jquery.steps.js"></script>
+	<script src="/vendors/scripts/steps-setting.js"></script>
+	<script>
+		let nama = document.querySelector('.name');
+		let email = document.querySelector('.email');
+		let password = document.querySelector('.password');
+		let confirm = document.getElementById("confirm_password");
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+		nama.addEventListener("input", function (elemen) {
+			document.getElementById("name").innerHTML = elemen.target.value;
+		});
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+		email.addEventListener("input", function (elemen) {
+			document.getElementById("email").innerHTML = elemen.target.value;
+		});
 
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+		password.addEventListener("input", function (elemen) {
+			document.getElementById("password").innerHTML = elemen.target.value;
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
+			if (elemen.target.value != confirm.value) {
+				confirm.classList.add("is-invalid");
+			} else {
+				confirm.classList.remove("is-invalid");
+			}
 
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+		});
+
+		confirm.addEventListener("input", function (elemen) {
+			if (elemen.target.value != password.value) {
+				elemen.target.classList.add("is-invalid");
+			} else {
+				elemen.target.classList.remove("is-invalid");
+			}
+		});
+	</script>
+</body>
+
+</html>
