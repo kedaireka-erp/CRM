@@ -18,7 +18,7 @@
                 </li>
                 <li>
                     <a href="/ncr" class="dropdown-toggle no-arrow {{ $slot == 'NCR' ? 'active' : '' }}">
-                        <i class="micon bi bi-people"></i> NCR
+                        <i class="micon bi bi-archive"></i> NCR
                     </a>
                 </li>
                 <li>

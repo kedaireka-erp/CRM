@@ -7,8 +7,8 @@
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
-    <x-style></x-style>
     @stack('style')
+    <x-style></x-style>
 
     <!-- End Google Tag Manager -->
 </head>

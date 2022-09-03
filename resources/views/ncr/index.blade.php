@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 @push('style')
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="vendors/styles/core.css" />
-    <link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css" />
-    <link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css" />
-    <link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css" />
-    <link rel="stylesheet" type="text/css" href="vendors/styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="/vendors/styles/core.css" />
+    <link rel="stylesheet" type="text/css" href="/vendors/styles/icon-font.min.css" />
+    <link rel="stylesheet" type="text/css" href="/src/plugins/datatables/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="/src/plugins/datatables/css/responsive.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="/vendors/styles/style.css" />
 @endpush
 
 @section('content')
@@ -89,10 +89,6 @@
         <!-- welcome modal end -->
         <!-- js -->
         @push('script')
-            <script src="vendors/scripts/core.js"></script>
-            <script src="vendors/scripts/script.min.js"></script>
-            <script src="vendors/scripts/process.js"></script>
-            <script src="vendors/scripts/layout-settings.js"></script>
             <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
             <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
             <script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
