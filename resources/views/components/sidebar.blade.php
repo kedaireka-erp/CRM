@@ -12,7 +12,7 @@
         <div class="sidebar-menu">
             <ul id="accordion-menu">
                 <li>
-                    <a href="/ncr" class="dropdown-toggle no-arrow {{ $slot == 'Home' ? 'active' : '' }}">
+                    <a href="/" class="dropdown-toggle no-arrow {{ $slot == 'Home' ? 'active' : '' }}">
                         <i class="micon bi bi-house"></i> Home
                     </a>
                 </li>
