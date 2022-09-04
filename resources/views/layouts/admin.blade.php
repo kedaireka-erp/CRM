@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="icon" >
     <title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
     @stack('style')
     <x-style></x-style>
@@ -17,7 +18,7 @@
     <div class="pre-loader">
         <div class="pre-loader-box">
             <div class="loader-logo">
-                <img src="vendors/images/deskapp-logo.svg" alt="" />
+                <img src="https://allureindustries.com/files/uploads/2016/03/600.png" alt="" />
             </div>
             <div class="loader-progress" id="progress_div">
                 <div class="bar" id="bar1"></div>
@@ -41,10 +42,6 @@
     <!-- js -->
     <x-script></x-script>
     @stack('script')
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
-            style="display: none; visibility: hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 </body>
 
 </html>
