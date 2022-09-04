@@ -32,9 +32,17 @@
                     </div>
                 </div>
                 <!-- Simple Datatable start -->
-                <div class="card-box mb-30">
-                    <div class="pd-20">
-                        <h4 class="text-blue h4">Data NCR</h4>
+                <div class="card-box mb-30 ">
+                    <div class="pd-20 d-flex justify-content-between align-items-center">
+                        <h4 class="text-black h4">List NCR</h4>
+                        <div class="mr-2">
+                            <a href="#" class=" btn btn-warning fa-pull-right">
+                                <i class="micon dw dw-warning-1"></i> Report</a>
+                            <a href="#" class=" btn btn-primary fa-pull-right mr-2">
+                                <i class="micon bi bi-plus-lg"></i> Add
+                            </a>
+
+                        </div>
                     </div>
                     <div class="pb-20">
                         <table class="data-table table stripe hover nowrap">
@@ -89,18 +97,18 @@
         <!-- welcome modal end -->
         <!-- js -->
         @push('script')
-            <script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
-            <script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-            <script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
-            <script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+            <script src="/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+            <script src="/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+            <script src="/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+            <script src="/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
             <!-- buttons for Export datatable -->
-            <script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
-            <script src="src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
-            <script src="src/plugins/datatables/js/buttons.print.min.js"></script>
-            <script src="src/plugins/datatables/js/buttons.html5.min.js"></script>
-            <script src="src/plugins/datatables/js/buttons.flash.min.js"></script>
-            <script src="src/plugins/datatables/js/pdfmake.min.js"></script>
-            <script src="src/plugins/datatables/js/vfs_fonts.js"></script>
+            <script src="/src/plugins/datatables/js/dataTables.buttons.min.js"></script>
+            <script src="/src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
+            <script src="/src/plugins/datatables/js/buttons.print.min.js"></script>
+            <script src="/src/plugins/datatables/js/buttons.html5.min.js"></script>
+            <script src="/src/plugins/datatables/js/buttons.flash.min.js"></script>
+            <script src="/src/plugins/datatables/js/pdfmake.min.js"></script>
+            <script src="/src/plugins/datatables/js/vfs_fonts.js"></script>
             <!-- Datatable Setting js -->
-            <script src="vendors/scripts/datatable-setting.js"></script>
+            <script src="/vendors/scripts/datatable-setting.js"></script>
         @endpush
