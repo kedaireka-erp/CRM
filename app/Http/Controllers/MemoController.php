@@ -14,7 +14,7 @@ class MemoController extends Controller
      */
     public function index()
     {
-        //
+        return view('memo.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class MemoController extends Controller
      */
     public function create()
     {
-        //
+        return view('memo.create');
     }
 
     /**
@@ -35,7 +35,7 @@ class MemoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
