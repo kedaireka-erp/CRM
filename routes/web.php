@@ -18,7 +18,9 @@ use App\Http\Controllers\KontakController;
 */
 
 Route::get('/', function () {
-    return view('layouts.admin');
+    return view('dashboard', [
+        "title" => "Home"
+    ]);
 });
 
 Route::resource('memo', MemoController::class);

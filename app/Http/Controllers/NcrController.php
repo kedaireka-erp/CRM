@@ -14,7 +14,9 @@ class NcrController extends Controller
      */
     public function index()
     {
-        return view("ncr.index");
+        return view("ncr.index", [
+            "title" => "NCR"
+        ]);
     }
 
     /**
