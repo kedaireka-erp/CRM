@@ -26,7 +26,7 @@ class NcrController extends Controller
      */
     public function create()
     {
-        return view("ncr.create", compact("ncrs"), [
+        return view("ncr.create", [
             "title" => "NCR"
         ]);
     }
