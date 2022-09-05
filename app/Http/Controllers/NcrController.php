@@ -26,7 +26,6 @@ class NcrController extends Controller
      */
     public function create()
     {
-        $ncrs=Ncr::get();
         return view("ncr.create", compact("ncrs"), [
             "title" => "NCR"
         ]);
