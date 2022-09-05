@@ -6,8 +6,8 @@
     <meta charset="utf-8" />
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="icon" >
-    <title>Allure Industries - CRM - {{$title}}</title>
+    <meta name="icon">
+    <title>Allure Industries - CRM - {{ $title }}</title>
     @stack('style')
     <x-style></x-style>
 
@@ -31,7 +31,7 @@
     <x-navbar></x-navbar>
 
     <!-- sidebar -->
-    <x-sidebar>{{$title}}</x-sidebar>
+    <x-sidebar>{{ $title }}</x-sidebar>
 
     <!-- content -->
     @yield('content')
