@@ -21,10 +21,7 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-// Memo Route
 Route::resource('memo', MemoController::class);
-Route::get('/create', [MemoController::class, "create"])->name("create");
-// Memo Route end
 
 Route::resource('ncr', NcrController::class);
 
