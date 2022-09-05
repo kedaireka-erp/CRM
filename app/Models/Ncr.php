@@ -9,5 +9,15 @@ class Ncr extends Model
 {
     use HasFactory;
     protected $guarded = ["id"];
-    protected $fillable = ["mitra", "projek", "no_ncr", "no_wo", "tanggal", "no_fppp", "kepada", "item"];
+    protected $fillable = ["nama_mitra", "nama_projek", "nomor_ncr", "nomor_fppp", "pelapor", "nomor_memo", "alamat_pengiriman", "deadline_pengambilan"];
+
+    public function kontak()
+    {
+        return $this->belongsTo(Kontak::class);
+    }
+    
+    public function ItemNcr()
+    {
+        return $this->hasMany(Item_Ncr::class, "item_id", "id");
+    }
 }
