@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Kontak;
+use App\Models\ItemNcr;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Ncr extends Model
 {
@@ -11,13 +13,13 @@ class Ncr extends Model
     protected $guarded = ["id"];
     protected $fillable = ["nama_mitra", "nama_projek", "nomor_ncr", "nomor_fppp","tanggal_ncr", "pelapor", "nomor_memo", "tanggal_memo", "alamat_pengiriman", "deadline_pengambilan"];
 
-    public function kontak()
+    public function Kontak()
     {
         return $this->belongsToMany(Kontak::class);
     }
     
     public function ItemNcr()
     {
-        return $this->hasMany(Item_Ncr::class, "item_id", "id");
+        return $this->hasMany(ItemNcr::class);
     }
 }
