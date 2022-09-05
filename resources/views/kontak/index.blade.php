@@ -36,10 +36,9 @@
                 <div class="pd-20 d-flex justify-content-between align-items-center">
                     <h4 class="text-black h4">List Kontak</h4>
                     <div class="mr-2">
-                        <a href="#" class=" btn btn-primary fa-pull-right mr-2">
+                        <a href="/kontak/create" class=" btn btn-primary fa-pull-right mr-2">
                             <i class="micon bi bi-plus-lg"></i> Add
                         </a>
-
                     </div>
                 </div>
                 <div class="pb-20">
