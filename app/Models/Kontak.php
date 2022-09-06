@@ -9,7 +9,7 @@ use App\Models\Ncr;
 class Kontak extends Model
 {
     use HasFactory;
-    protected $fillable = ["nama", "nomor_whatsapp", "divisi"];
+    protected $guarded = ["id"];
 
     public function Ncr()
     {
