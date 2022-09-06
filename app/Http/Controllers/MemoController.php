@@ -14,7 +14,11 @@ class MemoController extends Controller
      */
     public function index()
     {
-        return view('memo.index');
+
+
+        return view('memo.index', [
+            "title" => "Memo"
+        ]);
     }
 
     /**
@@ -24,7 +28,9 @@ class MemoController extends Controller
      */
     public function create()
     {
-        return view('memo.create');
+        return view('memo.create', [
+            "title" => "Memo"
+        ]);
     }
 
     /**

@@ -31,7 +31,7 @@
     <x-navbar></x-navbar>
 
     <!-- sidebar -->
-    <x-sidebar></x-sidebar>
+    <x-sidebar>{{ $title }}</x-sidebar>
 
     <!-- content -->
     @yield('content')
