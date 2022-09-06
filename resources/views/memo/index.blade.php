@@ -42,37 +42,73 @@
 
                         </div>
                     </div>
-                    <div class="table-responsive">
+                    <div class="table-responsive-md" style="padding: 30px">
                         <table class="data-table table stripe hover wrap">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th class="table-plus datatable-nosort">Mitra</th>
-                                    <th class="datatable-nosort">No Memo</th>
-                                    <th>Nama Project</th>
-                                    <th class="datatable-nosort">Alamat Project</th>
-                                    <th class="datatable-nosort">Tanggal Memo</th>
-                                    <th class="datatable-nosort">Deadline Pengambilan</th>
-                                    <th class="datatable-nosort">No FPPP</th>
-                                    <th class="datatable-nosort">Charge</th>
-                                    <th class="datatable-nosort">Alasan</th>
+                                    <th class="table-plus">No Memo</th>
+                                    <th class="table-plus">Mitra</th>
+                                    <th class="table-plus">Nama Project</th>
+                                    <th class="table-plus">Tanggal Memo</th>
+                                    <th class="table-plus">Deadline Pengambilan</th>
+                                    <th class="table-plus">No FPPP</th>
+                                    <th class="table-plus">Charge</th>
                                     <th class="datatable-nosort">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <td>1</td>
-                                <td class="table-plus">CV. GRAHA SUKSES MANDIRI</td>
                                 <td>1/memo/8/2022</td>
+                                <td class="table-plus">CV. GRAHA SUKSES MANDIRI</td>
                                 <td>RT Decil</td>
-                                <td>Gunung Himalaya no 20 dan 62 Karawaci</td>
                                 <td>2022-08-08</td>
                                 <td>2022-08-08</td>
                                 <td>1/fppp/8/2022</td>
                                 <td>Tidak</td>
-                                <td>Kirim Jendela Baru</td>
                                 <td>
-                                    <a href="#" class="btn btn-info" style="display: inline-block">Edit</a>
-                                    <a href="#" class="btn btn-warning" style="display: inline-block">Cetak</a>
+                                    <div class="dropdown">
+                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                            href="#" role="button" data-toggle="dropdown">
+                                            <i class="dw dw-more"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                            <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>
+                                                Edit </a>
+                                            <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i>
+                                                Show </a>
+                                            <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
+                                                Cetak </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tbody>
+                            <tbody>
+                                <td>2</td>
+                                <td>1/memo/8/2022</td>
+                                <td class="table-plus">CV. GRAHA SUKSES MANDIRI</td>
+                                <td>RT Decil</td>
+                                {{-- <td>Gunung Himalaya no 20 dan 62 Karawaci</td> --}}
+                                <td>2022-08-08</td>
+                                <td>2022-08-08</td>
+                                <td>1/fppp/8/2022</td>
+                                <td>Tidak</td>
+                                {{-- <td>Kirim Jendela Baru</td> --}}
+                                <td>
+                                    <div class="dropdown">
+                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                            href="#" role="button" data-toggle="dropdown">
+                                            <i class="dw dw-more"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                            <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>
+                                                Edit </a>
+                                            <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i>
+                                                Show </a>
+                                            <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
+                                                Cetak </a>
+                                        </div>
+                                    </div>
                                 </td>
                             </tbody>
                         </table>
