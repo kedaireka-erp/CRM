@@ -5,10 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class item_ncrs extends Model
+class ItemNcr extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         "kode_item", "nama_item", "jenis_kerusakan", "deskripsi",
         "analisa", "solusi", "bukti_kecacatan", "tipe_item", "warna",
@@ -18,4 +16,3 @@ class item_ncrs extends Model
         return $this->belongsTo(Ncr::class);
     }
 }
-

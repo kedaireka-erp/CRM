@@ -21,7 +21,6 @@
 			<div class="brand-logo">
 				<a href="/">
 					<img src="https://allureindustries.com/files/uploads/2016/03/600.png" style="height: 50%;" alt="" />
-					<h3 class="m-3"><strong>CRM</strong></h3>
 				</a>
 			</div>
 			<div class="login-menu">

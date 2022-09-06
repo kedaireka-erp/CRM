@@ -14,8 +14,6 @@ class MemoController extends Controller
      */
     public function index()
     {
-
-
         return view('memo.index', [
             "title" => "Memo"
         ]);

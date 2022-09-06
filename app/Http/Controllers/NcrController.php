@@ -26,7 +26,9 @@ class NcrController extends Controller
      */
     public function create()
     {
-        //
+        return view("ncr.create", [
+            "title" => "NCR"
+        ]);
     }
 
     /**
@@ -37,7 +39,20 @@ class NcrController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ncrs = Ncr::create([
+            "nama_mitra" => $request->nama_mitra,
+            "nama_projek" => $request->nama_projek,
+            "nomor_ncr" => $request->nomor_ncr,
+            "nomor_fppp" => $request->nomor_fppp,
+            "tanggal_ncr" => $request->tanggal_ncr,
+            "pelapor" => $request->pelapor,
+            "nomor_memo" => $request->nomor_memo,
+            "tanggal_memo" => $request->tanggal_memo,
+            "alamat_pengiriman" => $request->alamat_pengiriman,
+            "deadline_pengambilan" =>$request->deadline_pengambilan,
+        ]);
+
+        return redirect("/ncr");
     }
 
     /**

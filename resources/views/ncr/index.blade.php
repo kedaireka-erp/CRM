@@ -38,7 +38,7 @@
                         <div class="mr-2">
                             <a href="#" class=" btn btn-warning fa-pull-right">
                                 <i class="micon dw dw-warning-1"></i> Report</a>
-                            <a href="#" class=" btn btn-primary fa-pull-right mr-2">
+                            <a href="/ncr/create" class=" btn btn-primary fa-pull-right mr-2">
                                 <i class="micon bi bi-plus-lg"></i> Add
                             </a>
 

@@ -1,64 +1,28 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+**Persiapan Edit Repo Pertama Kali**
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+1. Kalian fork repo ini ke repo kalian masing masing dulu<br>
+<img src="https://drive.google.com/uc?export=view&id=1Q1PmBAyHCMDiZXwlrKNaep-7NE9F4P1h"><br>
+2. Terus kalian bisa klik create fork aja<br>
+<img src="https://drive.google.com/uc?export=view&id=1UDQcQk-QADkOrsdAdH5p3CqRgEFivwTQ"><br>
+3. Kalau udah di fork, kalian bisa ke github desktop, terus clone deh<br>
+<img src="https://drive.google.com/uc?export=view&id=1tRxgL91cX8hGtZQKdjMsxWI0XKG3qRnx"><br>
+4. Kalian udah siap ngedit deh<br><br>
 
-## About Laravel
+**Persiapan Edit Repo Kalau Udah Ngefork**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. Kalian bisa buka repo kalian masing masing dulu<br>
+2. Terus kalian cari deh tulisan sync fork, kalau udah ketemu bisa diklik aja update branch<br>
+<img src="https://drive.google.com/uc?export=view&id=1oUM_C1Phh8cBVZNQSy67i69tSWnsHCjg"><br>
+3. Kalau udah kalian bisa ke github desktop, nah terus kalian bisa pull deh<br>
+<img src="https://drive.google.com/uc?export=view&id=1zu1OTntlZ56wIvPGEgcElPcBoXTGCnqB"><br>
+4. Kalu udah semua kalian bisa mulai ngedit repo kalian masing masing<br>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Ngepush ke Repo**
+1. Pastiin nih kalian udah selesai ngeditnya<br>
+2. Kalau udah kalian bisa commit tuh ke repo kalian masing masing dulu<br>
+<img src="https://drive.google.com/uc?export=view&id=1DdBFyxEbdv9k63ahVT1nyzNvWKBpTzzq"><br>
+3. Kalau udah kalian bisa ke github, terus ke repo kalian masing masing<br>
+4. Kalau udah kalian bisa pilih contribute, terus bikin pull request<br>
+<img src="https://drive.google.com/uc?export=view&id=1BthGLQSYHoFpivnCG09swwmYfdNDtD0k"><br>
+5. Nah kalian udah selesai push ke repo kedarireka/CRM, selamat 🎉<br>
+6. Kalian tunggu aja tuh, ada yang perlu diperbaiki lagi atau ga, nah kalau ternyata ada yang perlu diperbaiki kalian bisa balik ngedit lagi deh, terus ualng langkah "Ngepush ke Repo" dari langkah pertama lagi, ga perlu nunggu di merge baru ngedit lagi 😉

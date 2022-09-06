@@ -23,9 +23,7 @@ Route::get('/', function () {
     ]);
 });
 
-// Memo Route
 Route::resource('memo', MemoController::class);
-// Memo Route end
 
 Route::resource('ncr', NcrController::class);
 

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Kontak;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class KontakController extends Controller
 {
@@ -14,7 +16,9 @@ class KontakController extends Controller
      */
     public function index()
     {
-        //
+        return view("kontak.index", [
+            "title" => "Kontak"
+        ]);
     }
 
     /**
@@ -24,7 +28,10 @@ class KontakController extends Controller
      */
     public function create()
     {
-        //
+        return view("kontak.create", [
+            "title" => "Kontak",
+            "users" => User::get()
+        ]);
     }
 
     /**
