@@ -21,6 +21,10 @@ return new class extends Migration
             $table->string('nomor_fppp');
             $table->dateTime('tanggal_ncr');
             $table->string('pelapor');
+            $table->text('deskripsi')->nullable();
+            $table->text('analisa')->nullable();
+            $table->text('solusi')->nullable();
+            $table->text('bukti_kecacatan');
             $table->string('nomor_memo')->nullable();
             $table->string('tanggal_memo')->nullable();
             $table->string('alamat_pengiriman')->nullable();
