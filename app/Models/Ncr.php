@@ -18,7 +18,7 @@ class Ncr extends Model
 
     public function Kontak()
     {
-        return $this->belongsToMany(Kontak::class);
+        return $this->belongsToMany(Kontak::class)->withPivot(["id", "validated"]);
     }
     
     public function ItemNcr()
