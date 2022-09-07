@@ -125,7 +125,7 @@
                                     <div class="col-md-4 col-md-12">
                                         <div class="form-group">
                                             <label>Tipe Item :</label>
-                                            <select class="form-control" name="charge" id="charge">
+                                            <select class="form-control" name="Tipe Item">
                                                 <option value="" disabled selected hidden>Pilih</option>
                                                 <option>Besi</option>
                                                 <option>Kaca</option>
@@ -138,7 +138,7 @@
                                     <div class="col-md-4 col-md-12">
                                         <div class="form-group">
                                             <label>Item :</label>
-                                            <select class="form-control" name="charge" id="charge">
+                                            <select class="form-control" name="Item" id="Item">
                                                 <option value="" disabled selected hidden>Pilih</option>
                                                 <option>Pintu</option>
                                                 <option>Jendela</option>
@@ -151,7 +151,7 @@
                                     <div class="col-md-4 col-md-12">
                                         <div class="form-group">
                                             <label>Warna :</label>
-                                            <select class="form-control" name="charge" id="charge">
+                                            <select class="form-control" name="Warna" id="Warna">
                                                 <option value="" disabled selected hidden>Pilih</option>
                                                 <option>Hijau</option>
                                                 <option>Biru</option>
@@ -164,7 +164,7 @@
                                     <div class="col-md-4 col-md-12">
                                         <div class="form-group">
                                             <label>Bukaan :</label>
-                                            <select class="form-control" name="charge" id="charge">
+                                            <select class="form-control" name="Bukaan" id="Bukaan">
                                                 <option value="" disabled selected hidden>Pilih</option>
                                                 <option>1</option>
                                                 <option>2</option>
@@ -192,7 +192,7 @@
                                     <div class="col-md-4 col-md-12">
                                         <div class="form-group">
                                             <label>Alasan :</label>
-                                            <textarea class="form-control"></textarea>
+                                            <textarea class="form-control" id="alasanItem"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -234,7 +234,7 @@
                         </div>
 
                         <div class="col-lg-8">
-                            <table class="table table-striped hover wrap">
+                            <table class="table table-striped hover wrap" id="tabelItem">
                                 <thead>
                                     <tr>
                                         <th class="datatable-nosort">Act</th>
@@ -266,10 +266,12 @@
                                 </tbody>
                                 
                             </table>
+
+                            <button class="btn btn-primary text-right" type="submit">Finish</button>
                         </div>
                     </div>
 
-                    <button class="btn btn-primary" type="submit">Add Item</button>
+                    <button class="btn btn-primary" type="submit" id="addItem">Add Item</button>
 							
                 </div>
             </div>
@@ -288,4 +290,11 @@
             </script>
             <script src="/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
             <script src="/vendors/scripts/advanced-components.js"></script>
+
+            {{-- Add Item Script --}}
+            <script type="text/javascript">
+                document.getElementById("addItem").onClick=function() {
+                    document.getElementById
+                }
+            </script>
         @endpush
