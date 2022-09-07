@@ -48,46 +48,44 @@
                         <table class="data-table table stripe hover nowrap">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">Mitra</th>
-                                    <th>Nama Project</th>
+                                    <th class="table-plus">No</th>
                                     <th>No NCR</th>
-                                    <th>WO/SPK</th>
-                                    <th>Tanggal</th>
                                     <th>No FPPP</th>
-                                    <th>Kepada</th>
+                                    <th>Mitra</th>
+                                    <th>Nama Project</th>
+                                    <th>Tanggal</th>
                                     <th>Item</th>
                                     <th>Status</th>
-                                    <th>Lampiran</th>
                                     <th class="datatable-nosort">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <td class="table-plus">PT. Hasindo</td>
-                                <td>Jendela</td>
-                                <td>1/ncr/</td>
-                                <td>1/wo/</td>
-                                <td>12/05/2022</td>
-                                <td>1/fppp/</td>
-                                <td>Ir.Jokowi</td>
-                                <td>Jendela</td>
-                                <td>OPEN</td>
-                                <td>lampiran</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-                                            href="#" role="button" data-toggle="dropdown">
-                                            <i class="dw dw-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                            <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>
-                                                Edit</a>
-                                            <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i>
-                                                Validasi</a>
-                                            <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
-                                                Delete</a>
-                                        </div>
+                                @foreach ($ncrs as $no => $ncr)
+                                    <tr>
+                                        <td class="table-plus">{{ $no + 1 }}</td>
+                                        <td>{{ $ncr->nomor_ncr }}</td>
+                                        <td>{{ $ncr->nomor_fppp }}</td>
+                                        <td>{{ $ncr->nama_mitra }}</td>
+                                        <td>{{ $ncr->nama_proyek }}</td>
+                                        <td>{{ $ncr->tanggal_ncr }}</td>
+                                        <td>{{ $ncr->nama_item }}</td>
+                                        <td>Open</td>
+                                    </tr>
+                                @endforeach
+                                <div class="dropdown">
+                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                        href="#" role="button" data-toggle="dropdown">
+                                        <i class="dw dw-more"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                        <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>
+                                            Edit</a>
+                                        <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i>
+                                            Validasi</a>
+                                        <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
+                                            Delete</a>
                                     </div>
-                                </td>
+                                </div>
                             </tbody>
                         </table>
                     </div>
