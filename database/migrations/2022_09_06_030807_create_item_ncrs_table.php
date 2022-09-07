@@ -18,10 +18,6 @@ return new class extends Migration
             $table->string('kode_item');
             $table->string('nama_item');
             $table->string('jenis_kerusakan');
-            $table->text('deskripsi')->nullable();
-            $table->text('analisa')->nullable();
-            $table->text('solusi')->nullable();
-            $table->text('bukti_kecacatan');
             $table->string('tipe_item')->nullable();
             $table->string('warna')->nullable();
             $table->string('bukaan')->nullable();
@@ -31,6 +27,7 @@ return new class extends Migration
             $table->boolean('charge')->nullable();
             $table->boolean('return_barang')->nullable();
             $table->text('keterangan')->nullable();
+            $table->foreignId("ncr_id")->constrained("ncrs")->onUpdate("cascade");
             $table->timestamps();
         });
     }
