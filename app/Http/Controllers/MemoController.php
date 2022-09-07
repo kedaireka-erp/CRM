@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Memo;
+use App\Models\Ncr;
 use Illuminate\Http\Request;
 
 class MemoController extends Controller
@@ -15,7 +15,7 @@ class MemoController extends Controller
     public function index()
     {
         return view('memo.index', [
-            "title" => "Memo"
+            "title" => "Ncr"
         ]);
     }
 
@@ -27,7 +27,7 @@ class MemoController extends Controller
     public function create()
     {
         return view('memo.create', [
-            "title" => "Memo"
+            "title" => "Ncr"
         ]);
     }
 
@@ -45,10 +45,10 @@ class MemoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Memo  $memo
+     * @param  \App\Models\Ncr  $ncr
      * @return \Illuminate\Http\Response
      */
-    public function show(Memo $memo)
+    public function show(Ncr $ncr)
     {
         //
     }
@@ -56,10 +56,10 @@ class MemoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Memo  $memo
+     * @param  \App\Models\Ncr  $ncr
      * @return \Illuminate\Http\Response
      */
-    public function edit(Memo $memo)
+    public function edit(Ncr $ncr)
     {
         //
     }
@@ -68,10 +68,10 @@ class MemoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Memo  $memo
+     * @param  \App\Models\Ncr  $ncr
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Memo $memo)
+    public function update(Request $request, Ncr $ncr)
     {
         //
     }
@@ -79,10 +79,10 @@ class MemoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Memo  $memo
+     * @param  \App\Models\Ncr  $ncr
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Memo $memo)
+    public function destroy(Ncr $ncr)
     {
         //
     }

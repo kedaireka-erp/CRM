@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="vendors/styles/core.css" />
     <link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css"/>
     <link rel="stylesheet" type="text/css" href="vendors/styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css">
 @endpush
 
 @section('content')
@@ -55,13 +56,13 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6 col-sm-12">
+                            <div class="col-md-4 col-sm-12">
                                 <div class="form-group">
                                     <label>Nama Project</label>
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-12">
+                            <div class="col-md-8 col-sm-12">
                                 <div class="form-group">
                                     <label>Alamat</label>
                                     <input type="text" class="form-control">
@@ -90,25 +91,8 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-4 col-sm-12">
-                                <div class="form-group">
-                                    <label>Charge</label>
-                                    <select class="form-control" name="charge" id="charge">
-                                        <option>Ya</option>
-                                        <option>Tidak</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-8 col-sm-12">
-                                <div class="form-group">
-                                    <label>Alasan</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
                         
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Lampiran</label>
@@ -121,7 +105,7 @@
                                     </small>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </form>
 
                     <button class="btn btn-primary" type="submit">Process</button>
@@ -135,13 +119,14 @@
                     </div>
                     
                     <div class="row">
-                        <div class="column">
-                            <form style="margin-left: 50px">
+                        <div class="col-lg-4">
+                            <form>
                                 <div class="row">
                                     <div class="col-md-4 col-md-12">
                                         <div class="form-group">
                                             <label>Tipe Item :</label>
-                                            <select class="form-control" name="charge" id="charge">
+                                            <select class="form-control" name="Tipe Item">
+                                                <option value="" disabled selected hidden>Pilih</option>
                                                 <option>Besi</option>
                                                 <option>Kaca</option>
                                                 <option>Baja</option>
@@ -153,7 +138,8 @@
                                     <div class="col-md-4 col-md-12">
                                         <div class="form-group">
                                             <label>Item :</label>
-                                            <select class="form-control" name="charge" id="charge">
+                                            <select class="form-control" name="Item" id="Item">
+                                                <option value="" disabled selected hidden>Pilih</option>
                                                 <option>Pintu</option>
                                                 <option>Jendela</option>
                                                 <option>Kerangka Bangunan</option>
@@ -165,7 +151,8 @@
                                     <div class="col-md-4 col-md-12">
                                         <div class="form-group">
                                             <label>Warna :</label>
-                                            <select class="form-control" name="charge" id="charge">
+                                            <select class="form-control" name="Warna" id="Warna">
+                                                <option value="" disabled selected hidden>Pilih</option>
                                                 <option>Hijau</option>
                                                 <option>Biru</option>
                                                 <option>Hitam</option>
@@ -177,7 +164,8 @@
                                     <div class="col-md-4 col-md-12">
                                         <div class="form-group">
                                             <label>Bukaan :</label>
-                                            <select class="form-control" name="charge" id="charge">
+                                            <select class="form-control" name="Bukaan" id="Bukaan">
+                                                <option value="" disabled selected hidden>Pilih</option>
                                                 <option>1</option>
                                                 <option>2</option>
                                             </select>
@@ -204,7 +192,7 @@
                                     <div class="col-md-4 col-md-12">
                                         <div class="form-group">
                                             <label>Alasan :</label>
-                                            <input type="text" class="form-control">
+                                            <textarea class="form-control" id="alasanItem"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -213,6 +201,7 @@
                                         <div class="form-group">
                                             <label>Charge :</label>
                                             <select class="form-control" name="charge" id="charge">
+                                                <option value="" disabled selected hidden>Pilih</option>
                                                 <option>Ya</option>
                                                 <option>Tidak</option>
                                             </select>
@@ -224,6 +213,7 @@
                                         <div class="form-group">
                                             <label>Barang dikembalikan :</label>
                                             <select class="form-control" name="charge" id="charge">
+                                                <option value="" disabled selected hidden>Pilih</option>
                                                 <option>Ya</option>
                                                 <option>Tidak</option>
                                             </select>
@@ -234,7 +224,7 @@
                                     <div class="col-md-4 col-md-12">
                                         <div class="form-group">
                                             <label>Keterangan :</label>
-                                            <input type="text" class="form-control">
+                                            <textarea class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -243,32 +233,45 @@
                             </form>
                         </div>
 
-                        <div class="column">
-                            <table class="table table-striped hover wrap" style="margin-left: 50px">
+                        <div class="col-lg-8">
+                            <table class="table table-striped hover wrap" id="tabelItem">
                                 <thead>
-                                    <tr class="table-success">
+                                    <tr>
                                         <th class="datatable-nosort">Act</th>
                                         <th class="datatable-nosort">Item</th>
-                                        <th class="datatable-nosort">Ada di WO</th>
                                         <th class="datatable-nosort">Alasan</th>
                                         <th class="datatable-nosort">Charge</th>
                                         <th class="datatable-nosort">Barang dikembalikan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <td>-</td>
+                                    <td>
+                                    <div class="dropdown">
+                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                            href="#" role="button" data-toggle="dropdown">
+                                            <i class="dw dw-more"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                            <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i>
+                                                Edit </a>
+                                            <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
+                                                Delete </a>
+                                        </div>
+                                    </div>
+                                </td>
                                     <td>item1</td>
-                                    <td>WO2</td>
                                     <td>Kaca pecah</td>
                                     <td>Tidak</td>
                                     <td>Dikembalikan</td>
                                 </tbody>
                                 
                             </table>
+
+                            <button class="btn btn-primary text-right" type="submit">Finish</button>
                         </div>
                     </div>
 
-                    <button class="btn btn-primary" type="submit">Add Item</button>
+                    <button class="btn btn-primary" type="submit" id="addItem">Add Item</button>
 							
                 </div>
             </div>
@@ -285,8 +288,16 @@
                 }
 
             </script>
-            <script src="vendors/scripts/core.js"></script>
-            <script src="vendors/scripts/script.min.js"></script>
-            <script src="vendors/scripts/process.js"></script>
-            <script src="vendors/scripts/layout-settings.js"></script>
+            <script src="/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+            <script src="/vendors/scripts/advanced-components.js"></script>
+
+            {{-- Add Item Script --}}
+            <script type="text/javascript">
+                document.getElementById("addItem").onClick=function() {
+                    document.getElementById("tableItem").style.display="block";
+
+                    var table = document.getElementById("table");
+                    var row = table.insertRow(-1);
+                }
+            </script>
         @endpush
