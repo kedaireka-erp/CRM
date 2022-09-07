@@ -13,6 +13,6 @@ class Kontak extends Model
 
     public function Ncr()
     {
-        return $this->belongsToMany(Ncr::class);
+        return $this->belongsToMany(Ncr::class)->withPivot(["id", "validated"]);
     }
 }
