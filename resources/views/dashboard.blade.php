@@ -56,126 +56,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="table-plus">1</td>
-                                    <td>Universitas Negeri Semarang</td>
-                                    <td>Bangun Digital Center</td>
-                                    <td>Jendela, Pintu</td>
-                                    <td>29-08-2022</td>
-                                    <td>
-                                        <a href="#"><i class="dw dw-eye"></i> View to Validate</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-plus">2</td>
-                                    <td>Universitas Negeri Semarang</td>
-                                    <td>Bangun Digital Center</td>
-                                    <td>Jendela, Pintu</td>
-                                    <td>29-08-2022</td>
-                                    <td>
-                                        <a href="#"><i class="dw dw-eye"></i> View to Validate</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-plus">3</td>
-                                    <td>Universitas Negeri Semarang</td>
-                                    <td>Bangun Digital Center</td>
-                                    <td>Jendela, Pintu</td>
-                                    <td>29-08-2022</td>
-                                    <td>
-                                        <a href="#"><i class="dw dw-eye"></i> View to Validate</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-plus">4</td>
-                                    <td>Universitas Negeri Semarang</td>
-                                    <td>Bangun Digital Center</td>
-                                    <td>Jendela, Pintu</td>
-                                    <td>29-08-2022</td>
-                                    <td>
-                                        <a href="#"><i class="dw dw-eye"></i> View to Validate</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-plus">5</td>
-                                    <td>Universitas Negeri Semarang</td>
-                                    <td>Bangun Digital Center</td>
-                                    <td>Jendela, Pintu</td>
-                                    <td>29-08-2022</td>
-                                    <td>
-                                        <a href="#"><i class="dw dw-eye"></i> View to Validate</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-plus">6</td>
-                                    <td>Universitas Negeri Semarang</td>
-                                    <td>Bangun Digital Center</td>
-                                    <td>Jendela, Pintu</td>
-                                    <td>29-08-2022</td>
-                                    <td>
-                                        <a href="#"><i class="dw dw-eye"></i> View to Validate</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-plus">7</td>
-                                    <td>Universitas Negeri Semarang</td>
-                                    <td>Bangun Digital Center</td>
-                                    <td>Jendela, Pintu</td>
-                                    <td>29-08-2022</td>
-                                    <td>
-                                        <a href="#"><i class="dw dw-eye"></i> View to Validate</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-plus">8</td>
-                                    <td>Universitas Negeri Semarang</td>
-                                    <td>Bangun Digital Center</td>
-                                    <td>Jendela, Pintu</td>
-                                    <td>29-08-2022</td>
-                                    <td>
-                                        <a href="#"><i class="dw dw-eye"></i> View to Validate</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-plus">9</td>
-                                    <td>Universitas Negeri Semarang</td>
-                                    <td>Bangun Digital Center</td>
-                                    <td>Jendela, Pintu</td>
-                                    <td>29-08-2022</td>
-                                    <td>
-                                        <a href="#"><i class="dw dw-eye"></i> View to Validate</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-plus">10</td>
-                                    <td>Universitas Negeri Semarang</td>
-                                    <td>Bangun Digital Center</td>
-                                    <td>Jendela, Pintu</td>
-                                    <td>29-08-2022</td>
-                                    <td>
-                                        <a href="#"><i class="dw dw-eye"></i> View to Validate</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-plus">11</td>
-                                    <td>Universitas Negeri Semarang</td>
-                                    <td>Bangun Digital Center</td>
-                                    <td>Jendela, Pintu</td>
-                                    <td>29-08-2022</td>
-                                    <td>
-                                        <a href="#"><i class="dw dw-eye"></i> View to Validate</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-plus">12</td>
-                                    <td>Universitas Negeri Semarang</td>
-                                    <td>Bangun Digital Center</td>
-                                    <td>Jendela, Pintu</td>
-                                    <td>29-08-2022</td>
-                                    <td>
-                                        <a href="#"><i class="dw dw-eye"></i> View to Validate</a>
-                                    </td>
-                                </tr>
+                                @foreach ($need_approval as $nomor => $ncr) 
+                                    <tr>
+                                        <td class="table-plus">{{$nomor+1}}</td>
+                                        <td>{{$ncr->nama_mitra}}</td>
+                                        <td>{{$ncr->nama_proyek}}</td>
+                                        <td>@foreach ($ncr->ItemNcr as $item)
+                                            {{$item->nama_item}},
+                                        @endforeach</td>
+                                        <td>{{$ncr->tanggal_ncr->format('l jS \\of F Y')}}</td>
+                                        <td>
+                                            <a href="/ncr/{{$ncr->id}}"><i class="dw dw-eye"></i> View to Approve</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
