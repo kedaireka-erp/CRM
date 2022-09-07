@@ -53,23 +53,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <td>1</td>
-                            <td>Joko</td>
-                            <td>08945678399</td>
-                            <td>Manager</td>
-                            <td>
-                                <div class="dropdown">
-                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                        <i class="dw dw-more"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                        <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>
-                                            Edit</a>
-                                        <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
-                                            Delete</a>
+                            <tr>
+                                <td>1</td>
+                                <td>Joko</td>
+                                <td>08945678399</td>
+                                <td>Manager</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                            <i class="dw dw-more"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                            <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>
+                                                Edit</a>
+                                            <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
+                                                Delete</a>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
