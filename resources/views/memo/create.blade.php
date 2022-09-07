@@ -294,7 +294,10 @@
             {{-- Add Item Script --}}
             <script type="text/javascript">
                 document.getElementById("addItem").onClick=function() {
-                    document.getElementById
+                    document.getElementById("tableItem").style.display="block";
+
+                    var table = document.getElementById("table");
+                    var row = table.insertRow(-1);
                 }
             </script>
         @endpush
