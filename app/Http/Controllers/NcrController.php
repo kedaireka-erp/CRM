@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ncr;
-<<<<<<< HEAD
 use App\Models\Kontak;
 use App\Models\ItemNcr;
-=======
 use App\Models\User;
->>>>>>> 234360660f912dcd6b5b210fb2f9d9106e4b9d69
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
