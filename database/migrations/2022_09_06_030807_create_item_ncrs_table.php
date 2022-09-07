@@ -27,6 +27,7 @@ return new class extends Migration
             $table->boolean('charge')->nullable();
             $table->boolean('return_barang')->nullable();
             $table->text('keterangan')->nullable();
+            $table->foreignId("ncr_id")->constrained("ncrs")->onUpdate("cascade");
             $table->timestamps();
         });
     }

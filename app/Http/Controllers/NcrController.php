@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ncr;
+use App\Models\Kontak;
+use App\Models\ItemNcr;
 use Illuminate\Http\Request;
 
 class NcrController extends Controller
@@ -14,9 +16,10 @@ class NcrController extends Controller
      */
     public function index()
     {
+        $ncrs = Ncr::get();
         return view("ncr.index", [
             "title" => "NCR"
-        ]);
+        ],compact("ncrs"));
     }
 
     /**
@@ -26,9 +29,11 @@ class NcrController extends Controller
      */
     public function create()
     {
+        $Kontak= Kontak::get();
+        $ItemNcr= ItemNcr::get();
         return view("ncr.create", [
             "title" => "NCR"
-        ]);
+        ], compact("Kontak", "ItemNcr"));
     }
 
     /**
@@ -50,6 +55,8 @@ class NcrController extends Controller
             "tanggal_memo" => $request->tanggal_memo,
             "alamat_pengiriman" => $request->alamat_pengiriman,
             "deadline_pengambilan" =>$request->deadline_pengambilan,
+            "kontak_id" =>$request->kontak_id,
+            "item_id" =>$request->item_id,
         ]);
 
         return redirect("/ncr");

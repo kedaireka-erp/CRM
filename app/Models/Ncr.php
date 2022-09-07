@@ -11,6 +11,10 @@ class Ncr extends Model
 {
     use HasFactory;
     protected $guarded = ["id"];
+    
+    protected $dates = ["tanggal_ncr", "tanggal_memo", "deadline_pengambilan"];
+
+    protected $with = ["Kontak", "ItemNcr"];
 
     public function Kontak()
     {
