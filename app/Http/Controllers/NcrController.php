@@ -36,12 +36,14 @@ class NcrController extends Controller
             "nama_mitra"=> "UNNES",
             "nama_proyek"=>"Digital Center",
             "nomor_fppp"=>"1/fppp/jendela",
+            "alamat" => "Jl. Semarang",
             "item"=> [["nama_item"=>"jendela", "kode_item"=>"a1"], 
             ["nama_item"=>"baju", "kode_item" =>"a2"],["nama_item" => "celana", "kode_item" =>"a3"]]],
             [
             "nama_mitra"=> "ALFAMART",
             "nama_proyek"=>"LP2M",
             "nomor_fppp"=>"2/fppp/baju",
+            "alamat" => "Jl. Imam Bonjol",
             "item"=> [["nama_item"=>"baju", "kode_item"=>"b1"], ["nama_item"=>"celana", "kode_item"=>"b2"]]
             ]]);
         $Kontak= Kontak::get();
@@ -72,7 +74,7 @@ class NcrController extends Controller
             "pelapor" => $request->pelapor,
             "bukti_kecacatan" => $request->bukti_kecacatan,
             "jenis_ketidaksesuaian" =>$request->jenis_ketidaksesuaian,
-
+            "alamat_pengiriman" => $request->alamat_pengiriman,
         ]);
         foreach($request->kontak_id as $kontak){
             DB::table("kontak_ncr")->insert([
