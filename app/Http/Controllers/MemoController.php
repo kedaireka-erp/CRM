@@ -7,83 +7,23 @@ use Illuminate\Http\Request;
 
 class MemoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('memo.index', [
-            "title" => "Ncr"
+            "title" => "Memo",
+            "ncrs" => Ncr::whereNotNull("nomor_memo")->get()
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(Ncr $ncr)
     {
         return view('memo.create', [
-            "title" => "Ncr"
+            "title" => "Memo",
+            "ncr" => $ncr
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Ncr  $ncr
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Ncr $ncr)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ncr  $ncr
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Ncr $ncr)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ncr  $ncr
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Ncr $ncr)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Ncr  $ncr
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Ncr $ncr)
-    {
-        //
+    public function store(Ncr $ncr, Request $request) {
+        dd($request->all());
     }
 }

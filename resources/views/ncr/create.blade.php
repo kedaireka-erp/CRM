@@ -181,6 +181,7 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" id="alamat_pengiriman" name="alamat_pengiriman">
                         <button type="submit" class="btn btn-success float-right">
                             Send
                         </button>
@@ -196,7 +197,7 @@
             $(document).ready(function() {
                 $("#kontak").append(`<div class="row mb-4" >
                                         <div class="col">
-                                            <select class="form-control" id="Kontak"
+                                            <select class="custom-select form-control" id="Kontak"
                                                 name="kontak_id[]">
                                                 <option value="" selected hidden disabled>
                                                     Pilih Item
@@ -215,7 +216,7 @@
             $(document).ready(function() {
                 $("#itemm").append(` <div class="row mb-4">
                                         <div class="col">
-                                            <select class="form-control" id="item" name="item_id[]">
+                                            <select class="custom-select form-control" id="item" name="item_id[]">
                                                 <option value="" selected hidden disabled>
                                                     Pilih Item
                                                 </option>
@@ -245,6 +246,7 @@
 
                 $("#nama_mitra").val(`${fppp[0]["nama_mitra"]}`)
                 $("#nama_proyek").val(`${fppp[0]["nama_proyek"]}`)
+                $("#alamat_pengiriman").val(`${fppp[0]["alamat"]}`)
                 fppp[0]["item"].forEach(function(item) {
                     $("#item").append(`
                 <option value="${item["kode_item"]}-${item["nama_item"]}">${item["kode_item"]}-${item["nama_item"]}</option>

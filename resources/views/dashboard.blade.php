@@ -48,10 +48,10 @@
                             <thead>
                                 <tr>
                                     <th class="table-plus">Nomor</th>
-                                    <th>Nama Mitra</th>
-                                    <th>Nama Proyek</th>
-                                    <th>Item</th>
-                                    <th>Tanggal NCR</th>
+                                    <th class="table-plus">Nama Mitra</th>
+                                    <th class="table-plus">Nama Proyek</th>
+                                    <th class="table-plus">Item</th>
+                                    <th class="table-plus">Tanggal NCR</th>
                                     <th class="datatable-nosort">Action</th>
                                 </tr>
                             </thead>
