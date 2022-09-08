@@ -65,6 +65,11 @@ class KontakController extends Controller
     public function edit(Kontak $kontak)
     {
         //
+        return view("kontak.edit", [
+            "title" => "Kontak",
+            "users" => User::get(),
+            "kontak" => $kontak
+        ]);
     }
 
     /**
