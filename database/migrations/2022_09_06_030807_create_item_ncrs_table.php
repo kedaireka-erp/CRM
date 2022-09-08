@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('kode_item');
             $table->string('nama_item');
-            $table->string('jenis_kerusakan');
             $table->string('tipe_item')->nullable();
             $table->string('warna')->nullable();
             $table->string('bukaan')->nullable();

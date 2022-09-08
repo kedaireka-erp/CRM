@@ -68,24 +68,38 @@
                                         <td>{{ $ncr->nama_mitra }}</td>
                                         <td>{{ $ncr->nama_proyek }}</td>
                                         <td>{{ $ncr->tanggal_ncr }}</td>
-                                        <td>{{ $ncr->nama_item }}</td>
+                                        <td>
+                                            @foreach ($ncr->ItemNcr as $item)
+                                                {{ $item->nama_item }},
+                                            @endforeach
+                                        </td>
                                         <td>Open</td>
+                                        <td>
+
+                                            <div class="dropdown">
+                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                                    href="#" role="button" data-toggle="dropdown">
+                                                    <i class="dw dw-more"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                    <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>
+                                                        Edit</a>
+                                                    <a class="dropdown-item" href="/ncr/{{ $ncr->id }}"><i
+                                                            class="dw dw-edit2"></i>
+                                                        Validasi</a>
+                                                    <form action="/ncr/{{ $ncr->id }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="dropdown-item" type="submit"><i
+                                                                class="dw dw-delete-3">
+                                                            </i>
+                                                            Delete</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @endforeach
-                                <div class="dropdown">
-                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-                                        href="#" role="button" data-toggle="dropdown">
-                                        <i class="dw dw-more"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                        <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>
-                                            Edit</a>
-                                        <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i>
-                                            Validasi</a>
-                                        <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
-                                            Delete</a>
-                                    </div>
-                                </div>
                             </tbody>
                         </table>
                     </div>
