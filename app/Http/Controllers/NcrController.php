@@ -74,7 +74,13 @@ class NcrController extends Controller
             "jenis_ketidaksesuaian" =>$request->jenis_ketidaksesuaian,
 
         ]);
-        $ncrs->Kontak()->sync($request->kontak_id, ["validated", 0]);
+        foreach($request->kontak_id as $kontak){
+            DB::table("kontak_ncr")->insert([
+                "kontak_id" => $kontak,
+                "ncr_id" => $ncrs->id,
+                "validated" => 0
+            ]);
+        }
         foreach($request->item_id as $item){
             ItemNcr::create([
                 "kode_item" => explode("-", $item)[0],
