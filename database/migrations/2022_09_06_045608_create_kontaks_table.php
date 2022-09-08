@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('nomor_whatsapp');
             $table->string('divisi')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

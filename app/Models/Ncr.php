@@ -6,10 +6,12 @@ use App\Models\Kontak;
 use App\Models\ItemNcr;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ncr extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     protected $guarded = ["id"];
     
     protected $dates = ["tanggal_ncr", "tanggal_memo", "deadline_pengambilan"];

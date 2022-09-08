@@ -32,11 +32,24 @@ class NcrController extends Controller
      */
     public function create()
     {
+        $fppp= collect([[
+            "nama_mitra"=> "UNNES",
+            "nama_proyek"=>"Digital Center",
+            "nomor_fppp"=>"1/fppp/jendela",
+            "item"=> [["nama_item"=>"jendela", "kode_item"=>"a1"], 
+            ["nama_item"=>"baju", "kode_item" =>"a2"],["nama_item" => "celana", "kode_item" =>"a3"]]],
+            [
+            "nama_mitra"=> "ALFAMART",
+            "nama_proyek"=>"LP2M",
+            "nomor_fppp"=>"2/fppp/baju",
+            "item"=> [["nama_item"=>"baju", "kode_item"=>"b1"], ["nama_item"=>"celana", "kode_item"=>"b2"]]
+            ]]);
         $Kontak= Kontak::get();
-        $ItemNcr= ItemNcr::get();
+        // $ItemNcr= ItemNcr::get();
         return view("ncr.create", [
             "title" => "NCR"
-        ], compact("Kontak", "ItemNcr"));
+        ], compact("Kontak", "fppp"));
+
     }
 
     /**
@@ -49,19 +62,26 @@ class NcrController extends Controller
     {
         $ncrs = Ncr::create([
             "nama_mitra" => $request->nama_mitra,
-            "nama_projek" => $request->nama_projek,
+            "nama_proyek" => $request->nama_proyek,
             "nomor_ncr" => $request->nomor_ncr,
             "nomor_fppp" => $request->nomor_fppp,
             "tanggal_ncr" => $request->tanggal_ncr,
+            "deskripsi" => $request->deskripsi,
+            "analisa" => $request->analisa,
+            "solusi" => $request->solusi,
             "pelapor" => $request->pelapor,
-            "nomor_memo" => $request->nomor_memo,
-            "tanggal_memo" => $request->tanggal_memo,
-            "alamat_pengiriman" => $request->alamat_pengiriman,
-            "deadline_pengambilan" =>$request->deadline_pengambilan,
-            "kontak_id" =>$request->kontak_id,
-            "item_id" =>$request->item_id,
-        ]);
+            "bukti_kecacatan" => $request->bukti_kecacatan,
+            "jenis_ketidaksesuaian" =>$request->jenis_ketidaksesuaian,
 
+        ]);
+        $ncrs->Kontak()->sync($request->kontak_id, ["validated", 0]);
+        foreach($request->item_id as $item){
+            ItemNcr::create([
+                "kode_item" => explode("-", $item)[0],
+                "nama_item" => explode("-", $item)[1],
+                "ncr_id" => $ncrs->id
+            ]);
+        }
         return redirect("/ncr");
     }
 
@@ -111,7 +131,9 @@ class NcrController extends Controller
      */
     public function destroy(Ncr $ncr)
     {
-        //
+        $ncr -> delete();
+        
+        return redirect("/ncr");
     }
 
     public function validasi (Request $request) {
