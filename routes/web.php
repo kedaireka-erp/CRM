@@ -55,5 +55,3 @@ Auth::routes();
 Route::get("/memo", [MemoController::class, "index"]);
 
 Route::get("/memo/{ncr}/create", [MemoController::class, "create"]);
-
-Route::post("/memo/{ncr}", [MemoController::class, "store"]);
