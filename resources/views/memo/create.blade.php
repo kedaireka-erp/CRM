@@ -99,7 +99,8 @@
                         <th class="table-plus">Item</th>
                         <th class="table-plus">Warna</th>
                         <th class="table-plus">Bukaan</th>
-                        <th class="table-plus">Lebar x Tinggi</th>
+                        <th class="table-plus">Lebar</th>
+                        <th class="table-plus">Tinggi</th>
                         <th class="table-plus">Charge</th>
                         <th class="table-plus">Return</th>
                         <th class="datatable-nosort">Act</th>
@@ -254,15 +255,9 @@
             if (input[i].name != "item_id") {
                 item[`${input[i].name}`] = input[i].value;
             }
-            if (input[i].name == "warna" || input[i].name == "bukaan" || input[i].name == "charge" || input[i].name == "return") {
+            if (input[i].name == "warna" || input[i].name == "bukaan" || input[i].name == "charge" || input[i].name == "return" || input[i].name == "lebar" || input[i].name == "tinggi") {
                 kolom_table_add_item = document.createElement("td");
                 kolom_table_add_item.innerHTML = input[i].value;
-                baris_table_add_item.appendChild(kolom_table_add_item);
-            } else if (input[i].name == "lebar") {
-                luas = input[i].value;
-            } else if (input[i].name == "tinggi") {
-                kolom_table_add_item = document.createElement("td");
-                kolom_table_add_item.innerHTML = luas * input[i].value;
                 baris_table_add_item.appendChild(kolom_table_add_item);
             } else if (i == input.length - 1) {
                 kolom_table_add_item = document.createElement("td");
