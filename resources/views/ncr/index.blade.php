@@ -87,7 +87,9 @@
                                                     <a class="dropdown-item" href="/ncr/{{ $ncr->id }}"><i
                                                             class="dw dw-edit2"></i>
                                                         Validasi</a>
-                                                    <a class="dropdown-item" href="/memo/{{$ncr->id}}/create"><i class="dw dw-notepad-1"></i>Create Memo</a>
+                                                    @if ($ncr->nomor_memo == null)
+                                                        <a class="dropdown-item" href="/memo/{{$ncr->id}}/create"><i class="dw dw-notepad-1"></i>Create Memo</a>
+                                                    @endif
                                                     <form action="/ncr/{{ $ncr->id }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
