@@ -20,5 +20,38 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Budi',
+            'email' => 'budi@mail.com',
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Susi Susanti',
+            'email' => 'susi@mail.com',
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Herman Sihombing',
+            'email' => 'herman@mail.com',
+        ]);
+
+        \App\Models\Kontak::create([
+            "nama" => "Budi",
+            "nomor_whatsapp" => "08123456789",
+            "divisi" => "Marketing",
+        ]);
+
+        \App\Models\Kontak::create([
+            "nama" => "Susi Susanti",
+            "nomor_whatsapp" => "08123456789",
+            "divisi" => "Marketing",
+        ]);
+
+        \App\Models\Kontak::create([
+            "nama" => "Herman Sihombing",
+            "nomor_whatsapp" => "08123456789",
+            "divisi" => "Marketing",
+        ]);
     }
 }
