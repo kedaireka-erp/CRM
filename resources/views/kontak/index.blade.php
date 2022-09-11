@@ -65,9 +65,9 @@
                                             <i class="dw dw-more"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                            <a class="dropdown-item" href="/kontak/{$kontak->id}/edit"><i class="dw dw-eye"></i>
+                                            <a class="dropdown-item" href="/kontak/{{$kontak->id}}/edit"><i class="dw dw-eye"></i>
                                                 Edit</a>
-                                            <form action="/kontak/{$kontak->id}" method="post">
+                                            <form action="/kontak/{{$kontak->id}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="dropdown-item" type="submit"><i class="dw dw-delete-3">

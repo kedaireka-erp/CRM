@@ -33,7 +33,7 @@
         <div class="row">
             <div class="col mb-20">
                 <div class="pd-20 card-box mb-30">
-                    <form action="/kontak/{$kontak->id}" method="post">
+                    <form action="/kontak/{{$kontak->id}}" method="post">
                         @csrf
                         @method("put")
                         <div class="form-group">

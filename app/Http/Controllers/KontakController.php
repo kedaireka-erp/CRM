@@ -17,7 +17,8 @@ class KontakController extends Controller
     public function index()
     {
         return view("kontak.index", [
-            "title" => "Kontak"
+            "title" => "Kontak",
+            "kontaks" => Kontak::get()
         ]);
     }
 
