@@ -238,6 +238,7 @@
     }
 
     function hapusForm (elemen) {
+        data_item.data_item.splice(elemen.parentElement.parentElement.rowIndex - 1, 1);
         document.getElementById("form-add-item").children.item(elemen.parentElement.parentElement.rowIndex).remove();
         elemen.parentElement.parentElement.remove();
     }
