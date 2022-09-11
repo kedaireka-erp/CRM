@@ -33,8 +33,9 @@
         <div class="row">
             <div class="col mb-20">
                 <div class="pd-20 card-box mb-30">
-                    <form action="/kontak" method="post">
+                    <form action="/kontak/{id}" method="post">
                         @csrf
+                        @method("put")
                         <div class="form-group">
                             <label>Nama</label>
                             <select class="custom-select2 form-control" name="nama" style="width: 100%; height: 38px" required>
