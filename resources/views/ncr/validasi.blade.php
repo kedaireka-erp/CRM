@@ -164,7 +164,7 @@
                     posisi : posisi,
                     id : id,
                     checked : 1,
-                    user : {{auth()->user()->id}}
+                    user : "{{auth()->user()->name}}",
                 },
                 statusCode : {
                     200 : function(data) {

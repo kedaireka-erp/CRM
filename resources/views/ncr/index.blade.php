@@ -67,7 +67,7 @@
                                         <td>{{ $ncr->nomor_fppp }}</td>
                                         <td>{{ $ncr->nama_mitra }}</td>
                                         <td>{{ $ncr->nama_proyek }}</td>
-                                        <td>{{ $ncr->tanggal_ncr }}</td>
+                                        <td>{{$ncr->tanggal_ncr->format('l jS \\of F Y')}}</td>
                                         <td>
                                             @foreach ($ncr->ItemNcr as $item)
                                                 {{ $item->nama_item }},
