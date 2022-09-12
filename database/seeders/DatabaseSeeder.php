@@ -35,23 +35,5 @@ class DatabaseSeeder extends Seeder
             'name' => 'Herman Sihombing',
             'email' => 'herman@mail.com',
         ]);
-
-        \App\Models\Kontak::create([
-            "nama" => "Budi",
-            "nomor_whatsapp" => "08123456789",
-            "divisi" => "Marketing",
-        ]);
-
-        \App\Models\Kontak::create([
-            "nama" => "Susi Susanti",
-            "nomor_whatsapp" => "08123456789",
-            "divisi" => "Marketing",
-        ]);
-
-        \App\Models\Kontak::create([
-            "nama" => "Herman Sihombing",
-            "nomor_whatsapp" => "08123456789",
-            "divisi" => "Marketing",
-        ]);
     }
 }

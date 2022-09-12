@@ -10,7 +10,7 @@
                     <span class="user-icon">
                         <img src="/vendors/images/paper-map-cuate.svg" alt="" />
                     </span>
-                    <span class="user-name">Ross C. Lopez</span>
+                    <span class="user-name">{{auth()->user()->name}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                     {{-- <a class="dropdown-item" href="{{ route('login') }}"><i class="dw dw-logout"></i>Log Out</a> --}}
