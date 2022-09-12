@@ -69,12 +69,17 @@
                                             <i class="dw dw-more"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                            <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>
+                                            <a class="dropdown-item" href="/memo/{{$ncr->id}}/edit"><i class="dw dw-edit2"></i>
                                                 Edit </a>
-                                            <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i>
+                                            <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>
                                                 Show </a>
                                             <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
                                                 Cetak </a>
+                                            <form action="/memo/{{$ncr->id}}" method="post">
+                                                @csrf
+                                                @method("DELETE")
+                                                <button type="submit" class="dw dw-delete-3">Delete</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </td>

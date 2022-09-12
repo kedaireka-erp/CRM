@@ -199,11 +199,17 @@
     })();
     function add_kontak(element) {
         $(document).ready(function () {
+            let select = document.createElement("select");
+            let kontak = {!!$Kontak!!};
+            $(select).append(`<option value="" selected hidden disabled>Pilih Validator</option>`)
+            kontak.forEach(function(kontak) {
+                $(select).append(`<option value="${kontak.id}">${kontak.nama}</option>`)
+            })
             $("#kontak").append(`<div class="row mb-4" >
                                         <div class="col">
                                             <select class="custom-select form-control"
                                                 name="kontak_id[]">
-                                                ${document.getElementById("Kontak").innerHTML}
+                                                ${select.innerHTML}
                                             </select>
                                         </div>
                                         <div class="col-lg-1">
@@ -216,13 +222,21 @@
 
     function add_item(element) {
         $(document).ready(function () {
+            let select = document.createElement("select");
+            let fppps = {!! $fppp !!}
+            let fppp = fppps.filter(function (elemen) {
+                return elemen["nomor_fppp"] == $("#nomor_fppp").val()
+            })
+            $(select).append('<option value="" selected hidden disabled>Pilih Item</option>')
+            fppp[0]["item"].forEach(function (item) {
+                $(select).append(`
+                <option value="${item["kode_item"]}-${item["nama_item"]}">${item["kode_item"]}-${item["nama_item"]}</option>
+                `)
+            })
             $("#itemm").append(` <div class="row mb-4">
                                         <div class="col">
                                             <select class="custom-select form-control" name="item_id[]">
-                                                <option value="" selected hidden disabled>
-                                                    Pilih Item
-                                                </option>
-                                                ${document.getElementById("item").innerHTML}
+                                                ${select.innerHTML}
                                             </select>
                                         </div>
                                         <div class="col-lg-1">

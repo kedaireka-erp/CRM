@@ -47,4 +47,12 @@ class MemoController extends Controller
 
         return response()->json($ncr, 200);
     }
+
+    public function edit() {
+        return view('memo.edit');
+    }
+
+    public function update() {
+        //
+    }
 }
