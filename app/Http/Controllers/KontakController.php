@@ -88,9 +88,9 @@ class KontakController extends Controller
     public function update(Request $request, Kontak $kontak)
     {
         $kontak->update([
-            'nama'=> $request->nama ?? $request->nama,
-            'nomor_whatsapp'=> $request->nomor_whatsapp ?? $request->nomor_whatsap,
-            'divisi'=> $request->divisi ?? $request->divisi,
+            'nama'=> $request->nama ?? $kontak->nama,
+            'nomor_whatsapp'=> $request->nomor_whatsapp ?? $kontak->nomor_whatsap,
+            'divisi'=> $request->divisi ?? $kontak->divisi,
         ]);
 
             return redirect('/kontak');
