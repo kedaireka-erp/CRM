@@ -23,12 +23,11 @@ return new class extends Migration
             $table->integer('lebar')->nullable();
             $table->integer('tinggi')->nullable();
             $table->text('alasan')->nullable();
-            $table->boolean('charge')->nullable();
-            $table->boolean('return_barang')->nullable();
+            $table->string('charge')->nullable();
+            $table->string('return_barang')->nullable();
             $table->text('keterangan')->nullable();
             $table->foreignId("ncr_id")->constrained("ncrs")->onUpdate("cascade");
             $table->timestamps();
-            $table->softDelete();
         });
     }
 

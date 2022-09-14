@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ncr extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
+    
     protected $guarded = ["id"];
     
     protected $dates = ["tanggal_ncr", "tanggal_memo", "deadline_pengambilan"];
@@ -20,7 +20,7 @@ class Ncr extends Model
 
     public function Kontak()
     {
-        return $this->belongsToMany(Kontak::class)->withPivot(["id", "validated"]);
+        return $this->belongsToMany(Kontak::class)->withPivot(["id", "validated"])->withTrashed();
     }
     
     public function ItemNcr()

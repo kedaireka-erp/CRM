@@ -125,8 +125,8 @@
                         <label>Tipe Item :</label>
                         <select class="form-control custom-select" name="tipe_item">
                             <option value="" readonly selected hidden>Pilih</option>
-                            <option>Common</option>
-                            <option>Uncommon</option>
+                            <option value="Common">Common</option>
+                            <option value="Uncommon">Uncommon</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -143,17 +143,17 @@
                         <label>Warna :</label>
                         <select class="custom-select form-control" name="warna">
                             <option value="" readonly selected hidden>Pilih</option>
-                            <option value="wood_finish">Wood Finish</option>
-                            <option value="monochromatic">Monochromatic</option>
+                            <option value="Wood Finish">Wood Finish</option>
+                            <option value="Monochromatic">Monochromatic</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Bukaan :</label>
                         <select class="custom-select form-control" name="bukaan">
                             <option value="" readonly selected hidden>Pilih</option>
-                            <option value="kiri">Kiri</option>
-                            <option value="kanan">Kanan</option>
-                            <option value="tidak">Tidak Ada Bukaan</option>
+                            <option value="Kiri">Kiri</option>
+                            <option value="Kanan">Kanan</option>
+                            <option value="Tidak Ada Bukaan">Tidak Ada Bukaan</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -172,16 +172,16 @@
                         <label>Charge :</label>
                         <select class="custom-select form-control" name="charge">
                             <option value="" readonly selected hidden>Pilih</option>
-                            <option value="1">Ya</option>
-                            <option value="0">Tidak</option>
+                            <option value="Ya">Ya</option>
+                            <option value="Tidak">Tidak</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Barang dikembalikan :</label>
                         <select class="custom-select form-control" name="return">
                             <option value="" readonly selected hidden>Pilih</option>
-                            <option value="1">Ya</option>
-                            <option value="0">Tidak</option>
+                            <option value="Ya">Ya</option>
+                            <option value="Tidak">Tidak</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -290,8 +290,8 @@
                             <label>Tipe Item :</label>
                             <select class="form-control custom-select" name="tipe_item">
                                 <option value="" readonly selected hidden>Pilih</option>
-                                <option>Common</option>
-                                <option>Uncommon</option>
+                                <option value="Common">Common</option>
+                                <option value="Uncommon">Uncommon</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -308,17 +308,17 @@
                             <label>Warna :</label>
                             <select class="custom-select form-control" name="warna">
                                 <option value="" readonly selected hidden>Pilih</option>
-                                <option value="wood_finish">Wood Finish</option>
-                                <option value="monochromatic">Monochromatic</option>
+                                <option value="Wood Finish">Wood Finish</option>
+                                <option value="Monochromatic">Monochromatic</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Bukaan :</label>
                             <select class="custom-select form-control" name="bukaan">
                                 <option value="" readonly selected hidden>Pilih</option>
-                                <option value="kiri">Kiri</option>
-                                <option value="kanan">Kanan</option>
-                                <option value="tidak">Tidak Ada Bukaan</option>
+                                <option value="Kiri">Kiri</option>
+                                <option value="Kanan">Kanan</option>
+                                <option value="Tidak Ada Bukaan">Tidak Ada Bukaan</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -337,16 +337,16 @@
                             <label>Charge :</label>
                             <select class="custom-select form-control" name="charge">
                                 <option value="" readonly selected hidden>Pilih</option>
-                                <option value="1">Ya</option>
-                                <option value="0">Tidak</option>
+                                <option value="Ya">Ya</option>
+                                <option value="Tidak">Tidak</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Barang dikembalikan :</label>
                             <select class="custom-select form-control" name="return">
                                 <option value="" readonly selected hidden>Pilih</option>
-                                <option value="1">Ya</option>
-                                <option value="0">Tidak</option>
+                                <option value="Ya">Ya</option>
+                                <option value="Tidak">Tidak</option>
                             </select>
                         </div>
                         <div class="form-group">

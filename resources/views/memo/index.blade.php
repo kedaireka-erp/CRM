@@ -59,8 +59,8 @@
                                 <td>{{$ncr->nomor_fppp}}</td>
                                 <td>{{$ncr->nama_mitra}}</td>
                                 <td>{{$ncr->nama_proyek}}</td>
-                                <td>{{$ncr->tanggal_memo}}</td>
-                                <td>{{$ncr->deadline_pengiriman}}</td>
+                                <td>{{$ncr->tanggal_memo->format("d-m-Y")}}</td>
+                                <td>{{$ncr->deadline_pengambilan->format("d-m-Y")}}</td>
                                 <td>Tidak</td>
                                 <td>
                                     <div class="dropdown">

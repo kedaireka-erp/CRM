@@ -120,22 +120,7 @@
                 },
             },
         },
-        labels: ['Closed', 'Open'],
-        legend: {
-            show: true,
-            position: 'right',
-            offsetY: 100,
-            offsetX: 100,
-            labels: {
-                useSeriesColors: true,
-            },
-            markers: {
-                size: 0
-            },
-            formatter: function (seriesName, opts) {
-                return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex]
-            },
-        }
+        labels: ['Closed', 'Open']
     };
     var chart4 = new ApexCharts(document.querySelector("#diseases-chart"), options4);
     chart4.render();
