@@ -114,7 +114,7 @@
                         show: true,
                         label: 'Total',
                         formatter: function (w) {
-                            return 260
+                            return 300
                         }
                     }
                 },
