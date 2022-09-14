@@ -59,8 +59,8 @@
                                 <td>{{$ncr->nomor_fppp}}</td>
                                 <td>{{$ncr->nama_mitra}}</td>
                                 <td>{{$ncr->nama_proyek}}</td>
-                                <td>2022-08-08</td>
-                                <td>2022-08-08</td>
+                                <td>{{$ncr->tanggal_memo}}</td>
+                                <td>{{$ncr->deadline_pengiriman}}</td>
                                 <td>Tidak</td>
                                 <td>
                                     <div class="dropdown">
@@ -73,12 +73,12 @@
                                                 Edit </a>
                                             <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>
                                                 Show </a>
-                                            <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
+                                            <a class="dropdown-item" href="#"><i class="dw dw-print"></i>
                                                 Cetak </a>
                                             <form action="/memo/{{$ncr->id}}" method="post">
                                                 @csrf
                                                 @method("DELETE")
-                                                <button type="submit" class="dw dw-delete-3">Delete</button>
+                                                <button type="submit" class="dropdown-item"><i class="dw dw-delete-3"></i>Delete</button>
                                             </form>
                                         </div>
                                     </div>

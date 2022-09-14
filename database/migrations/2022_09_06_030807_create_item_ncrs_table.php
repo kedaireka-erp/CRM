@@ -28,6 +28,7 @@ return new class extends Migration
             $table->text('keterangan')->nullable();
             $table->foreignId("ncr_id")->constrained("ncrs")->onUpdate("cascade");
             $table->timestamps();
+            $table->softDelete();
         });
     }
 
@@ -39,5 +40,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('item_ncrs');
+
     }
 };

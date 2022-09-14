@@ -29,6 +29,7 @@ class MemoController extends Controller
             "nomor_memo" => $request->data_item["nomor_memo"],
             "tanggal_memo" => $request->data_item["tanggal_memo"],
             "deadline_pengambilan" => $request->data_item["deadline_pengambilan"],
+            "alamat_pengiriman" => $request->data_item["alamat_pengiriman"],
         ]);
 
         foreach ($request->data_item["data_item"] as $item) {
@@ -48,11 +49,37 @@ class MemoController extends Controller
         return response()->json($ncr, 200);
     }
 
-    public function edit() {
-        return view('memo.edit');
+    public function edit(Ncr $ncr) {
+        return view("memo.edit", [
+            "title" => "Memo",
+            "ncr" => $ncr
+        ]);
     }
 
-    public function update() {
-        //
+    public function update(Request $request, Ncr $ncr) {
+        $ncr->update([
+            "nomor_memo" => $request->data_item["nomor_memo"],
+            "tanggal_memo" => $request->data_item["tanggal_memo"],
+            "deadline_pengambilan" => $request->data_item["deadline_pengambilan"],
+            "alamat_pengiriman" => $request->data_item["alamat_pengiriman"],
+        ]);
+
+        ItemNcr::where("nomor_ncr", $ncr->nomor_ncr)->delete();
+
+        foreach ($request->data_item["data_item"] as $item) {
+            ItemNcr::find($item["item_id"])->update([
+                "tipe_item" => $item["tipe_item"],
+                "warna" => $item["warna"],
+                "lebar" => $item["lebar"],
+                "tinggi" => $item["tinggi"],
+                "alasan" => $item["alasan"],
+                "keterangan" => $item["keterangan"],
+                "return_barang" => $item["return"],
+                "charge" => $item["charge"],
+                "bukaan" => $item["bukaan"],
+            ]);
+        }
+
+        return redirect("/");
     }
 }

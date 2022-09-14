@@ -28,6 +28,10 @@ Route::middleware("auth")->group(function () {
     Route::get("/memo", [MemoController::class, "index"]);
     
     Route::get("/memo/{ncr}/create", [MemoController::class, "create"]);
+
+    Route::get("/memo/{ncr}/edit", [MemoController::class, "edit"]);
+
+    Route::post("/memo/{ncr}/update", [MemoController::class, "update"]);
 });
 
 Auth::routes();
