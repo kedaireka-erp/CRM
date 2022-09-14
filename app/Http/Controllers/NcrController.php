@@ -134,7 +134,8 @@ class NcrController extends Controller
 
         return view("ncr.edit",[
             "title" => "NCR",
-            "validators" => $ncr->Kontak()->orderBy("kontak_ncr.id", "asc")->get()
+            "validators" => $ncr->Kontak()->orderBy("kontak_ncr.id", "asc")->get(),
+            "fppps" => $fppp->where("nomor_fppp", $ncr->nomor_fppp)->first()
         ], compact("Kontak", "ncr", "fppp"));
     }
 
@@ -145,9 +146,8 @@ class NcrController extends Controller
      * @param  \App\Models\Ncr  $ncr
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ncr $id)
+    public function update(Request $request, Ncr $ncr)
     {
-        $ncr = Ncr::findOrFail($id);
         $ncr->update([
             "nama_mitra" => $request->nama_mitra ?? $ncr->nama_mitra,
             "nama_proyek" => $request->nama_proyek ?? $ncr->nama_proyek,
@@ -163,6 +163,27 @@ class NcrController extends Controller
             "alamat_pengiriman" => $request->alamat_pengiriman ?? $ncr->alamat_pengiriman,
             "kontak_id" => $request->kontak_id ?? $ncr->kontak_id,
         ]);
+
+        ItemNcr::where('ncr_id', $ncr->id)->delete();
+
+        DB::table("kontak_ncr")->where('ncr_id', $ncr->id)->delete();
+        
+        foreach($request->kontak_id as $kontak){
+            DB::table("kontak_ncr")->insert([
+                "kontak_id" => $kontak,
+                "ncr_id" => $ncr->id,
+                "validated" => 0
+            ]);
+        }
+
+        foreach($request->item_id as $item){
+            ItemNcr::create([
+                "kode_item" => explode("-", $item)[0],
+                "nama_item" => explode("-", $item)[1],
+                "ncr_id" => $ncr->id
+            ]);
+        }
+
 
         return redirect("/ncr");
 

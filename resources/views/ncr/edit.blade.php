@@ -30,6 +30,7 @@
                     </div>
                     <form action="/ncr/{{ $ncr->id }}" method="post" class="clearfix">
                         @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
@@ -85,8 +86,7 @@
                                     <label>Kepada (validator)</label>
                                     <div class="row mb-4" id="form_kontak">
                                         <div class="col">
-                                            <select class="custom-select2 d-block w-100 form-control" id="Kontak"
-                                                name="kontak_id[]">
+                                            <select class="custom-select2 d-block w-100 form-control" name="kontak_id[]">
                                                 @foreach ($Kontak as $con)
                                                     <option value="{{ $con->id }}">
                                                         {{ $con->nama }}
@@ -107,17 +107,21 @@
                             <div class="col">
                                 <div class="form-group" id="itemm">
                                     <label>Item</label>
-                                    <div class="row mb-4">
+                                    <div class="row mb-4" id="form_item">
                                         <div class="col" id="items">
-                                            <select class="custom-select2 d-block w-100 form-control" id="item"
-                                                name="item_id[]">
-                                                <option value="{{ $ncr->item_id }}" selected hidden disabled>
+                                            <select class="custom-select2 d-block w-100 form-control" name="item_id[]">
+                                                <option selected hidden disabled>
                                                     Pilih Item
                                                 </option>
+                                                @foreach ($fppps['item'] as $item)
+                                                    <option value="{{ $item['kode_item'] . '-' . $item['nama_item'] }}"
+                                                        {{ $item['kode_item'] == $ncr->ItemNcr[0]->kode_item ? 'selected' : '' }}>
+                                                        {{ $item['kode_item'] . '-' . $item['nama_item'] }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-lg-1">
-                                            <button onclick="add_item(this)" type="button" class="btn btn-outline-primary">
+                                            <button onclick="add_item()" type="button" class="btn btn-outline-primary">
                                                 +
                                             </button>
                                         </div>
@@ -136,8 +140,8 @@
                             <div class="col-md-8 col-sm-12">
                                 <div class="form-group">
                                     <label>Jenis Ketidaksesuaian</label>
-                                    <input class="form-control" type="string" id="#"
-                                        name="jenis_ketidaksesuaian" value="{{ $ncr->jenis_ketidaksesuaian }}" />
+                                    <input class="form-control" type="string" id="#" name="jenis_ketidaksesuaian"
+                                        value="{{ $ncr->jenis_ketidaksesuaian }}" />
                                 </div>
                             </div>
                         </div>
@@ -174,7 +178,8 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" id="alamat_pengiriman" name="alamat_pengiriman">
+                        <input type="hidden" id="alamat_pengiriman" name="alamat_pengiriman"
+                            value="{{ $fppps['alamat'] }}">
                         <button type="submit" class="btn btn-success float-right">
                             Submit
                         </button>
@@ -186,6 +191,14 @@
     </div>
     @endsection @push('script')
     <script type="text/javascript">
+        (function() {
+            $(document).ready(function() {
+                document.querySelectorAll("textarea").forEach(function(elemen) {
+                    $(elemen).wysihtml5()
+                })
+            })
+        })();
+
         let kontak = {!! $ncr->Kontak !!}.sort(function(a, b) {
             return a.pivot.id - b.pivot.id;
         });
@@ -199,47 +212,82 @@
         if (kontak.length >= 1) {
             kontak.forEach(function(kontaks, index) {
                 if (index != 0) {
-                    add_kontak()
-                    // $('#form_kontak').children()[0].children[0].children[kontak[0].id - 1].selected = true
-                    console.log($('#kontak').children())
+                    add_kontak(kontaks)
                 }
             })
         }
 
-        function add_kontak() {
+        function add_kontak(kontaks = undefined) {
             $(document).ready(function() {
+                let select = document.createElement("select");
+                let kontak = {!! $Kontak !!};
+                let option = undefined;
+                $(select).append(`<option value="" selected hidden disabled>Pilih Validator</option>`)
+                kontak.forEach(function(kontak) {
+                    option = document.createElement("option");
+                    option.value = kontak.id;
+                    option.innerHTML = kontak.nama;
+                    if (kontaks != undefined && kontaks.id == kontak.id) {
+                        option.setAttribute("selected", true)
+                    }
+                    select.appendChild(option)
+                })
                 $("#kontak").append(`<div class="row mb-4" >
                                         <div class="col">
-                                            <select class="custom-select form-control" id="Kontak"
+                                            <select class="custom-select form-control"
                                                 name="kontak_id[]">
-                                                <option value="" selected hidden disabled>
-                                                    Pilih Item
-                                                </option>
-                                                ${document.getElementById("Kontak").innerHTML}
+                                                ${select.innerHTML}
                                             </select>
                                         </div>
                                         <div class="col-lg-1">
                                             <button onclick="hapus_elemen(this)" type="button" class="btn btn-outline-danger"> - </button>
                                         </div>
                                     </div>`);
+                $("#kontak .row:last-child select").select2();
             });
         }
 
-        function add_item(element) {
+        let itemmm = {!! $ncr->ItemNcr !!};
+
+        if (itemmm.length >= 1) {
+            itemmm.forEach(function(itemss, index) {
+                if (index != 0) {
+                    add_item(itemss)
+                }
+            })
+        }
+
+
+        function add_item(itemss = undefined) {
             $(document).ready(function() {
+                let select = document.createElement("select");
+                let fppps = {!! $fppp !!}
+                let option = undefined;
+                let fppp = fppps.filter(function(elemen) {
+                    return elemen["nomor_fppp"] == $("#nomor_fppp").val()
+                })
+                $(select).append('<option value="" selected hidden disabled>Pilih Item</option>')
+                fppp[0]["item"].forEach(function(item) {
+                    option = document.createElement("option");
+                    option.value = item.kode_item + '-' + item.nama_item;
+                    option.innerHTML = item.kode_item + '-' + item.nama_item;
+                    if (itemss != undefined && itemss.kode_item == item.kode_item) {
+                        option.setAttribute('selected', true)
+                    }
+                    select.appendChild(option)
+                })
+
                 $("#itemm").append(` <div class="row mb-4">
                                         <div class="col">
-                                            <select class="custom-select form-control" id="item" name="item_id[]">
-                                                <option value="" selected hidden disabled>
-                                                    Pilih Item
-                                                </option>
-                                                ${document.getElementById("item").innerHTML}
+                                            <select class="custom-select form-control" name="item_id[]">
+                                                ${select.innerHTML}
                                             </select>
                                         </div>
                                         <div class="col-lg-1">
                                             <button onclick="hapus_elemen(this)" type="button" class="btn btn-outline-danger"> - </button>
                                         </div>
                                     </div>`);
+                $("#itemm .row:last-child select").select2();
             });
 
         }
