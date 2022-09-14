@@ -225,9 +225,10 @@
     function Finish (elemen) {
         $(document).ready(function () {
             $.ajax({
-                url: "/api/memo/" + {{$ncr->id}},
+                url: "/memo/" + {{$ncr->id}},
                 type: "POST",
                 data: {
+                    _token: "{{ csrf_token() }}",
                     data_item
                 },
                 success: function (response) {

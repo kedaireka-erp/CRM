@@ -19,7 +19,3 @@ use App\Http\Controllers\MemoController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::post("/ncr/validasi/{ncr}", [NcrController::class, "validasi"]);
-
-Route::post("/memo/{ncr}", [MemoController::class, "store"]);

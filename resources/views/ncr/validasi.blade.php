@@ -158,13 +158,14 @@
         let checked = checkbox.checked;
         $(document).ready(function () {
             $.ajax({
-                url: "/api/ncr/validasi/" + id,
-                method: 'post',
+                url: "/ncr/validasi/" + id,
+                method: 'POST',
                 data: {
                     posisi : posisi,
                     id : id,
                     checked : 1,
                     user : "{{auth()->user()->name}}",
+                    _token: "{{ csrf_token() }}"
                 },
                 statusCode : {
                     200 : function(data) {
