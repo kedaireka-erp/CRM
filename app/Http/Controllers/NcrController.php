@@ -203,7 +203,7 @@ class NcrController extends Controller
     }
 
     public function validasi (Request $request) {
-        if (Kontak::where("nama", $request->user)->first()->id != DB::table("kontak_ncr")->where("id", $request->id)->first()->kontak_id) {
+        if (Kontak::withTrashed()->where("nama", $request->user)->first()->id != DB::table("kontak_ncr")->where("id", $request->id)->first()->kontak_id) {
             return response()->json(["message" => "anda bukan user tersebut"], 403);
         } else {
             if ($request->posisi == 0 || DB::table('kontak_ncr')->where("id", $request->id - 1)->first()->validated == 1) {

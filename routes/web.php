@@ -28,6 +28,16 @@ Route::middleware("auth")->group(function () {
     Route::get("/memo", [MemoController::class, "index"]);
     
     Route::get("/memo/{ncr}/create", [MemoController::class, "create"]);
+
+    Route::get("/memo/{ncr}/edit", [MemoController::class, "edit"]);
+
+    Route::put("/memo/{ncr}", [MemoController::class, "update"]);
+
+    Route::delete("/memo/{ncr}", [MemoController::class, "destroy"]);
+
+    Route::post("/memo/{ncr}", [MemoController::class, "store"]);
+
+    Route::post("/ncr/validasi/{ncr}", [NcrController::class, "validasi"]);
 });
 
 Auth::routes();

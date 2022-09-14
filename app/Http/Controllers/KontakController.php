@@ -31,7 +31,7 @@ class KontakController extends Controller
     {
         return view("kontak.create", [
             "title" => "Kontak",
-            "users" => User::get()
+            "users" => User::whereNotIn("name", Kontak::get()->pluck("nama"))->get()
         ]);
     }
 
@@ -73,7 +73,7 @@ class KontakController extends Controller
         //
         return view("kontak.edit", [
             "title" => "Kontak",
-            "users" => User::get(),
+            "users" => User::whereNotIn("name", Kontak::whereNot("nama", $kontak->nama)->get()->pluck("nama"))->get(),
             "kontak" => $kontak
         ]);
     }

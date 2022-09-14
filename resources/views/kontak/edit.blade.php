@@ -24,7 +24,7 @@
                             <li class="breadcrumb-item">
                                 <a href="/kontak">Kontak</a>
                             </li>
-                            <li aria-current="page" class="breadcrumb-item active">Buat Kontak</li>
+                            <li aria-current="page" class="breadcrumb-item active">Edit Kontak</li>
                         </ol>
                     </nav>
                 </div>
@@ -59,7 +59,7 @@
                         </div>
                         <a href="/kontak" class="btn btn-warning">Cancel</a>
                         <button type="reset" class="btn btn-secondary">Reset</button>
-                        <button type="submit" class="btn btn-primary">Tambah Kontak</button>
+                        <button type="submit" class="btn btn-primary">Edit Kontak</button>
                     </form>
                 </div>
             </div>

@@ -66,13 +66,13 @@
                     <div class="form-group">
                         <label>Tanggal Memo</label>
                         <input type="date" class="form-control" readonly
-                            value="{{Carbon\Carbon::now()->toDateString()}}" name="tanggal_memo">
+                            value="{{$ncr->tanggal_memo->format("Y-m-d")}}" name="tanggal_memo">
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <div class="form-group">
                         <label>Deadline Pengambilan</label>
-                        <input type="date" class="form-control" placeholder="Select Date" name="deadline_pengambilan">
+                        <input type="date" class="form-control" placeholder="Select Date" name="deadline_pengambilan" value="{{$ncr->deadline_pengambilan->format("Y-m-d")}}">
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12">
@@ -86,7 +86,7 @@
             <button class="btn btn-primary" onClick="Proses()">Process</button>
         </div>
 
-        <div class="card-box mb-30 d-none form-add-item">
+        <div class="card-box mb-30 form-add-item">
             <div class="pd-20">
                 <div class="text-blue h5">List Item Memo</div>
                 <small class="mb-0">
@@ -107,6 +107,20 @@
                     </tr>
                 </thead>
                 <tbody id="table-add-item">
+                    @foreach ($items as $item)
+                        <tr>
+                            <td>{{$item->kode_item}}-{{$item->nama_item}}</td>
+                            <td>{{$item->warna}}</td>
+                            <td>{{$item->bukaan}}</td>
+                            <td>{{$item->lebar}}</td>
+                            <td>{{$item->tinggi}}</td>
+                            <td>{{$item->charge}}</td>
+                            <td>{{$item->return_barang}}</td>
+                            <td>
+                                <button class="btn btn-danger" type="button" onClick="hapusForm(this)">Hapus</button>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
             <div class="pd-20">
@@ -114,10 +128,80 @@
             </div>
         </div>
 
-        <div class="pd-20 card-box mb-30 d-none form-add-item" id="form-add-item">
+        <div class="pd-20 card-box mb-30 form-add-item" id="form-add-item">
             <div class="clearfix">
                 <h4 class="text-blue h4">Add Items Memo</h4>
             </div>
+
+            @foreach ($items as $itemm)    
+            <div class="row d-none">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Tipe Item :</label>
+                        <select class="form-control custom-select" name="tipe_item">
+                            <option {{$itemm->tipe_item == "Common" ? "selected" : ""}} value="Common">Common</option>
+                            <option {{$itemm->tipe_item == "Uncommon" ? "selected" : ""}} value="Uncommon">Uncommon</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Item :</label>
+                        <select class="custom-select form-control" name="item_id">
+                            <option value="" readonly selected hidden>Pilih</option>
+                            @foreach ($ncr->ItemNcr as $item)
+                            <option value="{{$item->id}}-{{$item->kode_item}}-{{$item->nama_item}}" {{$itemm->id == $item->id ? "selected" : ""}}>
+                                {{$item->kode_item}}-{{$item->nama_item}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Warna :</label>
+                        <select class="custom-select form-control" name="warna">
+                            <option value="Wood Finish" {{$itemm->warna == "Wood Finish" ? "selected" : ""}}>Wood Finish</option>
+                            <option value="Monochromatic" {{$itemm->warna == "Monochromatic" ? "selected" : ""}}>Monochromatic</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Bukaan :</label>
+                        <select class="custom-select form-control" name="bukaan">
+                            <option value="Kiri" {{$itemm->bukaan == "Kiri" ? "selected" : ""}}>Kiri</option>
+                            <option value="Kanan" {{$itemm->bukaan == "Kanan" ? "selected" : ""}}>Kanan</option>
+                            <option value="Tidak Ada Bukaan" {{$itemm->bukaan == "Tidak Ada Bukaan" ? "selected" : ""}}>Tidak Ada Bukaan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Lebar(mm) :</label>
+                        <input type="number" class="form-control" value="{{$itemm->lebar}}" name="lebar">
+                    </div>
+                    <div class="form-group">
+                        <label>Tinggi(mm) :</label>
+                        <input type="number" class="form-control" value="{{$itemm->tinggi}}" name="tinggi">
+                    </div>
+                    <div class="form-group">
+                        <label>Alasan :</label>
+                        <textarea class="form-control" name="alasan">{{$itemm->alasan}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Charge :</label>
+                        <select class="custom-select form-control" name="charge">
+                            <option value="Ya" {{$itemm->charge == "Ya" ? "selected" : ""}}>Ya</option>
+                            <option value="Tidak" {{$itemm->charge == "Tidak" ? "selected" : ""}}>Tidak</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Barang dikembalikan :</label>
+                        <select class="custom-select form-control" name="return">
+                            <option value="" readonly selected hidden>Pilih</option>
+                            <option value="Ya" {{$itemm->return_barang == "Ya" ? "selected" : ""}}>Ya</option>
+                            <option value="Tidak" {{$itemm->return_barang == "Tidak" ? "selected" : ""}}>Tidak</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Keterangan :</label>
+                        <textarea class="form-control" name="keterangan">{{$itemm->keterangan}}</textarea>
+                    </div>
+                </div>
+            </div>
+            @endforeach
 
             <div class="row">
                 <div class="col">
@@ -198,11 +282,11 @@
 @push('script')
 <script>
     let data_item = {
-        nomor_memo: undefined,
-        alamat_pengiriman: undefined,
-        deadline_pengambilan: undefined,
-        tanggal_memo : undefined,
-        data_item: [],
+        nomor_memo: {{$ncr->nomor_memo}},
+        alamat_pengiriman: "{{$ncr->alamat_pengiriman}}",
+        deadline_pengambilan: '{{$ncr->deadline_pengambilan->format("Y-m-d")}}',
+        tanggal_memo : '{{$ncr->tanggal_memo->format("Y-m-d")}}',
+        data_item: {!!$items!!}.length > 0 ? {!!$items!!} : [],
     };
 
     function Proses() {
@@ -217,22 +301,23 @@
                 data_item.tanggal_memo = elemen.value;
             }
         });
-        document.querySelectorAll(".form-add-item").forEach(function (elemen) {
-            elemen.classList.remove("d-none");
-        });
     }
 
     function Finish (elemen) {
         $(document).ready(function () {
             $.ajax({
-                url: "/api/memo/" + {{$ncr->id}},
-                type: "POST",
+                url: "/memo/" + {{$ncr->id}},
+                type: "PUT",
                 data: {
+                    _token: "{{ csrf_token() }}",
                     data_item
                 },
                 success: function (response) {
                     window.location = "/memo";
                 },
+                error: function (response) {
+                    window.location = "/memo";
+                }
             });
         });
     }
@@ -268,7 +353,7 @@
                 kolom_table_add_item = document.createElement("td");
                 kolom_table_add_item.innerHTML = input[i].value.split("-")[1] + "-" + input[i].value.split("-")[2];
                 baris_table_add_item.appendChild(kolom_table_add_item);
-                item[`${input[i].name}`] = input[i].value.split("-")[0];
+                item[`id`] = input[i].value.split("-")[0];
             }
         }
         data_item.data_item.push(item);
@@ -282,8 +367,8 @@
                             <label>Tipe Item :</label>
                             <select class="form-control custom-select" name="tipe_item">
                                 <option value="" readonly selected hidden>Pilih</option>
-                                <option>Common</option>
-                                <option>Uncommon</option>
+                                <option value="Common">Common</option>
+                                <option value="Uncommon">Uncommon</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -300,17 +385,17 @@
                             <label>Warna :</label>
                             <select class="custom-select form-control" name="warna">
                                 <option value="" readonly selected hidden>Pilih</option>
-                                <option value="wood_finish">Wood Finish</option>
-                                <option value="monochromatic">Monochromatic</option>
+                                <option value="Wood Finish">Wood Finish</option>
+                                <option value="Monochromatic">Monochromatic</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Bukaan :</label>
                             <select class="custom-select form-control" name="bukaan">
                                 <option value="" readonly selected hidden>Pilih</option>
-                                <option value="kiri">Kiri</option>
-                                <option value="kanan">Kanan</option>
-                                <option value="tidak">Tidak Ada Bukaan</option>
+                                <option value="Kiri">Kiri</option>
+                                <option value="Kanan">Kanan</option>
+                                <option value="Tidak Ada Bukaan">Tidak Ada Bukaan</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -329,16 +414,16 @@
                             <label>Charge :</label>
                             <select class="custom-select form-control" name="charge">
                                 <option value="" readonly selected hidden>Pilih</option>
-                                <option value="1">Ya</option>
-                                <option value="0">Tidak</option>
+                                <option value="Ya">Ya</option>
+                                <option value="Tidak">Tidak</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Barang dikembalikan :</label>
                             <select class="custom-select form-control" name="return">
                                 <option value="" readonly selected hidden>Pilih</option>
-                                <option value="1">Ya</option>
-                                <option value="0">Tidak</option>
+                                <option value="Ya">Ya</option>
+                                <option value="Tidak">Tidak</option>
                             </select>
                         </div>
                         <div class="form-group">

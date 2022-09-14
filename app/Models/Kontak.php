@@ -9,12 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Kontak extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
     protected $guarded = ["id"];
 
     public function Ncr()
     {
-        return $this->belongsToMany(Ncr::class)->withPivot(["id", "validated"]);
+        return $this->belongsToMany(Ncr::class)->withPivot(["id", "validated"])->withTrashed();
     }
 }
