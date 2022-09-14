@@ -67,7 +67,7 @@
                                         <td>{{ $ncr->nomor_fppp }}</td>
                                         <td>{{ $ncr->nama_mitra }}</td>
                                         <td>{{ $ncr->nama_proyek }}</td>
-                                        <td>{{$ncr->tanggal_ncr->format('l jS \\of F Y')}}</td>
+                                        <td>{{ $ncr->tanggal_ncr->format('l jS \\of F Y') }}</td>
                                         <td>
                                             @foreach ($ncr->ItemNcr as $item)
                                                 {{ $item->nama_item }},
@@ -82,7 +82,8 @@
                                                     <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                    <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>
+                                                    <a class="dropdown-item" href="/ncr/{{ $ncr->id }}/edit"><i
+                                                            class="dw dw-eye"></i>
                                                         Edit</a>
                                                     <a class="dropdown-item" href="/ncr/{{ $ncr->id }}"><i
                                                             class="dw dw-edit2"></i>

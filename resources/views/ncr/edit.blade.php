@@ -16,9 +16,6 @@
                                     <li class="breadcrumb-item">
                                         <a href="/ncr">NCR</a>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">
-                                        add NCR
-                                    </li>
                                 </ol>
                             </nav>
                         </div>
@@ -31,20 +28,22 @@
                             <h4 class="text-blue h4">Form NCR</h4>
                         </div>
                     </div>
-                    <form action="/ncr" method="post" class="clearfix">
+                    <form action="/ncr/{{ $ncr->id }}" method="post" class="clearfix">
                         @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Mitra</label>
-                                    <input class="form-control" type="text" id="nama_mitra" name="nama_mitra" readonly />
+                                    <input class="form-control" value="{{ $ncr->nama_mitra }}" type="text"
+                                        id="nama_mitra" name="nama_mitra" readonly />
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Nama Project</label>
-                                    <input class="form-control" type="text" id="nama_proyek" name="nama_proyek"
-                                        readonly />
+                                    <input class="form-control" value="{{ $ncr->nama_proyek }}" type="text"
+                                        id="nama_proyek" name="nama_proyek" readonly />
                                 </div>
                             </div>
                         </div>
@@ -53,7 +52,7 @@
                                 <div class="form-group">
                                     <label>No NCR</label>
                                     <input value="1" class="form-control" type="string" id="nomor_ncr"
-                                        name="nomor_ncr" readonly />
+                                        name="nomor_ncr" value="{{ $ncr->nomor_ncr }}" readonly />
                                 </div>
                             </div>
                         </div>
@@ -71,11 +70,9 @@
                                     <label>No FPPP</label>
                                     <select onchange="inputFppp(this)" class="custom-select2 d-block w-100 form-control"
                                         id="nomor_fppp" name="nomor_fppp">
-                                        <option value="" selected hidden disabled>
-                                            Pilih Nomor FPPP
-                                        </option>
                                         @foreach ($fppp as $fp)
-                                            <option value="{{ $fp['nomor_fppp'] }}">
+                                            <option value="{{ $fp['nomor_fppp'] }}"
+                                                {{ $fp['nomor_fppp'] == $ncr->nomor_fppp ? 'selected' : '' }}>
                                                 {{ $fp['nomor_fppp'] }}
                                             </option>
                                         @endforeach
@@ -89,11 +86,7 @@
                                     <label>Kepada (validator)</label>
                                     <div class="row mb-4" id="form_kontak">
                                         <div class="col">
-                                            <select class="custom-select2 d-block w-100 form-control" id="Kontak"
-                                                name="kontak_id[]">
-                                                <option value="" selected hidden disabled>
-                                                    Pilih Validator
-                                                </option>
+                                            <select class="custom-select2 d-block w-100 form-control" name="kontak_id[]">
                                                 @foreach ($Kontak as $con)
                                                     <option value="{{ $con->id }}">
                                                         {{ $con->nama }}
@@ -114,17 +107,21 @@
                             <div class="col">
                                 <div class="form-group" id="itemm">
                                     <label>Item</label>
-                                    <div class="row mb-4">
+                                    <div class="row mb-4" id="form_item">
                                         <div class="col" id="items">
-                                            <select class="custom-select2 d-block w-100 form-control" id="item"
-                                                name="item_id[]">
-                                                <option value="" selected hidden disabled>
+                                            <select class="custom-select2 d-block w-100 form-control" name="item_id[]">
+                                                <option selected hidden disabled>
                                                     Pilih Item
                                                 </option>
+                                                @foreach ($fppps['item'] as $item)
+                                                    <option value="{{ $item['kode_item'] . '-' . $item['nama_item'] }}"
+                                                        {{ $item['kode_item'] == $ncr->ItemNcr[0]->kode_item ? 'selected' : '' }}>
+                                                        {{ $item['kode_item'] . '-' . $item['nama_item'] }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-lg-1">
-                                            <button onclick="add_item(this)" type="button" class="btn btn-outline-primary">
+                                            <button onclick="add_item()" type="button" class="btn btn-outline-primary">
                                                 +
                                             </button>
                                         </div>
@@ -143,21 +140,22 @@
                             <div class="col-md-8 col-sm-12">
                                 <div class="form-group">
                                     <label>Jenis Ketidaksesuaian</label>
-                                    <input class="form-control" type="string" id="#"
-                                        name="jenis_ketidaksesuaian" />
+                                    <input class="form-control" type="string" id="#" name="jenis_ketidaksesuaian"
+                                        value="{{ $ncr->jenis_ketidaksesuaian }}" />
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Deskripsi Ketidaksesuaian</label>
-                            <textarea class="form-control" name="deskripsi" placeholder="Enter text ..."></textarea>
+                            <textarea class="form-control" name="deskripsi" placeholder="Enter text ...">{{ $ncr->deskripsi }}</textarea>
                         </div>
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Bukti Kecacatan</label>
-                                    <input class="form-control-file form-control height-auto" type="file"
-                                        id="bukti_kecacatan" name="bukti_kecacatan" />
+                                    <input class="form-control-file form-control height-auto"
+                                        value="{{ $ncr->bukti_kecacatan }}" type="file" id="bukti_kecacatan"
+                                        name="bukti_kecacatan" />
                                     <small class="form-text text-muted" style="color: red">* Lampiran file berformat PDF
                                         maks
                                         2MB</small>
@@ -168,7 +166,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>Analisa : </label>
-                                    <textarea class="form-control" name="analisa" placeholder="Enter text ..."></textarea>
+                                    <textarea class="form-control" name="analisa" placeholder="Enter text ...">{{ $ncr->analisa }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -176,18 +174,20 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>Solusi : </label>
-                                    <textarea class="form-control" name="solusi" placeholder="Enter text ..."></textarea>
+                                    <textarea class="form-control" name="solusi" placeholder="Enter text ...">{{ $ncr->solusi }}</textarea>
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" id="alamat_pengiriman" name="alamat_pengiriman">
+                        <input type="hidden" id="alamat_pengiriman" name="alamat_pengiriman"
+                            value="{{ $fppps['alamat'] }}">
                         <button type="submit" class="btn btn-success float-right">
-                            Create NCR
+                            Submit
                         </button>
                     </form>
                 </div>
             </div>
         </div>
+        <!-- horizontal Basic Forms End -->
     </div>
     @endsection @push('script')
     <script type="text/javascript">
@@ -199,13 +199,38 @@
             })
         })();
 
-        function add_kontak() {
+        let kontak = {!! $ncr->Kontak !!}.sort(function(a, b) {
+            return a.pivot.id - b.pivot.id;
+        });
+
+        $('#form_kontak').children()[0].children[0].children[kontak[0].id - 1].selected = true
+
+        $("#form_kontak").on("click", "button", function() {
+            add_kontak();
+        })
+
+        if (kontak.length >= 1) {
+            kontak.forEach(function(kontaks, index) {
+                if (index != 0) {
+                    add_kontak(kontaks)
+                }
+            })
+        }
+
+        function add_kontak(kontaks = undefined) {
             $(document).ready(function() {
                 let select = document.createElement("select");
                 let kontak = {!! $Kontak !!};
+                let option = undefined;
                 $(select).append(`<option value="" selected hidden disabled>Pilih Validator</option>`)
                 kontak.forEach(function(kontak) {
-                    $(select).append(`<option value="${kontak.id}">${kontak.nama}</option>`)
+                    option = document.createElement("option");
+                    option.value = kontak.id;
+                    option.innerHTML = kontak.nama;
+                    if (kontaks != undefined && kontaks.id == kontak.id) {
+                        option.setAttribute("selected", true)
+                    }
+                    select.appendChild(option)
                 })
                 $("#kontak").append(`<div class="row mb-4" >
                                         <div class="col">
@@ -222,19 +247,36 @@
             });
         }
 
-        function add_item(element) {
+        let itemmm = {!! $ncr->ItemNcr !!};
+
+        if (itemmm.length >= 1) {
+            itemmm.forEach(function(itemss, index) {
+                if (index != 0) {
+                    add_item(itemss)
+                }
+            })
+        }
+
+
+        function add_item(itemss = undefined) {
             $(document).ready(function() {
                 let select = document.createElement("select");
                 let fppps = {!! $fppp !!}
+                let option = undefined;
                 let fppp = fppps.filter(function(elemen) {
                     return elemen["nomor_fppp"] == $("#nomor_fppp").val()
                 })
                 $(select).append('<option value="" selected hidden disabled>Pilih Item</option>')
                 fppp[0]["item"].forEach(function(item) {
-                    $(select).append(`
-                <option value="${item["kode_item"]}-${item["nama_item"]}">${item["kode_item"]}-${item["nama_item"]}</option>
-                `)
+                    option = document.createElement("option");
+                    option.value = item.kode_item + '-' + item.nama_item;
+                    option.innerHTML = item.kode_item + '-' + item.nama_item;
+                    if (itemss != undefined && itemss.kode_item == item.kode_item) {
+                        option.setAttribute('selected', true)
+                    }
+                    select.appendChild(option)
                 })
+
                 $("#itemm").append(` <div class="row mb-4">
                                         <div class="col">
                                             <select class="custom-select form-control" name="item_id[]">
@@ -247,10 +289,8 @@
                                     </div>`);
                 $("#itemm .row:last-child select").select2();
             });
+
         }
-        $("#form_kontak").on("click", "button", function() {
-            add_kontak();
-        })
 
         function hapus_elemen(element) {
             element.parentElement.parentElement.remove();
@@ -268,9 +308,6 @@
                 $("#nama_mitra").val(`${fppp[0]["nama_mitra"]}`)
                 $("#nama_proyek").val(`${fppp[0]["nama_proyek"]}`)
                 $("#alamat_pengiriman").val(`${fppp[0]["alamat"]}`)
-                $("#item").append(`<option value="" selected hidden disabled>
-                                                    Pilih Item
-                                                </option>`);
                 fppp[0]["item"].forEach(function(item) {
                     $("#item").append(`
                 <option value="${item["kode_item"]}-${item["nama_item"]}">${item["kode_item"]}-${item["nama_item"]}</option>
