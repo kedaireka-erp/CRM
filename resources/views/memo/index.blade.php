@@ -78,7 +78,7 @@
                                             <form action="/memo/{{$ncr->id}}" method="post">
                                                 @csrf
                                                 @method("DELETE")
-                                                <button type="submit" class="dw dw-delete-3">Delete</button>
+                                                <button type="submit" class="dropdown-item"><i class="dw dw-delete-3"></i>Delete</button>
                                             </form>
                                         </div>
                                     </div>
