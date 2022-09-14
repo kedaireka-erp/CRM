@@ -56,7 +56,7 @@ class MemoController extends Controller
         ]);
     }
 
-    public function update(Request $request, Ncr $ncr, ItemNcr $item_ncr) {
+    public function update(Request $request, Ncr $ncr) {
         $ncr->update([
             "nomor_memo" => $request->data_item["nomor_memo"],
             "tanggal_memo" => $request->data_item["tanggal_memo"],
@@ -64,7 +64,7 @@ class MemoController extends Controller
             "alamat_pengiriman" => $request->data_item["alamat_pengiriman"],
         ]);
 
-        $item_ncr->delete();
+        ItemNcr::where("nomor_ncr", $ncr->nomor_ncr)->delete();
 
         foreach ($request->data_item["data_item"] as $item) {
             ItemNcr::find($item["item_id"])->update([
