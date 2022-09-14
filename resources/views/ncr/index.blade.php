@@ -82,12 +82,14 @@
                                                     <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                    <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>
+                                                    <a class="dropdown-item" href="/ncr/{{ $ncr->id }}/edit"><i
+                                                            class="dw dw-eye"></i>
                                                         Edit</a>
                                                     <a class="dropdown-item" href="/ncr/{{ $ncr->id }}"><i
                                                             class="dw dw-edit2"></i>
                                                         Validasi</a>
-                                                    <a class="dropdown-item" href="/memo/{{$ncr->id}}/create"><i class="dw dw-notepad-1"></i>Create Memo</a>
+                                                    <a class="dropdown-item" href="/memo/{{ $ncr->id }}/create"><i
+                                                            class="dw dw-notepad-1"></i>Create Memo</a>
                                                     <form action="/ncr/{{ $ncr->id }}" method="post">
                                                         @csrf
                                                         @method('DELETE')

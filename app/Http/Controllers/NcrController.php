@@ -116,7 +116,26 @@ class NcrController extends Controller
      */
     public function edit(Ncr $ncr)
     {
-        //
+        $fppp= collect([[
+            "nama_mitra"=> "UNNES",
+            "nama_proyek"=>"Digital Center",
+            "nomor_fppp"=>"1/fppp/jendela",
+            "alamat" => "Jl. Semarang",
+            "item"=> [["nama_item"=>"jendela", "kode_item"=>"a1"], 
+            ["nama_item"=>"baju", "kode_item" =>"a2"],["nama_item" => "celana", "kode_item" =>"a3"]]],
+            [
+            "nama_mitra"=> "ALFAMART",
+            "nama_proyek"=>"LP2M",
+            "nomor_fppp"=>"2/fppp/baju",
+            "alamat" => "Jl. Imam Bonjol",
+            "item"=> [["nama_item"=>"baju", "kode_item"=>"b1"], ["nama_item"=>"celana", "kode_item"=>"b2"]]
+            ]]);
+        $Kontak = Kontak::get();
+
+        return view("ncr.edit",[
+            "title" => "NCR",
+            "validators" => $ncr->Kontak()->orderBy("kontak_ncr.id", "asc")->get()
+        ], compact("Kontak", "ncr", "fppp"));
     }
 
     /**
@@ -126,9 +145,27 @@ class NcrController extends Controller
      * @param  \App\Models\Ncr  $ncr
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ncr $ncr)
+    public function update(Request $request, Ncr $id)
     {
-        //
+        $ncr = Ncr::findOrFail($id);
+        $ncr->update([
+            "nama_mitra" => $request->nama_mitra ?? $ncr->nama_mitra,
+            "nama_proyek" => $request->nama_proyek ?? $ncr->nama_proyek,
+            "nomor_ncr" => $request->nomor_ncr ?? $ncr->nomor_ncr,
+            "nomor_fppp" => $request->nomor_fppp ?? $ncr->nomor_fppp,
+            "tanggal_ncr" => $request->tanggal_ncr ?? $ncr->tanggal_ncr,
+            "deskripsi" => $request->deskripsi ?? $ncr->deskripsi,
+            "analisa" => $request->analisa ?? $ncr->analisa,
+            "solusi" => $request->solusi ?? $ncr->solusi,
+            "pelapor" => $request->pelapor ?? $ncr->pelapor,
+            "bukti_kecacatan" => $request->bukti_kecacatan ?? $ncr->bukti_kecacatan,
+            "jenis_ketidaksesuaian" =>$request->jenis_ketidaksesuaian ?? $ncr->jenis_ketidaksesuaian,
+            "alamat_pengiriman" => $request->alamat_pengiriman ?? $ncr->alamat_pengiriman,
+            "kontak_id" => $request->kontak_id ?? $ncr->kontak_id,
+        ]);
+
+        return redirect("/ncr");
+
     }
 
     /**
