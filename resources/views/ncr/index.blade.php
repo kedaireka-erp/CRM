@@ -88,14 +88,8 @@
                                                     <a class="dropdown-item" href="/ncr/{{ $ncr->id }}"><i
                                                             class="dw dw-edit2"></i>
                                                         Validasi</a>
-<<<<<<< HEAD
-                                                    @if ($ncr->nomor_memo == null)
-                                                        <a class="dropdown-item" href="/memo/{{ $ncr->id }}/create"><i
-                                                                class="icon-copy dw dw-chat3"></i>Create Memo</a>
-=======
                                                     @if ($ncr->nomor_memo == null || $ncr->delete_memo != null)
                                                         <a class="dropdown-item" href="/memo/{{$ncr->id}}/create"><i class="icon-copy dw dw-chat3"></i>Create Memo</a>
->>>>>>> c92f8d5e9ad0156209631fa9cd8ebe5af1375c33
                                                     @endif
                                                     <form action="/ncr/{{ $ncr->id }}" method="post">
                                                         @csrf
