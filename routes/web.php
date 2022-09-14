@@ -31,7 +31,9 @@ Route::middleware("auth")->group(function () {
 
     Route::get("/memo/{ncr}/edit", [MemoController::class, "edit"]);
 
-    Route::post("/memo/{ncr}/update", [MemoController::class, "update"]);
+    Route::put("/memo/{ncr}", [MemoController::class, "update"]);
+
+    Route::delete("/memo/{ncr}", [MemoController::class, "destroy"]);
 });
 
 Auth::routes();
