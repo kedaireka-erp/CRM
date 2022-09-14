@@ -45,33 +45,40 @@
                     <table class="data-table table stripe hover nowrap">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Nama</th>
-                                <th>No Whatsapp</th>
-                                <th>Divisi</th>
+                                <th class="table-plus">No</th>
+                                <th class="table-plus">Nama</th>
+                                <th class="table-plus">No Whatsapp</th>
+                                <th class="table-plus">Divisi</th>
                                 <th class="datatable-nosort">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($kontaks as $no => $kontak)
                             <tr>
-                                <td>1</td>
-                                <td>Joko</td>
-                                <td>08945678399</td>
-                                <td>Manager</td>
+                                <td class="table-plus">{{ $no + 1 }}</td>
+                                <td>{{ $kontak->nama }}</td>
+                                <td>{{ $kontak->nomor_whatsapp }}</td>
+                                <td>{{ $kontak->divisi }}</td>
                                 <td>
                                     <div class="dropdown">
                                         <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                             <i class="dw dw-more"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                            <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>
+                                            <a class="dropdown-item" href="/kontak/{{$kontak->id}}/edit"><i class="dw dw-eye"></i>
                                                 Edit</a>
-                                            <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
-                                                Delete</a>
+                                            <form action="/kontak/{{$kontak->id}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="dropdown-item" type="submit"><i class="dw dw-delete-3">
+                                                    </i>
+                                                    Delete</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -28,7 +28,7 @@
 
         <div class="pd-20 card-box mb-30" id="form-memo">
             <div class="clearfix">
-                <h4 class="text-blue h4">Create Memo</h4>
+                <h4 class="text-blue h4">Edit Memo</h4>
             </div>
             <div class="row">
                 <div class="col-md-6 col-sm-12">
@@ -258,15 +258,7 @@
             }
             if (input[i].name == "warna" || input[i].name == "bukaan" || input[i].name == "charge" || input[i].name == "return" || input[i].name == "lebar" || input[i].name == "tinggi") {
                 kolom_table_add_item = document.createElement("td");
-                if (input[i].name == "charge" || input[i].name == "return") {
-                    if (input[i].value == "1") {
-                        kolom_table_add_item.innerHTML = "Ya";
-                    } else {
-                        kolom_table_add_item.innerHTML = "Tidak";
-                    }
-                } else {
-                    kolom_table_add_item.innerHTML = input[i].value;
-                }
+                kolom_table_add_item.innerHTML = input[i].value;
                 baris_table_add_item.appendChild(kolom_table_add_item);
             } else if (i == input.length - 1) {
                 kolom_table_add_item = document.createElement("td");

@@ -17,7 +17,8 @@ class KontakController extends Controller
     public function index()
     {
         return view("kontak.index", [
-            "title" => "Kontak"
+            "title" => "Kontak",
+            "kontaks" => Kontak::get()
         ]);
     }
 
@@ -42,7 +43,12 @@ class KontakController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Kontak::create([
+            'nama'=> $request->name,
+            'nomor_whatsapp'=> $request->nomor_whatsapp,
+            'divisi'=> $request->divisi
+        ]);
+            return redirect('/kontak');
     }
 
     /**
@@ -81,7 +87,13 @@ class KontakController extends Controller
      */
     public function update(Request $request, Kontak $kontak)
     {
-        //
+        $kontak->update([
+            'nama'=> $request->nama ?? $kontak->nama,
+            'nomor_whatsapp'=> $request->nomor_whatsapp ?? $kontak->nomor_whatsap,
+            'divisi'=> $request->divisi ?? $kontak->divisi,
+        ]);
+
+            return redirect('/kontak');
     }
 
     /**
@@ -92,6 +104,7 @@ class KontakController extends Controller
      */
     public function destroy(Kontak $kontak)
     {
-        //
+        $kontak->delete();
+        return redirect()->route('kontak.index');
     }
 }

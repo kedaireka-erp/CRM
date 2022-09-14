@@ -182,14 +182,14 @@ class NcrController extends Controller
     }
 
     public function validasi (Request $request) {
-        if ($request->user != DB::table("kontak_ncr")->where("id", $request->id)->first()->kontak_id) {
+        if (Kontak::where("nama", $request->user)->first()->id != DB::table("kontak_ncr")->where("id", $request->id)->first()->kontak_id) {
             return response()->json(["message" => "anda bukan user tersebut"], 403);
         } else {
             if ($request->posisi == 0 || DB::table('kontak_ncr')->where("id", $request->id - 1)->first()->validated == 1) {
                 DB::table('kontak_ncr')->where("id", $request->id)->update([
                     "validated" => $request->checked
                 ]);
-                return response()->json( User::find($request->user), 200);
+                return response()->json( ["message" => "anda berhasil validasi"], 200);
             } else {
                 return response()->json(["message" => "anda gagal validasi"], 406);
             }

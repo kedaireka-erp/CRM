@@ -48,9 +48,11 @@
                             <thead>
                                 <tr>
                                     <th class="table-plus">Nomor</th>
-                                    <th class="table-plus">Nama Mitra</th>
-                                    <th class="table-plus">Nama Proyek</th>
-                                    <th class="table-plus">Item</th>
+                                    <th>No NCR</th>
+                                    <th>No FPPP</th>
+                                    <th>Mitra</th>
+                                    <th>Nama Project</th>
+                                    <th>Item</th>
                                     <th class="table-plus">Tanggal NCR</th>
                                     <th class="datatable-nosort">Action</th>
                                 </tr>
@@ -59,11 +61,15 @@
                                 @foreach ($need_approval as $nomor => $ncr) 
                                     <tr>
                                         <td class="table-plus">{{$nomor+1}}</td>
-                                        <td>{{$ncr->nama_mitra}}</td>
-                                        <td>{{$ncr->nama_proyek}}</td>
-                                        <td>@foreach ($ncr->ItemNcr as $item)
-                                            {{$item->nama_item}},
-                                        @endforeach</td>
+                                        <td>{{ $ncr->nomor_ncr }}</td>
+                                        <td>{{ $ncr->nomor_fppp }}</td>
+                                        <td>{{ $ncr->nama_mitra }}</td>
+                                        <td>{{ $ncr->nama_proyek }}</td>
+                                        <td>
+                                            @foreach ($ncr->ItemNcr as $item)
+                                                {{ $item->nama_item }},
+                                            @endforeach
+                                        </td>
                                         <td>{{$ncr->tanggal_ncr->format('l jS \\of F Y')}}</td>
                                         <td>
                                             <a href="/ncr/{{$ncr->id}}"><i class="dw dw-eye"></i> View to Approve</a>
@@ -108,7 +114,7 @@
                         show: true,
                         label: 'Total',
                         formatter: function (w) {
-                            return 260
+                            return 300
                         }
                     }
                 },

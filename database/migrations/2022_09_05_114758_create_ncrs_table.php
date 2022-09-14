@@ -32,6 +32,7 @@ return new class extends Migration
             $table->date('deadline_pengambilan')->nullable();
             $table->string('status')->nullable();
             $table->softDeletes();
+            $table->timestamp('delete_memo')->nullable();
             $table->timestamps();
         });
     }
