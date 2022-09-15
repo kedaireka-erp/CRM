@@ -31,7 +31,7 @@ class KontakController extends Controller
     {
         return view("kontak.create", [
             "title" => "Kontak",
-            "users" => User::whereNotIn("name", Kontak::get()->pluck("nama"))->get()
+            "users" => User::whereNotIn("id", Kontak::get()->pluck("user_id"))->get()
         ]);
     }
 
@@ -44,7 +44,8 @@ class KontakController extends Controller
     public function store(Request $request)
     {
         Kontak::create([
-            'nama'=> $request->name,
+            'nama'=> User::find($request->kontak)->name,
+            "user_id" => $request->kontak,
             'nomor_whatsapp'=> $request->nomor_whatsapp,
             'divisi'=> $request->divisi
         ]);
@@ -73,7 +74,7 @@ class KontakController extends Controller
         //
         return view("kontak.edit", [
             "title" => "Kontak",
-            "users" => User::whereNotIn("name", Kontak::whereNot("nama", $kontak->nama)->get()->pluck("nama"))->get(),
+            "users" => User::whereNotIn("id", Kontak::whereNot("user_id", $kontak->user_id)->get()->pluck("user_id"))->get(),
             "kontak" => $kontak
         ]);
     }
@@ -88,12 +89,13 @@ class KontakController extends Controller
     public function update(Request $request, Kontak $kontak)
     {
         $kontak->update([
-            'nama'=> $request->nama ?? $kontak->nama,
-            'nomor_whatsapp'=> $request->nomor_whatsapp ?? $kontak->nomor_whatsap,
-            'divisi'=> $request->divisi ?? $kontak->divisi,
+            'nama'=> User::find($request->kontak)->name,
+            "user_id" => $request->kontak,
+            'nomor_whatsapp'=> $request->nomor_whatsapp,
+            'divisi'=> $request->divisi,
         ]);
 
-            return redirect('/kontak');
+        return redirect('/kontak');
     }
 
     /**

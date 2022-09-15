@@ -164,7 +164,7 @@
                     posisi : posisi,
                     id : id,
                     checked : 1,
-                    user : "{{auth()->user()->name}}",
+                    user : "{{auth()->user()->id}}",
                     _token: "{{ csrf_token() }}"
                 },
                 statusCode : {

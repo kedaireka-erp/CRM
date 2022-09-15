@@ -304,22 +304,26 @@
     }
 
     function Finish (elemen) {
-        $(document).ready(function () {
-            $.ajax({
-                url: "/memo/" + {{$ncr->id}},
-                type: "PUT",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    data_item
-                },
-                success: function (response) {
-                    window.location = "/memo";
-                },
-                error: function (response) {
-                    window.location = "/memo";
-                }
+        if (data_item.data_item.length < 1) {
+            alert("tambahkan item terlebih dahulu");
+        } else {
+            $(document).ready(function () {
+                $.ajax({
+                    url: "/memo/" + {{$ncr->id}},
+                    type: "PUT",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        data_item
+                    },
+                    success: function (response) {
+                        window.location = "/memo";
+                    },
+                    error: function (response) {
+                        console.log(response)
+                    }
+                });
             });
-        });
+        }
     }
 
     function hapusForm (elemen) {

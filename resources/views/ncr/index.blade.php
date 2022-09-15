@@ -82,9 +82,13 @@
                                                     <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                    @if ($ncr->Kontak->every(function ($kontak) {
+                                                        return $kontak->pivot->validated == 0;
+                                                    }))
                                                     <a class="dropdown-item" href="/ncr/{{ $ncr->id }}/edit"><i
                                                             class="dw dw-eye"></i>
                                                         Edit</a>
+                                                    @endif
                                                     <a class="dropdown-item" href="/ncr/{{ $ncr->id }}"><i
                                                             class="dw dw-edit2"></i>
                                                         Validasi</a>

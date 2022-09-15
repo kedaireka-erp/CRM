@@ -223,19 +223,23 @@
     }
 
     function Finish (elemen) {
-        $(document).ready(function () {
-            $.ajax({
-                url: "/memo/" + {{$ncr->id}},
-                type: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    data_item
-                },
-                success: function (response) {
-                    window.location = "/memo";
-                },
+        if (data_item.data_item.length < 1) {
+            alert("tambahkan item terlebih dahulu");
+        } else {
+            $(document).ready(function () {
+                $.ajax({
+                    url: "/memo/" + {{$ncr->id}},
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        data_item
+                    },
+                    success: function (response) {
+                        window.location = "/memo";
+                    },
+                });
             });
-        });
+        }
     }
 
     function hapusForm (elemen) {

@@ -38,9 +38,9 @@
                         @method("put")
                         <div class="form-group">
                             <label>Nama</label>
-                            <select class="custom-select2 form-control" name="nama" style="width: 100%; height: 38px" required>
+                            <select class="custom-select2 form-control" name="kontak" style="width: 100%; height: 38px" required>
                                 @foreach ($users as $user)
-                                <option value="{{$user->name}}" @if ($kontak->nama==$user->name)
+                                <option value="{{$user->id}}" @if ($kontak->user_id==$user->id)
                                     selected
                                     @endif >
                                     {{$user->name}}
