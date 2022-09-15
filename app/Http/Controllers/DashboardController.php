@@ -12,12 +12,12 @@ class DashboardController extends Controller
 {
     public function index () {
         $ncr = [];
-        if (Kontak::where("user_id", auth()->user()->id)->first() != null) {
+        if (Kontak::withTrashed()->where("user_id", auth()->user()->id)->first()) {
             $ncr = Ncr::whereHas("Kontak", function($ncr) {
-                $ncr->where("kontak_id", Kontak::where("user_id", auth()->user()->id)->first()->id)->where("validated", 0);
+                $ncr->where("kontak_id", Kontak::withTrashed()->where("user_id", auth()->user()->id)->first()->id)->where("validated", 0);
             })->get()->filter(function ($value) {
                 return $value->Kontak->filter(function($kontak, $key) {
-                    if ($kontak->id == Kontak::where("user_id", auth()->user()->id)->first()->id) {
+                    if ($kontak->id == Kontak::withTrashed()->where("user_id", auth()->user()->id)->first()->id) {
                         if ($key == 0) {
                             return true;
                         } else {
