@@ -40,4 +40,4 @@ Route::middleware("auth")->group(function () {
     Route::post("/ncr/validasi/{ncr}", [NcrController::class, "validasi"]);
 });
 
-Auth::routes();
+Auth::routes(["register"=>false]);
