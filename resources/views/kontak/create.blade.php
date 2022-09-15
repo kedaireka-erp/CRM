@@ -37,11 +37,11 @@
                         @csrf
                         <div class="form-group">
                             <label>Nama</label>
-                            <select class="custom-select2 form-control" name="name" style="width: 100%; height: 38px"
+                            <select class="custom-select2 form-control" name="kontak" style="width: 100%; height: 38px"
                                 required>
                                 <option value="" selected hidden disabled>Pilih Nama User</option>
                                 @foreach ($users as $user)
-                                <option value="{{$user->name}}">{{$user->name}}</option>
+                                <option value="{{$user->id}}">{{$user->name}}</option>
                                 @endforeach
                             </select>
                         </div>

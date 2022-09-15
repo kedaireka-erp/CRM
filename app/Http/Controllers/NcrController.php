@@ -116,27 +116,33 @@ class NcrController extends Controller
      */
     public function edit(Ncr $ncr)
     {
-        $fppp= collect([[
-            "nama_mitra"=> "UNNES",
-            "nama_proyek"=>"Digital Center",
-            "nomor_fppp"=>"1/fppp/jendela",
-            "alamat" => "Jl. Semarang",
-            "item"=> [["nama_item"=>"jendela", "kode_item"=>"a1"], 
-            ["nama_item"=>"baju", "kode_item" =>"a2"],["nama_item" => "celana", "kode_item" =>"a3"]]],
-            [
-            "nama_mitra"=> "ALFAMART",
-            "nama_proyek"=>"LP2M",
-            "nomor_fppp"=>"2/fppp/baju",
-            "alamat" => "Jl. Imam Bonjol",
-            "item"=> [["nama_item"=>"baju", "kode_item"=>"b1"], ["nama_item"=>"celana", "kode_item"=>"b2"]]
-            ]]);
-        $Kontak = Kontak::get();
+        if ($ncr->Kontak->every(function ($kontak) {
+            return $kontak->pivot->validated == 0;
+        })) {
+            $fppp= collect([[
+                "nama_mitra"=> "UNNES",
+                "nama_proyek"=>"Digital Center",
+                "nomor_fppp"=>"1/fppp/jendela",
+                "alamat" => "Jl. Semarang",
+                "item"=> [["nama_item"=>"jendela", "kode_item"=>"a1"], 
+                ["nama_item"=>"baju", "kode_item" =>"a2"],["nama_item" => "celana", "kode_item" =>"a3"]]],
+                [
+                "nama_mitra"=> "ALFAMART",
+                "nama_proyek"=>"LP2M",
+                "nomor_fppp"=>"2/fppp/baju",
+                "alamat" => "Jl. Imam Bonjol",
+                "item"=> [["nama_item"=>"baju", "kode_item"=>"b1"], ["nama_item"=>"celana", "kode_item"=>"b2"]]
+                ]]);
+            $Kontak = Kontak::get();
+    
+            return view("ncr.edit",[
+                "title" => "NCR",
+                "validators" => $ncr->Kontak()->orderBy("kontak_ncr.id", "asc")->get(),
+                "fppps" => $fppp->where("nomor_fppp", $ncr->nomor_fppp)->first()
+            ], compact("Kontak", "ncr", "fppp"));
+        }
 
-        return view("ncr.edit",[
-            "title" => "NCR",
-            "validators" => $ncr->Kontak()->orderBy("kontak_ncr.id", "asc")->get(),
-            "fppps" => $fppp->where("nomor_fppp", $ncr->nomor_fppp)->first()
-        ], compact("Kontak", "ncr", "fppp"));
+        return redirect("/ncr");
     }
 
     /**
@@ -203,7 +209,7 @@ class NcrController extends Controller
     }
 
     public function validasi (Request $request) {
-        if (Kontak::withTrashed()->where("nama", $request->user)->first()->id != DB::table("kontak_ncr")->where("id", $request->id)->first()->kontak_id) {
+        if (Kontak::withTrashed()->where("user_id", $request->user)->first()->id != DB::table("kontak_ncr")->where("id", $request->id)->first()->kontak_id) {
             return response()->json(["message" => "anda bukan user tersebut"], 403);
         } else {
             if ($request->posisi == 0 || DB::table('kontak_ncr')->where("id", $request->id - 1)->first()->validated == 1) {

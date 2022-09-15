@@ -19,10 +19,13 @@ class MemoController extends Controller
 
     public function create(Ncr $ncr)
     {
-        return view('memo.create', [
-            "title" => "Memo",
-            "ncr" => $ncr
-        ]);
+        if ($ncr->nomor_memo == null || $ncr->delete_memo != null) {
+            return view('memo.create', [
+                "title" => "Memo",
+                "ncr" => $ncr
+            ]);
+        }
+        return redirect("/ncr");
     }
 
     public function store(Ncr $ncr, Request $request) {
@@ -89,7 +92,7 @@ class MemoController extends Controller
                 "tinggi" => $item["tinggi"],
                 "alasan" => $item["alasan"],
                 "keterangan" => $item["keterangan"],
-                "return_barang" => $item["return"],
+                "return_barang" => $item["return_barang"],
                 "charge" => $item["charge"],
                 "bukaan" => $item["bukaan"],
             ]);
