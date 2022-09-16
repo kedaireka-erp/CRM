@@ -9,6 +9,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class NcrController extends Controller
 {
@@ -19,9 +21,11 @@ class NcrController extends Controller
      */
     public function index()
     {
-        $ncrs = Ncr::get();
+        $ncrs = Ncr::whereNot("status", "confirmed")->latest()->get();
+        $confirms = Ncr::where("status", "confirmed")->latest()->get();
         return view("ncr.index", [
-            "title" => "NCR"
+            "title" => "NCR",
+            "confirms" => $confirms,
         ],compact("ncrs"));
     }
 
@@ -75,6 +79,7 @@ class NcrController extends Controller
             "bukti_kecacatan" => $request->bukti_kecacatan,
             "jenis_ketidaksesuaian" =>$request->jenis_ketidaksesuaian,
             "alamat_pengiriman" => $request->alamat_pengiriman,
+            "status" => ($request->analisa == null && $request->solusi == null) ? "open" : "closed",
         ]);
         foreach($request->kontak_id as $kontak){
             DB::table("kontak_ncr")->insert([
@@ -168,6 +173,7 @@ class NcrController extends Controller
             "jenis_ketidaksesuaian" =>$request->jenis_ketidaksesuaian ?? $ncr->jenis_ketidaksesuaian,
             "alamat_pengiriman" => $request->alamat_pengiriman ?? $ncr->alamat_pengiriman,
             "kontak_id" => $request->kontak_id ?? $ncr->kontak_id,
+            "status" => ($request->analisa == null && $request->solusi == null) ? "open" : "closed",
         ]);
 
         ItemNcr::where('ncr_id', $ncr->id)->delete();
@@ -216,10 +222,25 @@ class NcrController extends Controller
                 DB::table('kontak_ncr')->where("id", $request->id)->update([
                     "validated" => $request->checked
                 ]);
+                if (Ncr::find($request->ncr_id)->Kontak->every(function($kontak) {
+                    return $kontak->pivot->validated == 1;
+                })) {
+                    Ncr::find($request->ncr_id)->update([
+                        "status" => "confirmed"
+                    ]);
+                }
                 return response()->json( ["message" => "anda berhasil validasi"], 200);
             } else {
                 return response()->json(["message" => "anda gagal validasi"], 406);
             }
         }
+    }
+
+    public function report (Request $request) {
+        $ncr = Ncr::whereMonth("created_at", $request->bulan)->whereYear("created_at", $request->tahun)->get();
+        $pdf = Pdf::loadView('ncr.report', [
+            "ncrs" => $ncr
+        ]);
+        return $pdf->download('report_ncr_'.$request->bulan.'_'.$request->tahun.'.pdf');
     }
 }

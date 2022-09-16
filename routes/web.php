@@ -38,6 +38,8 @@ Route::middleware("auth")->group(function () {
     Route::post("/memo/{ncr}", [MemoController::class, "store"]);
 
     Route::post("/ncr/validasi/{ncr}", [NcrController::class, "validasi"]);
+
+    Route::post("/ncr/report", [NcrController::class, "report"]);
 });
 
 Auth::routes(["register"=>false]);

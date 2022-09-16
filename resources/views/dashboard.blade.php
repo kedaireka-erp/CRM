@@ -95,12 +95,12 @@
 <script src="/src/plugins/datatables/js/vfs_fonts.js"></script>
 <script>
     var options4 = {
-        series: [50, 60],
+        series: [50, 60, 70],
         chart: {
             height: 300,
             type: 'radialBar',
         },
-        colors: ['#003049', '#d62828'],
+        colors: ['#003049', '#d62828', "#f77f00"],
         plotOptions: {
             radialBar: {
                 dataLabels: {
@@ -120,7 +120,7 @@
                 },
             },
         },
-        labels: ['Closed', 'Open']
+        labels: ['Confirmed', 'Closed', "Open"]
     };
     var chart4 = new ApexCharts(document.querySelector("#diseases-chart"), options4);
     chart4.render();

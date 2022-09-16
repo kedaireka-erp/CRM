@@ -164,6 +164,7 @@
                     posisi : posisi,
                     id : id,
                     checked : 1,
+                    ncr_id : "{{$ncr->id}}",
                     user : "{{auth()->user()->id}}",
                     _token: "{{ csrf_token() }}"
                 },
