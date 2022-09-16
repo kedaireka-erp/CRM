@@ -34,7 +34,7 @@
             <!-- Simple Datatable start -->
             <div class="card-box mb-30 ">
                 <div class="pd-20 d-flex justify-content-between align-items-center">
-                    <h4 class="text-black h4">List NCR</h4>
+                    <h4 class="text-blue h4">List NCR</h4>
                     <div class="mr-2">
                         <a href="#" class="btn btn-warning fa-pull-right" data-toggle="modal"
                             data-target="#Medium-modal" type="button">
@@ -107,7 +107,80 @@
                                     {{ $item->nama_item }},
                                     @endforeach
                                 </td>
-                                <td>Open</td>
+                                <td>{{$ncr->status}}</td>
+                                <td>
+
+                                    <div class="dropdown">
+                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                                            href="#" role="button" data-toggle="dropdown">
+                                            <i class="dw dw-more"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                            @if ($ncr->Kontak->every(function ($kontak) {
+                                            return $kontak->pivot->validated == 0;
+                                            }))
+                                            <a class="dropdown-item" href="/ncr/{{ $ncr->id }}/edit"><i
+                                                    class="dw dw-eye"></i>
+                                                Edit</a>
+                                            @endif
+                                            <a class="dropdown-item" href="/ncr/{{ $ncr->id }}"><i
+                                                    class="dw dw-edit2"></i>
+                                                Validasi</a>
+                                            @if ($ncr->nomor_memo == null || $ncr->delete_memo != null)
+                                            <a class="dropdown-item" href="/memo/{{$ncr->id}}/create"><i
+                                                    class="icon-copy dw dw-chat3"></i>Create Memo</a>
+                                            @endif
+                                            <form action="/ncr/{{ $ncr->id }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="dropdown-item" type="submit"><i class="dw dw-delete-3">
+                                                    </i>
+                                                    Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card-box mb-30 ">
+                <div class="pd-20 d-flex justify-content-between align-items-center">
+                    <h4 class="text-blue h4">Confirmed Report</h4>
+                </div>
+                <div class="pb-20">
+                    <table class="data-table-excel table stripe hover nowrap">
+                        <thead>
+                            <tr>
+                                <th class="table-plus">No</th>
+                                <th>No NCR</th>
+                                <th>No FPPP</th>
+                                <th>Mitra</th>
+                                <th>Nama Project</th>
+                                <th>Tanggal</th>
+                                <th>Item</th>
+                                <th>Status</th>
+                                <th class="datatable-nosort">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($confirms as $no => $ncr)
+                            <tr>
+                                <td class="table-plus">{{ $no + 1 }}</td>
+                                <td>{{ $ncr->nomor_ncr }}</td>
+                                <td>{{ $ncr->nomor_fppp }}</td>
+                                <td>{{ $ncr->nama_mitra }}</td>
+                                <td>{{ $ncr->nama_proyek }}</td>
+                                <td>{{ $ncr->tanggal_ncr->format('l jS \\of F Y') }}</td>
+                                <td>
+                                    @foreach ($ncr->ItemNcr as $item)
+                                    {{ $item->nama_item }},
+                                    @endforeach
+                                </td>
+                                <td class="text-success">{{$ncr->status}}</td>
                                 <td>
 
                                     <div class="dropdown">
