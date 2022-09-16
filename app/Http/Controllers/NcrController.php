@@ -9,6 +9,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class NcrController extends Controller
 {
@@ -221,5 +223,13 @@ class NcrController extends Controller
                 return response()->json(["message" => "anda gagal validasi"], 406);
             }
         }
+    }
+
+    public function report (Request $request) {
+        $ncr = Ncr::whereMonth("created_at", $request->bulan)->whereYear("created_at", $request->tahun)->get();
+        $pdf = Pdf::loadView('ncr.report', [
+            "ncrs" => $ncr
+        ]);
+        return $pdf->download('report_ncr_'.$request->bulan.'_'.$request->tahun.'.pdf');
     }
 }
