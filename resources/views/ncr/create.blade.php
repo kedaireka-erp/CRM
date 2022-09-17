@@ -31,7 +31,7 @@
                             <h4 class="text-blue h4">Form NCR</h4>
                         </div>
                     </div>
-                    <form action="/ncr" method="post" class="clearfix">
+                    <form action="/ncr" method="post" class="clearfix" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6 col-sm-12">
@@ -96,7 +96,7 @@
                                                 </option>
                                                 @foreach ($Kontak as $con)
                                                     <option value="{{ $con->id }}">
-                                                        {{ $con->nama }}
+                                                        {{ $con->nama }} - {{ $con->divisi }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -155,7 +155,7 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    <label>Bukti Kecacatan</label>
+                                    <label for="bukti_kecacatan">Bukti Kecacatan</label>
                                     <input class="form-control-file form-control height-auto" type="file"
                                         id="bukti_kecacatan" name="bukti_kecacatan" />
                                     <small class="form-text text-muted" style="color: red">* Lampiran file berformat PDF
@@ -205,7 +205,8 @@
                 let kontak = {!! $Kontak !!};
                 $(select).append(`<option value="" selected hidden disabled>Pilih Validator</option>`)
                 kontak.forEach(function(kontak) {
-                    $(select).append(`<option value="${kontak.id}">${kontak.nama}</option>`)
+                    $(select).append(
+                        `<option value="${kontak.id}">${kontak.nama} - ${ kontak.divisi }</option>`)
                 })
                 $("#kontak").append(`<div class="row mb-4" >
                                         <div class="col">
@@ -232,7 +233,7 @@
                 $(select).append('<option value="" selected hidden disabled>Pilih Item</option>')
                 fppp[0]["item"].forEach(function(item) {
                     $(select).append(`
-                <option value="${item["kode_item"]}-${item["nama_item"]}">${item["kode_item"]}-${item["nama_item"]}</option>
+                <option value="${item["kode_item"]}-${item["nama_item"]}">${item["kode_item"]} - ${item["nama_item"]}</option>
                 `)
                 })
                 $("#itemm").append(` <div class="row mb-4">
@@ -273,7 +274,7 @@
                                                 </option>`);
                 fppp[0]["item"].forEach(function(item) {
                     $("#item").append(`
-                <option value="${item["kode_item"]}-${item["nama_item"]}">${item["kode_item"]}-${item["nama_item"]}</option>
+                <option value="${item["kode_item"]}-${item["nama_item"]}">${item["kode_item"]} - ${item["nama_item"]}</option>
                 `)
                 })
             })

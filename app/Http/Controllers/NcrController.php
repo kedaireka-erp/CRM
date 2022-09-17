@@ -66,6 +66,15 @@ class NcrController extends Controller
      */
     public function store(Request $request)
     {
+        $validateData = $request->validate([
+            'bukti_kecacatan'=> 'file|max:2024'
+        ]);
+
+        if($request->file('bukti_kecacatan')){
+            $validateData['bukti_kecacatan'] = $request->file('bukti_kecacatan')->store('bukti');
+        }
+        
+
         $ncrs = Ncr::create([
             "nama_mitra" => $request->nama_mitra,
             "nama_proyek" => $request->nama_proyek,
@@ -76,7 +85,7 @@ class NcrController extends Controller
             "analisa" => $request->analisa,
             "solusi" => $request->solusi,
             "pelapor" => $request->pelapor,
-            "bukti_kecacatan" => $request->bukti_kecacatan,
+            "bukti_kecacatan" => $validateData['bukti_kecacatan'],
             "jenis_ketidaksesuaian" =>$request->jenis_ketidaksesuaian,
             "alamat_pengiriman" => $request->alamat_pengiriman,
             "status" => ($request->analisa == null && $request->solusi == null) ? "open" : "closed",
@@ -95,6 +104,17 @@ class NcrController extends Controller
                 "ncr_id" => $ncrs->id
             ]);
         }
+        // if($request->hasFile('bukti_kecacatan'))
+        // {
+        //     $destination_path = 'public/images/bukti';
+        //     $bukti = $request->file('bukti_kecacatan');
+        //     $bukti_name = $bukti->getClientOriginalName();
+        //     $path = $request->file('bukti_kecacatan')->storeAs($destination_path,$bukti_name);
+
+        //     $input['bukti_kecacatan'] = $bukti_name;
+        // }
+        
+
         return redirect("/ncr");
     }
 
@@ -159,6 +179,14 @@ class NcrController extends Controller
      */
     public function update(Request $request, Ncr $ncr)
     {
+        $validateData = $request->validate([
+            'bukti_kecacatan'=> 'file|max:2024'
+        ]);
+
+        if($request->file('bukti_kecacatan')){
+            $validateData['bukti_kecacatan'] = $request->file('bukti_kecacatan')->store('bukti');
+        }
+        
         $ncr->update([
             "nama_mitra" => $request->nama_mitra ?? $ncr->nama_mitra,
             "nama_proyek" => $request->nama_proyek ?? $ncr->nama_proyek,
@@ -169,7 +197,7 @@ class NcrController extends Controller
             "analisa" => $request->analisa ?? $ncr->analisa,
             "solusi" => $request->solusi ?? $ncr->solusi,
             "pelapor" => $request->pelapor ?? $ncr->pelapor,
-            "bukti_kecacatan" => $request->bukti_kecacatan ?? $ncr->bukti_kecacatan,
+            "bukti_kecacatan" => $validateData['bukti_kecacatan'] ?? $ncr->bukti_kecacatan,
             "jenis_ketidaksesuaian" =>$request->jenis_ketidaksesuaian ?? $ncr->jenis_ketidaksesuaian,
             "alamat_pengiriman" => $request->alamat_pengiriman ?? $ncr->alamat_pengiriman,
             "kontak_id" => $request->kontak_id ?? $ncr->kontak_id,
@@ -195,6 +223,7 @@ class NcrController extends Controller
                 "ncr_id" => $ncr->id
             ]);
         }
+
 
 
         return redirect("/ncr");
