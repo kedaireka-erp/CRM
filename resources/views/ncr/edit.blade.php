@@ -28,7 +28,7 @@
                             <h4 class="text-blue h4">Form NCR</h4>
                         </div>
                     </div>
-                    <form action="/ncr/{{ $ncr->id }}" method="post" class="clearfix">
+                    <form action="/ncr/{{ $ncr->id }}" method="post" class="clearfix" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row">
@@ -89,7 +89,7 @@
                                             <select class="custom-select2 d-block w-100 form-control" name="kontak_id[]">
                                                 @foreach ($Kontak as $con)
                                                     <option value="{{ $con->id }}">
-                                                        {{ $con->nama }}
+                                                        {{ $con->nama }} - {{ $con->divisi }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -114,9 +114,9 @@
                                                     Pilih Item
                                                 </option>
                                                 @foreach ($fppps['item'] as $item)
-                                                    <option value="{{ $item['kode_item'] . '-' . $item['nama_item'] }}"
+                                                    <option value="{{ $item['kode_item'] . ' - ' . $item['nama_item'] }}"
                                                         {{ $item['kode_item'] == $ncr->ItemNcr[0]->kode_item ? 'selected' : '' }}>
-                                                        {{ $item['kode_item'] . '-' . $item['nama_item'] }}</option>
+                                                        {{ $item['kode_item'] . ' - ' . $item['nama_item'] }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -140,8 +140,8 @@
                             <div class="col-md-8 col-sm-12">
                                 <div class="form-group">
                                     <label>Jenis Ketidaksesuaian</label>
-                                    <input class="form-control" type="string" id="#" name="jenis_ketidaksesuaian"
-                                        value="{{ $ncr->jenis_ketidaksesuaian }}" />
+                                    <input class="form-control" type="string" id="#"
+                                        name="jenis_ketidaksesuaian" value="{{ $ncr->jenis_ketidaksesuaian }}" />
                                 </div>
                             </div>
                         </div>
@@ -152,7 +152,9 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    <label>Bukti Kecacatan</label>
+                                    <label for="bukti_kecacatan">Bukti Kecacatan</label>
+                                    <img src="{{ asset('/storage/app/public/images/bukti/' . $ncr->bukti_kecacatan) }}"
+                                        alt="">
                                     <input class="form-control-file form-control height-auto"
                                         value="{{ $ncr->bukti_kecacatan }}" type="file" id="bukti_kecacatan"
                                         name="bukti_kecacatan" />
@@ -226,7 +228,7 @@
                 kontak.forEach(function(kontak) {
                     option = document.createElement("option");
                     option.value = kontak.id;
-                    option.innerHTML = kontak.nama;
+                    option.innerHTML = kontak.nama + ' - ' + kontak.divisi;
                     if (kontaks != undefined && kontaks.id == kontak.id) {
                         option.setAttribute("selected", true)
                     }
@@ -269,8 +271,8 @@
                 $(select).append('<option value="" selected hidden disabled>Pilih Item</option>')
                 fppp[0]["item"].forEach(function(item) {
                     option = document.createElement("option");
-                    option.value = item.kode_item + '-' + item.nama_item;
-                    option.innerHTML = item.kode_item + '-' + item.nama_item;
+                    option.value = item.kode_item + ' - ' + item.nama_item;
+                    option.innerHTML = item.kode_item + ' - ' + item.nama_item;
                     if (itemss != undefined && itemss.kode_item == item.kode_item) {
                         option.setAttribute('selected', true)
                     }
@@ -310,7 +312,7 @@
                 $("#alamat_pengiriman").val(`${fppp[0]["alamat"]}`)
                 fppp[0]["item"].forEach(function(item) {
                     $("#item").append(`
-                <option value="${item["kode_item"]}-${item["nama_item"]}">${item["kode_item"]}-${item["nama_item"]}</option>
+                <option value="${item["kode_item"]} - ${item["nama_item"]}">${item["kode_item"]} - ${item["nama_item"]}</option>
                 `)
                 })
             })

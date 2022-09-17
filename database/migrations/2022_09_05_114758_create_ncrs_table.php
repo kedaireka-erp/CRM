@@ -25,7 +25,7 @@ return new class extends Migration
             $table->text('analisa')->nullable();
             $table->string('jenis_ketidaksesuaian')->nullable();
             $table->text('solusi')->nullable();
-            $table->text('bukti_kecacatan');
+            $table->string('bukti_kecacatan');
             $table->string('nomor_memo')->nullable();
             $table->date('tanggal_memo')->nullable();
             $table->string('alamat_pengiriman')->nullable();
