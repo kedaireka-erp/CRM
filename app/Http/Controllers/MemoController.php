@@ -127,12 +127,13 @@ class MemoController extends Controller
     }
 
     public function createPDF() {
-        $ncrs = Ncr::all();
-        
-        view()->share('ncrs', $ncrs);
-        
-        $pdf = PDF::loadView('memo.index',['ncrs' => $ncrs]);
+    
+        $pdf = PDF::loadView('memo.view_pdf', [
+            "title" => "Memo",
+            "ncrs" => Ncr::whereNotNull("nomor_memo")->whereNull("delete_memo")->get()
+        ]);
+        $pdf->setPaper('A4', 'potrait');
 
-        return $pdf->download('memo.pdf');
+        return $pdf->stream('memo.pdf');
     }
 }
