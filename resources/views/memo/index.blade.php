@@ -73,7 +73,7 @@
                                                 Edit </a>
                                             <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>
                                                 Show </a>
-                                            <a class="dropdown-item" href="#"><i class="dw dw-print"></i>
+                                            <a class="dropdown-item" href="/memo/{{$ncr->id}}/cetak"><i class="dw dw-print"></i>
                                                 Cetak </a>
                                             <form action="/memo/{{$ncr->id}}" method="post">
                                                 @csrf

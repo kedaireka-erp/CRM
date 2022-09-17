@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Ncr;
 use App\Models\ItemNcr;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PDF;
 
 class MemoController extends Controller
 {
@@ -122,5 +124,16 @@ class MemoController extends Controller
         ]);
 
         return redirect("/memo");
+    }
+
+    public function createPDF(Ncr $ncr) {
+    
+        $pdf = PDF::loadView('memo.cetak', [
+            "title" => "Memo",
+            "memo" => $ncr,
+        ]);
+        $pdf->setPaper('A4', 'potrait');
+
+        return $pdf->stream('memo.pdf');
     }
 }
