@@ -114,7 +114,7 @@
                                                     Pilih Item
                                                 </option>
                                                 @foreach ($fppps['item'] as $item)
-                                                    <option value="{{ $item['kode_item'] . ' - ' . $item['nama_item'] }}"
+                                                    <option value="{{ $item['kode_item'] . '-' . $item['nama_item'] }}"
                                                         {{ $item['kode_item'] == $ncr->ItemNcr[0]->kode_item ? 'selected' : '' }}>
                                                         {{ $item['kode_item'] . ' - ' . $item['nama_item'] }}</option>
                                                 @endforeach
@@ -153,11 +153,8 @@
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label for="bukti_kecacatan">Bukti Kecacatan</label>
-                                    <img src="{{ asset('/storage/app/public/images/bukti/' . $ncr->bukti_kecacatan) }}"
-                                        alt="">
-                                    <input class="form-control-file form-control height-auto"
-                                        value="{{ $ncr->bukti_kecacatan }}" type="file" id="bukti_kecacatan"
-                                        name="bukti_kecacatan" />
+                                    <input class="form-control-file form-control height-auto" value=""
+                                        type="file" id="bukti_kecacatan" name="bukti_kecacatan" />
                                     <small class="form-text text-muted" style="color: red">* Lampiran file berformat PDF
                                         maks
                                         2MB</small>
@@ -248,6 +245,7 @@
                 $("#kontak .row:last-child select").select2();
             });
         }
+        console.log(kontak);
 
         let itemmm = {!! $ncr->ItemNcr !!};
 
@@ -271,7 +269,7 @@
                 $(select).append('<option value="" selected hidden disabled>Pilih Item</option>')
                 fppp[0]["item"].forEach(function(item) {
                     option = document.createElement("option");
-                    option.value = item.kode_item + ' - ' + item.nama_item;
+                    option.value = item.kode_item + '-' + item.nama_item;
                     option.innerHTML = item.kode_item + ' - ' + item.nama_item;
                     if (itemss != undefined && itemss.kode_item == item.kode_item) {
                         option.setAttribute('selected', true)
@@ -312,7 +310,7 @@
                 $("#alamat_pengiriman").val(`${fppp[0]["alamat"]}`)
                 fppp[0]["item"].forEach(function(item) {
                     $("#item").append(`
-                <option value="${item["kode_item"]} - ${item["nama_item"]}">${item["kode_item"]} - ${item["nama_item"]}</option>
+                <option value="${item["kode_item"]}-${item["nama_item"]}">${item["kode_item"]} - ${item["nama_item"]}</option>
                 `)
                 })
             })

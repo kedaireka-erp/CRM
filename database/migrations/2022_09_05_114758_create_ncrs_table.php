@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('pelapor');
             $table->text('deskripsi')->nullable();
             $table->text('analisa')->nullable();
-            $table->string('jenis_ketidaksesuaian')->nullable();
+            $table->text('jenis_ketidaksesuaian')->nullable();
             $table->text('solusi')->nullable();
             $table->string('bukti_kecacatan');
             $table->string('nomor_memo')->nullable();
