@@ -126,11 +126,11 @@ class MemoController extends Controller
         return redirect("/memo");
     }
 
-    public function createPDF() {
+    public function createPDF(Ncr $ncr) {
     
-        $pdf = PDF::loadView('memo.view_pdf', [
+        $pdf = PDF::loadView('memo.cetak', [
             "title" => "Memo",
-            "ncrs" => Ncr::whereNotNull("nomor_memo")->whereNull("delete_memo")->get()
+            "memo" => $ncr,
         ]);
         $pdf->setPaper('A4', 'potrait');
 

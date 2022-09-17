@@ -44,4 +44,4 @@ Route::middleware("auth")->group(function () {
 
 Auth::routes(["register"=>false]);
 
-Route::get('createPDF', [MemoController::class, 'createPDF'])->name('memo.pdf');
+Route::get('/memo/{ncr}/cetak', [MemoController::class, 'createPDF']);
