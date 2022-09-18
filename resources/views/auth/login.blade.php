@@ -53,6 +53,14 @@
 										></span>
 									</div>
 								</div>
+								<div class="row pb-30">
+									<div class="col-6">
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+											<label class="custom-control-label" for="remember">Remember</label>
+										</div>
+									</div>
+								</div>
 								<div class="row">
 									<div class="col-sm-12">
 										<div class="input-group mb-0">

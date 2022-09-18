@@ -11,6 +11,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
 
 class NcrController extends Controller
 {
@@ -51,7 +52,6 @@ class NcrController extends Controller
             "item"=> [["nama_item"=>"baju", "kode_item"=>"b1"], ["nama_item"=>"celana", "kode_item"=>"b2"]]
             ]]);
         $Kontak= Kontak::get();
-        // $ItemNcr= ItemNcr::get();
         return view("ncr.create", [
             "title" => "NCR"
         ], compact("Kontak", "fppp"));
@@ -73,7 +73,6 @@ class NcrController extends Controller
         if($request->file('bukti_kecacatan')){
             $validateData['bukti_kecacatan'] = $request->file('bukti_kecacatan')->store('bukti');
         }
-        
 
         $ncrs = Ncr::create([
             "nama_mitra" => $request->nama_mitra,
@@ -90,13 +89,27 @@ class NcrController extends Controller
             "alamat_pengiriman" => $request->alamat_pengiriman,
             "status" => ($request->analisa == null && $request->solusi == null) ? "open" : "closed",
         ]);
+
         foreach($request->kontak_id as $kontak){
-            DB::table("kontak_ncr")->insert([
+            $validator[] = DB::table("kontak_ncr")->insert([
                 "kontak_id" => $kontak,
                 "ncr_id" => $ncrs->id,
                 "validated" => 0
             ]);
         }
+
+        Http::get("https://app.whacenter.com/api/send", [
+            "device_id" => "0c3716536ed62ab28dca153271d515b8",
+            "number" => Kontak::find($request->kontak_id[0])->nomor_whatsapp,
+            "message" => "Ada NCR baru yang perlu anda validasi, berikut data singkatnya:\n\nNomor NCR: ".$request->nomor_ncr."\nNomor FPPP: ".$request->nomor_fppp."\nTanggal NCR: ".$request->tanggal_ncr."\nNama Mitra: ".$request->nama_mitra."\nNama Proyek: ".$request->nama_proyek."\nDeskripsi: ".$request->deskripsi."\nAnalisa: ".$request->analisa."\nSolusi: ".$request->solusi."\nPelapor: ".$request->pelapor."\nJenis Ketidaksesuaian: ".$request->jenis_ketidaksesuaian."\nAlamat: ".$request->alamat_pengiriman."\n\nSilahkan klik link berikut untuk validasi: http://162.243.167.174/".$ncrs->id,
+        ]);
+        Http::get("https://app.whacenter.com/api/send", [
+            "device_id" => "0c3716536ed62ab28dca153271d515b8",
+            "number" => Kontak::find($request->kontak_id[0])->nomor_whatsapp,
+            "message" => "",
+            "file" => "http://162.243.167.174/storage/".$ncrs->bukti_kecacatan
+        ]);
+
         foreach($request->item_id as $item){
             ItemNcr::create([
                 "kode_item" => explode("-", $item)[0],
@@ -104,16 +117,6 @@ class NcrController extends Controller
                 "ncr_id" => $ncrs->id
             ]);
         }
-        // if($request->hasFile('bukti_kecacatan'))
-        // {
-        //     $destination_path = 'public/images/bukti';
-        //     $bukti = $request->file('bukti_kecacatan');
-        //     $bukti_name = $bukti->getClientOriginalName();
-        //     $path = $request->file('bukti_kecacatan')->storeAs($destination_path,$bukti_name);
-
-        //     $input['bukti_kecacatan'] = $bukti_name;
-        // }
-        
 
         return redirect("/ncr");
     }
@@ -185,6 +188,8 @@ class NcrController extends Controller
 
         if($request->file('bukti_kecacatan')){
             $validateData['bukti_kecacatan'] = $request->file('bukti_kecacatan')->store('bukti');
+        } else {
+            $validateData['bukti_kecacatan'] = $ncr->bukti_kecacatan;
         }
         
         $ncr->update([
@@ -216,6 +221,18 @@ class NcrController extends Controller
             ]);
         }
 
+        Http::get("https://app.whacenter.com/api/send", [
+            "device_id" => "0c3716536ed62ab28dca153271d515b8",
+            "number" => Kontak::find($request->kontak_id[0])->nomor_whatsapp,
+            "message" => "NCR : ". $ncr->nomor_ncr ."\nBaru saja Diedit dan perlu anda validasi, berikut data singkatnya:\n\nNomor NCR: ".$request->nomor_ncr."\nNomor FPPP: ".$request->nomor_fppp."\nTanggal NCR: ".$request->tanggal_ncr."\nNama Mitra: ".$request->nama_mitra."\nNama Proyek: ".$request->nama_proyek."\nDeskripsi: ".$request->deskripsi."\nAnalisa: ".$request->analisa."\nSolusi: ".$request->solusi."\nPelapor: ".$request->pelapor."\nJenis Ketidaksesuaian: ".$request->jenis_ketidaksesuaian."\nAlamat: ".$request->alamat_pengiriman."\n\nSilahkan klik link berikut untuk validasi: http://162.243.167.174/".$ncr->id,
+        ]);
+        Http::get("https://app.whacenter.com/api/send", [
+            "device_id" => "0c3716536ed62ab28dca153271d515b8",
+            "number" => Kontak::find($request->kontak_id[0])->nomor_whatsapp,
+            "message" => "",
+            "file" => "http://162.243.167.174/storage/".$ncr->bukti_kecacatan
+        ]);
+
         foreach($request->item_id as $item){
             ItemNcr::create([
                 "kode_item" => explode("-", $item)[0],
@@ -224,10 +241,7 @@ class NcrController extends Controller
             ]);
         }
 
-
-
         return redirect("/ncr");
-
     }
 
     /**
@@ -251,6 +265,21 @@ class NcrController extends Controller
                 DB::table('kontak_ncr')->where("id", $request->id)->update([
                     "validated" => $request->checked
                 ]);
+                if ($request->posisi != DB::table("kontak_ncr")->where("ncr_id", $request->ncr_id)->count() - 1) {
+                    $kontak_ncr = DB::table('kontak_ncr')->where("id", $request->id + 1)->first();
+                    $ncr = Ncr::find($kontak_ncr->ncr_id);
+                    Http::get("https://app.whacenter.com/api/send", [
+                        "device_id" => "0c3716536ed62ab28dca153271d515b8",
+                        "number" => Kontak::find($kontak_ncr->kontak_id)->nomor_whatsapp,
+                        "message" => "Ada NCR baru yang perlu anda validasi, berikut data singkatnya:\n\nNomor NCR: ".$ncr->nomor_ncr."\nNomor FPPP: ".$ncr->nomor_fppp."\nTanggal NCR: ".$ncr->tanggal_ncr."\nNama Mitra: ".$ncr->nama_mitra."\nNama Proyek: ".$ncr->nama_proyek."\nDeskripsi: ".$ncr->deskripsi."\nAnalisa: ".$ncr->analisa."\nSolusi: ".$ncr->solusi."\nPelapor: ".$ncr->pelapor."\nJenis Ketidaksesuaian: ".$ncr->jenis_ketidaksesuaian."\nAlamat: ".$ncr->alamat_pengiriman."\n\nSilahkan klik link berikut untuk validasi: http://162.243.167.174/".$ncr->id,
+                    ]);
+                    Http::get("https://app.whacenter.com/api/send", [
+                        "device_id" => "0c3716536ed62ab28dca153271d515b8",
+                        "number" => Kontak::find($kontak_ncr->kontak_id)->nomor_whatsapp,
+                        "message" => "",
+                        "file" => "http://162.243.167.174/storage/".$ncr->bukti_kecacatan
+                    ]);
+                }
                 if (Ncr::find($request->ncr_id)->Kontak->every(function($kontak) {
                     return $kontak->pivot->validated == 1;
                 })) {
