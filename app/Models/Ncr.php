@@ -20,7 +20,7 @@ class Ncr extends Model
 
     public function Kontak()
     {
-        return $this->belongsToMany(Kontak::class)->withPivot(["id", "validated"])->withTrashed();
+        return $this->belongsToMany(Kontak::class)->withPivot(["id", "validated"])->withTrashed()->orderBy("id");
     }
     
     public function ItemNcr()

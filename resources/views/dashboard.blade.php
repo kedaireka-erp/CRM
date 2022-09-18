@@ -27,13 +27,74 @@
         </div>
         <div class="row">
             <div class="col-12 mb-20">
-                <div class="card-box pd-20">
-                    <div class="d-flex justify-content-between">
-                        <div class="h5">NCR Status Diagram</div>
-                    </div>
-
-                    <div id="diseases-chart"></div>
-                </div>
+                <div class="row">
+					<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+						<div class="card-box height-100-p widget-style3">
+							<div class="d-flex flex-wrap">
+								<div class="widget-data">
+									<div class="weight-700 font-24 text-dark">{{$ncr_open}}</div>
+									<div class="font-14 text-secondary weight-500">
+										Open Ncr
+									</div>
+								</div>
+								<div class="widget-icon bg-warning">
+									<div class="icon">
+										<span class="icon-copy bi bi-door-open"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+						<div class="card-box height-100-p widget-style3">
+							<div class="d-flex flex-wrap">
+								<div class="widget-data">
+									<div class="weight-700 font-24 text-dark">{{$ncr_closed}}</div>
+									<div class="font-14 text-secondary weight-500">
+										Closed NCR
+									</div>
+								</div>
+								<div class="widget-icon bg-danger">
+									<div class="icon">
+										<span class="icon-copy bi bi-door-closed"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+						<div class="card-box height-100-p widget-style3">
+							<div class="d-flex flex-wrap">
+								<div class="widget-data">
+									<div class="weight-700 font-24 text-dark">{{$ncr_confirmed}}</div>
+									<div class="font-14 text-secondary weight-500">
+										Confirmed Report
+									</div>
+								</div>
+								<div class="widget-icon bg-success">
+									<div class="icon">
+										<i class="icon-copy dw dw-presentation-2"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+						<div class="card-box height-100-p widget-style3">
+							<div class="d-flex flex-wrap">
+								<div class="widget-data">
+									<div class="weight-700 font-24 text-dark">{{$memo}}</div>
+									<div class="font-14 text-secondary weight-500">Memo</div>
+								</div>
+								<div class="widget-icon bg-primary">
+									<div class="icon">
+										<i class="bi bi-card-heading" aria-hidden="true"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
             </div>
             <div class="col-12 mb-20">
                 <div class="card-box mb-30">
@@ -93,36 +154,4 @@
 <script src="/src/plugins/datatables/js/buttons.flash.min.js"></script>
 <script src="/vendors/scripts/datatable-setting.js"></script>
 <script src="/src/plugins/datatables/js/vfs_fonts.js"></script>
-<script>
-    var options4 = {
-        series: [50, 60, 70],
-        chart: {
-            height: 300,
-            type: 'radialBar',
-        },
-        colors: ['#003049', '#d62828', "#f77f00"],
-        plotOptions: {
-            radialBar: {
-                dataLabels: {
-                    name: {
-                        fontSize: '22px',
-                    },
-                    value: {
-                        fontSize: '16px',
-                    },
-                    total: {
-                        show: true,
-                        label: 'Total',
-                        formatter: function (w) {
-                            return 300
-                        }
-                    }
-                },
-            },
-        },
-        labels: ['Confirmed', 'Closed', "Open"]
-    };
-    var chart4 = new ApexCharts(document.querySelector("#diseases-chart"), options4);
-    chart4.render();
-</script>
 @endpush
