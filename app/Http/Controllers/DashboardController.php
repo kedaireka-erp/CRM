@@ -33,9 +33,10 @@ class DashboardController extends Controller
         }
         return view('dashboard', [
             "title" => "Home",
-            "ncr_open" => 10,
-            "ncr_closed" => 20,
-            "ncr_total" => 30,
+            "ncr_open" => Ncr::where("status", "open")->count(),
+            "ncr_closed" => Ncr::where("status", "closed")->count(),
+            "ncr_confirmed" => Ncr::where("status", "confirmed")->count(),
+            "memo" => Ncr::where("nomor_memo", "!=", null)->count(),
             "need_approval" => $ncr
         ]);
     }
