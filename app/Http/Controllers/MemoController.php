@@ -23,7 +23,7 @@ class MemoController extends Controller
         $jumlah = Ncr::whereNotNull("nomor_memo")->whereNull("delete_memo")->whereMonth("tanggal_memo", "=", Carbon::now()->month)->whereYear("tanggal_memo", "=", Carbon::now()->year)->count() +1;
         $nomor_memo = $jumlah;
 
-        while ($jumlah <= 100) {
+        while ($jumlah < 100) {
             $nomor_memo = "0".$nomor_memo;
             $jumlah *= 10;
         }
