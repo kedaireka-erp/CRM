@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Ncr;
 use App\Models\ItemNcr;
-use Barryvdh\DomPDF\PDF as DomPDFPDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use PDF;
 
 class MemoController extends Controller
 {
@@ -21,12 +20,23 @@ class MemoController extends Controller
 
     public function create(Ncr $ncr)
     {
+        $jumlah = Ncr::whereNotNull("nomor_memo")->whereNull("delete_memo")->whereMonth("tanggal_memo", "=", Carbon::now()->month)->whereYear("tanggal_memo", "=", Carbon::now()->year)->count() +1;
+        $nomor_memo = $jumlah;
+
+        while ($jumlah <= 100) {
+            $nomor_memo = "0".$nomor_memo;
+            $jumlah *= 10;
+        }
+
         if ($ncr->nomor_memo == null || $ncr->delete_memo != null) {
             return view('memo.create', [
                 "title" => "Memo",
-                "ncr" => $ncr
+                "ncr" => $ncr,
+                "jumlah_memo" => $nomor_memo,
             ]);
         }
+        
+
         return redirect("/ncr");
     }
 
@@ -128,7 +138,7 @@ class MemoController extends Controller
 
     public function createPDF(Ncr $ncr) {
     
-        $pdf = PDF::loadView('memo.cetak', [
+        $pdf = Pdf::loadView('memo.cetak', [
             "title" => "Memo",
             "memo" => $ncr,
         ]);
