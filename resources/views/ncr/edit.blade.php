@@ -51,8 +51,8 @@
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>No NCR</label>
-                                    <input value="1" class="form-control" type="string" id="nomor_ncr"
-                                        name="nomor_ncr" value="{{ $ncr->nomor_ncr }}" readonly />
+                                    <input class="form-control" type="string" id="nomor_ncr" name="nomor_ncr"
+                                        value="{{ $ncr->nomor_ncr }}" readonly />
                                 </div>
                             </div>
                         </div>
@@ -140,8 +140,8 @@
                             <div class="col-md-8 col-sm-12">
                                 <div class="form-group">
                                     <label>Jenis Ketidaksesuaian</label>
-                                    <input class="form-control" type="string" id="#"
-                                        name="jenis_ketidaksesuaian" value="{{ $ncr->jenis_ketidaksesuaian }}" />
+                                    <input class="form-control" type="string" id="#" name="jenis_ketidaksesuaian"
+                                        value="{{ $ncr->jenis_ketidaksesuaian }}" />
                                 </div>
                             </div>
                         </div>
@@ -202,7 +202,7 @@
             return a.pivot.id - b.pivot.id;
         });
 
-        $('#form_kontak').children()[0].children[0].children[kontak[0].id - 1].selected = true
+        $('#form_kontak').children()[0].children[0].children[kontak[0].id - 1].selected = true;
 
         $("#form_kontak").on("click", "button", function() {
             add_kontak();

@@ -40,7 +40,7 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="form-group">
                         <label>No. Memo</label>
-                        <input type="text" class="form-control" readonly value="1" name="nomor_memo">
+                        <input type="text" class="form-control" readonly value="{{$ncr->nomor_memo}}" name="nomor_memo">
                     </div>
                 </div>
             </div>
