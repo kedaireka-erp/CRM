@@ -27,7 +27,7 @@ class NcrController extends Controller
         return view("ncr.index", [
             "title" => "NCR",
             "confirms" => $confirms,
-        ],compact("ncrs"));
+        ], compact("ncrs"));
     }
 
     /**
@@ -37,25 +37,29 @@ class NcrController extends Controller
      */
     public function create()
     {
-        $fppp= collect([[
-            "nama_mitra"=> "UNNES",
-            "nama_proyek"=>"Digital Center",
-            "nomor_fppp"=>"1/fppp/jendela",
-            "alamat" => "Jl. Semarang",
-            "item"=> [["nama_item"=>"jendela", "kode_item"=>"a1"], 
-            ["nama_item"=>"baju", "kode_item" =>"a2"],["nama_item" => "celana", "kode_item" =>"a3"]]],
+        $fppp = collect([
             [
-            "nama_mitra"=> "ALFAMART",
-            "nama_proyek"=>"LP2M",
-            "nomor_fppp"=>"2/fppp/baju",
-            "alamat" => "Jl. Imam Bonjol",
-            "item"=> [["nama_item"=>"baju", "kode_item"=>"b1"], ["nama_item"=>"celana", "kode_item"=>"b2"]]
-            ]]);
-        $Kontak= Kontak::get();
+                "nama_mitra" => "UNNES",
+                "nama_proyek" => "Digital Center",
+                "nomor_fppp" => "1/fppp/jendela",
+                "alamat" => "Jl. Semarang",
+                "item" => [
+                    ["nama_item" => "jendela", "kode_item" => "a1"],
+                    ["nama_item" => "baju", "kode_item" => "a2"], ["nama_item" => "celana", "kode_item" => "a3"]
+                ]
+            ],
+            [
+                "nama_mitra" => "ALFAMART",
+                "nama_proyek" => "LP2M",
+                "nomor_fppp" => "2/fppp/baju",
+                "alamat" => "Jl. Imam Bonjol",
+                "item" => [["nama_item" => "baju", "kode_item" => "b1"], ["nama_item" => "celana", "kode_item" => "b2"]]
+            ]
+        ]);
+        $Kontak = Kontak::get();
         return view("ncr.create", [
             "title" => "NCR"
         ], compact("Kontak", "fppp"));
-
     }
 
     /**
@@ -67,10 +71,10 @@ class NcrController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'bukti_kecacatan'=> 'file|max:2024'
+            'bukti_kecacatan' => 'file|max:2024'
         ]);
 
-        if($request->file('bukti_kecacatan')){
+        if ($request->file('bukti_kecacatan')) {
             $validateData['bukti_kecacatan'] = $request->file('bukti_kecacatan')->store('bukti');
         }
 
@@ -85,12 +89,12 @@ class NcrController extends Controller
             "solusi" => $request->solusi,
             "pelapor" => $request->pelapor,
             "bukti_kecacatan" => $validateData['bukti_kecacatan'],
-            "jenis_ketidaksesuaian" =>$request->jenis_ketidaksesuaian,
+            "jenis_ketidaksesuaian" => $request->jenis_ketidaksesuaian,
             "alamat_pengiriman" => $request->alamat_pengiriman,
             "status" => ($request->analisa == null && $request->solusi == null) ? "open" : "closed",
         ]);
 
-        foreach($request->kontak_id as $kontak){
+        foreach ($request->kontak_id as $kontak) {
             $validator[] = DB::table("kontak_ncr")->insert([
                 "kontak_id" => $kontak,
                 "ncr_id" => $ncrs->id,
@@ -101,16 +105,16 @@ class NcrController extends Controller
         Http::get("https://app.whacenter.com/api/send", [
             "device_id" => "0c3716536ed62ab28dca153271d515b8",
             "number" => Kontak::find($request->kontak_id[0])->nomor_whatsapp,
-            "message" => "Ada NCR baru yang perlu anda validasi, berikut data singkatnya:\n\nNomor NCR: ".$request->nomor_ncr."\nNomor FPPP: ".$request->nomor_fppp."\nTanggal NCR: ".$request->tanggal_ncr."\nNama Mitra: ".$request->nama_mitra."\nNama Proyek: ".$request->nama_proyek."\nDeskripsi: ".$request->deskripsi."\nAnalisa: ".$request->analisa."\nSolusi: ".$request->solusi."\nPelapor: ".$request->pelapor."\nJenis Ketidaksesuaian: ".$request->jenis_ketidaksesuaian."\nAlamat: ".$request->alamat_pengiriman."\n\nSilahkan klik link berikut untuk validasi: http://162.243.167.174/".$ncrs->id,
+            "message" => "Ada NCR baru yang perlu anda validasi, berikut data singkatnya:\n\nNomor NCR: " . $request->nomor_ncr . "\nNomor FPPP: " . $request->nomor_fppp . "\nTanggal NCR: " . $request->tanggal_ncr . "\nNama Mitra: " . $request->nama_mitra . "\nNama Proyek: " . $request->nama_proyek . "\nDeskripsi: " . $request->deskripsi . "\nAnalisa: " . $request->analisa . "\nSolusi: " . $request->solusi . "\nPelapor: " . $request->pelapor . "\nJenis Ketidaksesuaian: " . $request->jenis_ketidaksesuaian . "\nAlamat: " . $request->alamat_pengiriman . "\n\nSilahkan klik link berikut untuk validasi: http://162.243.167.174/" . $ncrs->id,
         ]);
         Http::get("https://app.whacenter.com/api/send", [
             "device_id" => "0c3716536ed62ab28dca153271d515b8",
             "number" => Kontak::find($request->kontak_id[0])->nomor_whatsapp,
             "message" => "",
-            "file" => "http://162.243.167.174/storage/".$ncrs->bukti_kecacatan
+            "file" => "http://162.243.167.174/storage/" . $ncrs->bukti_kecacatan
         ]);
 
-        foreach($request->item_id as $item){
+        foreach ($request->item_id as $item) {
             ItemNcr::create([
                 "kode_item" => explode("-", $item)[0],
                 "nama_item" => explode("-", $item)[1],
@@ -129,7 +133,7 @@ class NcrController extends Controller
      */
     public function show(Ncr $ncr)
     {
-        return view ("ncr.validasi", [
+        return view("ncr.validasi", [
             "title" => "NCR",
             "ncr" => $ncr,
             "validators" => $ncr->Kontak()->orderBy("kontak_ncr.id", "asc")->get()
@@ -147,23 +151,28 @@ class NcrController extends Controller
         if ($ncr->Kontak->every(function ($kontak) {
             return $kontak->pivot->validated == 0;
         })) {
-            $fppp= collect([[
-                "nama_mitra"=> "UNNES",
-                "nama_proyek"=>"Digital Center",
-                "nomor_fppp"=>"1/fppp/jendela",
-                "alamat" => "Jl. Semarang",
-                "item"=> [["nama_item"=>"jendela", "kode_item"=>"a1"], 
-                ["nama_item"=>"baju", "kode_item" =>"a2"],["nama_item" => "celana", "kode_item" =>"a3"]]],
+            $fppp = collect([
                 [
-                "nama_mitra"=> "ALFAMART",
-                "nama_proyek"=>"LP2M",
-                "nomor_fppp"=>"2/fppp/baju",
-                "alamat" => "Jl. Imam Bonjol",
-                "item"=> [["nama_item"=>"baju", "kode_item"=>"b1"], ["nama_item"=>"celana", "kode_item"=>"b2"]]
-                ]]);
+                    "nama_mitra" => "UNNES",
+                    "nama_proyek" => "Digital Center",
+                    "nomor_fppp" => "1/fppp/jendela",
+                    "alamat" => "Jl. Semarang",
+                    "item" => [
+                        ["nama_item" => "jendela", "kode_item" => "a1"],
+                        ["nama_item" => "baju", "kode_item" => "a2"], ["nama_item" => "celana", "kode_item" => "a3"]
+                    ]
+                ],
+                [
+                    "nama_mitra" => "ALFAMART",
+                    "nama_proyek" => "LP2M",
+                    "nomor_fppp" => "2/fppp/baju",
+                    "alamat" => "Jl. Imam Bonjol",
+                    "item" => [["nama_item" => "baju", "kode_item" => "b1"], ["nama_item" => "celana", "kode_item" => "b2"]]
+                ]
+            ]);
             $Kontak = Kontak::get();
-    
-            return view("ncr.edit",[
+
+            return view("ncr.edit", [
                 "title" => "NCR",
                 "validators" => $ncr->Kontak()->orderBy("kontak_ncr.id", "asc")->get(),
                 "fppps" => $fppp->where("nomor_fppp", $ncr->nomor_fppp)->first()
@@ -183,15 +192,15 @@ class NcrController extends Controller
     public function update(Request $request, Ncr $ncr)
     {
         $validateData = $request->validate([
-            'bukti_kecacatan'=> 'file|max:2024'
+            'bukti_kecacatan' => 'file|max:2024'
         ]);
 
-        if($request->file('bukti_kecacatan')){
+        if ($request->file('bukti_kecacatan')) {
             $validateData['bukti_kecacatan'] = $request->file('bukti_kecacatan')->store('bukti');
         } else {
             $validateData['bukti_kecacatan'] = $ncr->bukti_kecacatan;
         }
-        
+
         $ncr->update([
             "nama_mitra" => $request->nama_mitra ?? $ncr->nama_mitra,
             "nama_proyek" => $request->nama_proyek ?? $ncr->nama_proyek,
@@ -203,7 +212,7 @@ class NcrController extends Controller
             "solusi" => $request->solusi ?? $ncr->solusi,
             "pelapor" => $request->pelapor ?? $ncr->pelapor,
             "bukti_kecacatan" => $validateData['bukti_kecacatan'] ?? $ncr->bukti_kecacatan,
-            "jenis_ketidaksesuaian" =>$request->jenis_ketidaksesuaian ?? $ncr->jenis_ketidaksesuaian,
+            "jenis_ketidaksesuaian" => $request->jenis_ketidaksesuaian ?? $ncr->jenis_ketidaksesuaian,
             "alamat_pengiriman" => $request->alamat_pengiriman ?? $ncr->alamat_pengiriman,
             "kontak_id" => $request->kontak_id ?? $ncr->kontak_id,
             "status" => ($request->analisa == null && $request->solusi == null) ? "open" : "closed",
@@ -212,8 +221,8 @@ class NcrController extends Controller
         ItemNcr::where('ncr_id', $ncr->id)->delete();
 
         DB::table("kontak_ncr")->where('ncr_id', $ncr->id)->delete();
-        
-        foreach($request->kontak_id as $kontak){
+
+        foreach ($request->kontak_id as $kontak) {
             DB::table("kontak_ncr")->insert([
                 "kontak_id" => $kontak,
                 "ncr_id" => $ncr->id,
@@ -224,16 +233,16 @@ class NcrController extends Controller
         Http::get("https://app.whacenter.com/api/send", [
             "device_id" => "0c3716536ed62ab28dca153271d515b8",
             "number" => Kontak::find($request->kontak_id[0])->nomor_whatsapp,
-            "message" => "NCR : ". $ncr->nomor_ncr ."\nBaru saja Diedit dan perlu anda validasi, berikut data singkatnya:\n\nNomor NCR: ".$request->nomor_ncr."\nNomor FPPP: ".$request->nomor_fppp."\nTanggal NCR: ".$request->tanggal_ncr."\nNama Mitra: ".$request->nama_mitra."\nNama Proyek: ".$request->nama_proyek."\nDeskripsi: ".$request->deskripsi."\nAnalisa: ".$request->analisa."\nSolusi: ".$request->solusi."\nPelapor: ".$request->pelapor."\nJenis Ketidaksesuaian: ".$request->jenis_ketidaksesuaian."\nAlamat: ".$request->alamat_pengiriman."\n\nSilahkan klik link berikut untuk validasi: http://162.243.167.174/".$ncr->id,
+            "message" => "NCR : " . $ncr->nomor_ncr . "\nBaru saja Diedit dan perlu anda validasi, berikut data singkatnya:\n\nNomor NCR: " . $request->nomor_ncr . "\nNomor FPPP: " . $request->nomor_fppp . "\nTanggal NCR: " . $request->tanggal_ncr . "\nNama Mitra: " . $request->nama_mitra . "\nNama Proyek: " . $request->nama_proyek . "\nDeskripsi: " . $request->deskripsi . "\nAnalisa: " . $request->analisa . "\nSolusi: " . $request->solusi . "\nPelapor: " . $request->pelapor . "\nJenis Ketidaksesuaian: " . $request->jenis_ketidaksesuaian . "\nAlamat: " . $request->alamat_pengiriman . "\n\nSilahkan klik link berikut untuk validasi: http://162.243.167.174/" . $ncr->id,
         ]);
         Http::get("https://app.whacenter.com/api/send", [
             "device_id" => "0c3716536ed62ab28dca153271d515b8",
             "number" => Kontak::find($request->kontak_id[0])->nomor_whatsapp,
             "message" => "",
-            "file" => "http://162.243.167.174/storage/".$ncr->bukti_kecacatan
+            "file" => "http://162.243.167.174/storage/" . $ncr->bukti_kecacatan
         ]);
 
-        foreach($request->item_id as $item){
+        foreach ($request->item_id as $item) {
             ItemNcr::create([
                 "kode_item" => explode("-", $item)[0],
                 "nama_item" => explode("-", $item)[1],
@@ -252,12 +261,13 @@ class NcrController extends Controller
      */
     public function destroy(Ncr $ncr)
     {
-        $ncr -> delete();
-        
+        $ncr->delete();
+
         return redirect("/ncr");
     }
 
-    public function validasi (Request $request) {
+    public function validasi(Request $request)
+    {
         if (Kontak::withTrashed()->where("user_id", $request->user)->first()->id != DB::table("kontak_ncr")->where("id", $request->id)->first()->kontak_id) {
             return response()->json(["message" => "anda bukan user tersebut"], 403);
         } else {
@@ -271,34 +281,38 @@ class NcrController extends Controller
                     Http::get("https://app.whacenter.com/api/send", [
                         "device_id" => "0c3716536ed62ab28dca153271d515b8",
                         "number" => Kontak::find($kontak_ncr->kontak_id)->nomor_whatsapp,
-                        "message" => "Ada NCR baru yang perlu anda validasi, berikut data singkatnya:\n\nNomor NCR: ".$ncr->nomor_ncr."\nNomor FPPP: ".$ncr->nomor_fppp."\nTanggal NCR: ".$ncr->tanggal_ncr."\nNama Mitra: ".$ncr->nama_mitra."\nNama Proyek: ".$ncr->nama_proyek."\nDeskripsi: ".$ncr->deskripsi."\nAnalisa: ".$ncr->analisa."\nSolusi: ".$ncr->solusi."\nPelapor: ".$ncr->pelapor."\nJenis Ketidaksesuaian: ".$ncr->jenis_ketidaksesuaian."\nAlamat: ".$ncr->alamat_pengiriman."\n\nSilahkan klik link berikut untuk validasi: http://162.243.167.174/".$ncr->id,
+                        "message" => "Ada NCR baru yang perlu anda validasi, berikut data singkatnya:\n\nNomor NCR: " . $ncr->nomor_ncr . "\nNomor FPPP: " . $ncr->nomor_fppp . "\nTanggal NCR: " . $ncr->tanggal_ncr . "\nNama Mitra: " . $ncr->nama_mitra . "\nNama Proyek: " . $ncr->nama_proyek . "\nDeskripsi: " . $ncr->deskripsi . "\nAnalisa: " . $ncr->analisa . "\nSolusi: " . $ncr->solusi . "\nPelapor: " . $ncr->pelapor . "\nJenis Ketidaksesuaian: " . $ncr->jenis_ketidaksesuaian . "\nAlamat: " . $ncr->alamat_pengiriman . "\n\nSilahkan klik link berikut untuk validasi: http://162.243.167.174/" . $ncr->id,
                     ]);
                     Http::get("https://app.whacenter.com/api/send", [
                         "device_id" => "0c3716536ed62ab28dca153271d515b8",
                         "number" => Kontak::find($kontak_ncr->kontak_id)->nomor_whatsapp,
                         "message" => "",
-                        "file" => "http://162.243.167.174/storage/".$ncr->bukti_kecacatan
+                        "file" => "http://162.243.167.174/storage/" . $ncr->bukti_kecacatan
                     ]);
                 }
-                if (Ncr::find($request->ncr_id)->Kontak->every(function($kontak) {
+                if (Ncr::find($request->ncr_id)->Kontak->every(function ($kontak) {
                     return $kontak->pivot->validated == 1;
                 })) {
                     Ncr::find($request->ncr_id)->update([
                         "status" => "confirmed"
                     ]);
                 }
-                return response()->json( ["message" => "anda berhasil validasi"], 200);
+                return response()->json(["message" => "anda berhasil validasi"], 200);
             } else {
                 return response()->json(["message" => "anda gagal validasi"], 406);
             }
         }
     }
 
-    public function report (Request $request) {
+    public function report(Request $request)
+    {
         $ncr = Ncr::whereMonth("created_at", $request->bulan)->whereYear("created_at", $request->tahun)->get();
         $pdf = Pdf::loadView('ncr.report', [
-            "ncrs" => $ncr
+            "ncr_open" => $ncr->where("status", "open"),
+            "ncr_closed" => $ncr->where("status", "closed"),
+            "ncr_confirmed" => $ncr->where("confirmed"),
+            "tanggal" => $request->bulan . "-" . $request->tahun
         ]);
-        return $pdf->download('report_ncr_'.$request->bulan.'_'.$request->tahun.'.pdf');
+        return $pdf->stream('report_ncr_' . $request->bulan . '_' . $request->tahun . '.pdf');
     }
 }
