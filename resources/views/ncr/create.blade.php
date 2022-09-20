@@ -52,8 +52,9 @@
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>No NCR</label>
-                                    <input value="1" class="form-control" type="string" id="nomor_ncr"
-                                        name="nomor_ncr" readonly />
+                                    <input
+                                        value="{{ $jumlah_ncr }}/NCR/AST/{{ Carbon\Carbon::now()->format('m') }}/{{ Carbon\Carbon::now()->year }}"
+                                        class="form-control" type="string" id="nomor_ncr" name="nomor_ncr" readonly />
                                 </div>
                             </div>
                         </div>

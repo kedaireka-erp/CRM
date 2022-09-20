@@ -35,7 +35,7 @@ class NcrController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Ncr $ncr)
     {
         $fppp = collect([
             [
@@ -49,17 +49,25 @@ class NcrController extends Controller
                 ]
             ],
             [
-                "nama_mitra" => "ALFAMART",
-                "nama_proyek" => "LP2M",
-                "nomor_fppp" => "2/fppp/baju",
-                "alamat" => "Jl. Imam Bonjol",
-                "item" => [["nama_item" => "baju", "kode_item" => "b1"], ["nama_item" => "celana", "kode_item" => "b2"]]
+              "nama_mitra"=> "ALFAMART",
+              "nama_proyek"=>"LP2M",
+              "nomor_fppp"=>"2/fppp/baju",
+              "alamat" => "Jl. Imam Bonjol",
+              "item"=> [["nama_item"=>"baju", "kode_item"=>"b1"], ["nama_item"=>"celana", "kode_item"=>"b2"]]
             ]
-        ]);
-        $Kontak = Kontak::get();
-        return view("ncr.create", [
-            "title" => "NCR"
-        ], compact("Kontak", "fppp"));
+            ]);
+        $Kontak= Kontak::get();
+        $jumlah = Ncr::WhereMonth('tanggal_ncr', Carbon::now()->month)->WhereYear('tanggal_ncr', Carbon::now()->year)->count()+1;
+        $nomor_ncr = $jumlah;
+
+        while($jumlah < 100){
+            $nomor_ncr = "0".$nomor_ncr;
+            $jumlah *= 10;
+        }
+            return view("ncr.create", [
+                "title" => "NCR",
+                "jumlah_ncr" => $nomor_ncr,
+            ], compact("Kontak", "fppp"));
     }
 
     /**
