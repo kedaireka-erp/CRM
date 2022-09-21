@@ -71,7 +71,7 @@
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                             <a class="dropdown-item" href="/memo/{{$ncr->id}}/edit"><i class="dw dw-edit2"></i>
                                                 Edit </a>
-                                            <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>
+                                            <a class="dropdown-item" href="/memo/{{$ncr->id}}"><i class="dw dw-eye"></i>
                                                 Show </a>
                                             <a class="dropdown-item" href="/memo/{{$ncr->id}}/cetak"><i class="dw dw-print"></i>
                                                 Cetak </a>

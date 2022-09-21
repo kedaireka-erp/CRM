@@ -136,6 +136,16 @@ class MemoController extends Controller
         return redirect("/memo");
     }
 
+    public function show (Ncr $ncr) {
+        return view("memo.show", [
+            "title" => "Memo",
+            "ncr" => $ncr,
+            "items" => $ncr->ItemNcr->filter(function ($item) {
+                return $item->tipe_item != null && $item->warna != null && $item->lebar != null && $item->tinggi != null && $item->alasan != null && $item->keterangan != null && $item->return_barang != null && $item->charge != null && $item->bukaan != null;
+            })
+        ]);
+    }
+
     public function createPDF(Ncr $ncr) {
     
         $pdf = Pdf::loadView('memo.cetak', [

@@ -81,7 +81,6 @@
         <table>
             <thead>
                 <tr>
-                    <th class="table-plus">No</th>
                     <th>No NCR</th>
                     <th>No FPPP</th>
                     <th>Mitra</th>
@@ -93,9 +92,8 @@
             </thead>
             <tbody>
                 @if ($ncr_open->count() > 0)
-                @foreach ($ncr_open as $no => $ncr)
+                @foreach ($ncr_open as $ncr)
                 <tr>
-                    <td class="table-plus">{{ $no + 1 }}</td>
                     <td>{{ $ncr->nomor_ncr }}</td>
                     <td>{{ $ncr->nomor_fppp }}</td>
                     <td>{{ $ncr->nama_mitra }}</td>
@@ -124,7 +122,6 @@
         <table>
             <thead>
                 <tr>
-                    <th class="table-plus">No</th>
                     <th>No NCR</th>
                     <th>No FPPP</th>
                     <th>Mitra</th>
@@ -136,9 +133,8 @@
             </thead>
             <tbody>
                 @if ($ncr_closed->count() > 0)
-                @foreach ($ncr_closed as $no => $ncr)
+                @foreach ($ncr_closed as $ncr)
                 <tr>
-                    <td class="table-plus">{{ $no + 1 }}</td>
                     <td>{{ $ncr->nomor_ncr }}</td>
                     <td>{{ $ncr->nomor_fppp }}</td>
                     <td>{{ $ncr->nama_mitra }}</td>
@@ -166,7 +162,6 @@
         <table>
             <thead>
                 <tr>
-                    <th class="table-plus">No</th>
                     <th>No NCR</th>
                     <th>No FPPP</th>
                     <th>Mitra</th>
@@ -178,9 +173,8 @@
             </thead>
             <tbody>
                 @if ($ncr_confirmed->count() > 0)
-                @foreach ($ncr_confirmed as $no => $ncr)
+                @foreach ($ncr_confirmed as $ncr)
                 <tr>
-                    <td class="table-plus">{{ $no + 1 }}</td>
                     <td>{{ $ncr->nomor_ncr }}</td>
                     <td>{{ $ncr->nomor_fppp }}</td>
                     <td>{{ $ncr->nama_mitra }}</td>
