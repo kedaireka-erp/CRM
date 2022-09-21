@@ -120,12 +120,12 @@
                                             return $kontak->pivot->validated == 0;
                                             }))
                                             <a class="dropdown-item" href="/ncr/{{ $ncr->id }}/edit"><i
-                                                    class="dw dw-eye"></i>
+                                                    class="dw dw-edit2"></i>
                                                 Edit</a>
                                             @endif
                                             <a class="dropdown-item" href="/ncr/{{ $ncr->id }}"><i
-                                                    class="dw dw-edit2"></i>
-                                                Validasi</a>
+                                                    class="dw dw-eye"></i>
+                                                Show</a>
                                             @if ($ncr->nomor_memo == null || $ncr->delete_memo != null)
                                             <a class="dropdown-item" href="/memo/{{$ncr->id}}/create"><i
                                                     class="icon-copy dw dw-chat3"></i>Create Memo</a>
@@ -189,27 +189,12 @@
                                             <i class="dw dw-more"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                            @if ($ncr->Kontak->every(function ($kontak) {
-                                            return $kontak->pivot->validated == 0;
-                                            }))
-                                            <a class="dropdown-item" href="/ncr/{{ $ncr->id }}/edit"><i
-                                                    class="dw dw-eye"></i>
-                                                Edit</a>
-                                            @endif
-                                            <a class="dropdown-item" href="/ncr/{{ $ncr->id }}"><i
-                                                    class="dw dw-edit2"></i>
-                                                Validasi</a>
+                                            <a class="dropdown-item" href="/ncr/{{ $ncr->id }}"><i class="dw dw-eye"></i>
+                                                Show</a>
                                             @if ($ncr->nomor_memo == null || $ncr->delete_memo != null)
                                             <a class="dropdown-item" href="/memo/{{$ncr->id}}/create"><i
                                                     class="icon-copy dw dw-chat3"></i>Create Memo</a>
                                             @endif
-                                            <form action="/ncr/{{ $ncr->id }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="dropdown-item" type="submit"><i class="dw dw-delete-3">
-                                                    </i>
-                                                    Delete</button>
-                                            </form>
                                         </div>
                                     </div>
                                 </td>

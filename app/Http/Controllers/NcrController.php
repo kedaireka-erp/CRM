@@ -318,7 +318,7 @@ class NcrController extends Controller
         $pdf = Pdf::loadView('ncr.report', [
             "ncr_open" => $ncr->where("status", "open"),
             "ncr_closed" => $ncr->where("status", "closed"),
-            "ncr_confirmed" => $ncr->where("confirmed"),
+            "ncr_confirmed" => $ncr->where("status", "confirmed"),
             "tanggal" => $request->bulan . "-" . $request->tahun
         ]);
         return $pdf->stream('report_ncr_' . $request->bulan . '_' . $request->tahun . '.pdf');
