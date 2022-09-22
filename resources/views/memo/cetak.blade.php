@@ -111,15 +111,15 @@
                     <th>Warna</th>
                 </tr>
 
-                @foreach ($ncrs as $nomor => $ncr)
+                @foreach ($items as $nomor => $item)
                 <tr>
                     <td>{{$nomor + 1}}</td>
-                    <td>{{$ncr->nama_item}}</td>
-                    <td>{{$ncr->lebar}}."&".{{$item->tinggi}}</td>
-                    <td>{{$ncr->return_barang}}</td>
-                    <td>{{$ncr->charge}}</td>
-                    <td>{{$ncr->bukaan}}</td>
-                    <td>{{$ncr->warna}}</td>
+                    <td>{{$item->nama_item}}</td>
+                    <td>{{$item->lebar}}cm & {{$item->tinggi}}cm</td>
+                    <td>{{$item->return_barang}}</td>
+                    <td>{{$item->charge}}</td>
+                    <td>{{$item->bukaan}}</td>
+                    <td>{{$item->warna}}</td>
                 </tr>
                 @endforeach
 
