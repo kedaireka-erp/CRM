@@ -140,7 +140,7 @@ class MemoController extends Controller
     
         $pdf = Pdf::loadView('memo.cetak', [
             "title" => "Memo",
-            "memo" => $ncr,
+            "ncrs" => Ncr::whereNotNull("nomor_memo")->whereNull("delete_memo")->get(),
         ]);
         $pdf->setPaper('A4', 'potrait');
 
