@@ -27,13 +27,13 @@
             }
 
             p {
-                padding: 10px;
+                padding: 5px;
             }
 
             .oval {
                 background-color: #cfcfcf;
                 width: 120px;
-                height: 2px;
+                height: 1px;
                 border-radius: 40px;
             }
 
@@ -66,6 +66,10 @@
 
             .table_item tr:nth-child(even) {
                 background-color: #f2f2f2;
+            }
+            
+            .table_item tr {
+                border-bottom: 1px solid #ddd;
             }
         </style>
     </head>
