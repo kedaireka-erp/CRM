@@ -9,12 +9,10 @@
     <style type="text/css">
         table {
             border: 1px solid #ddd;
-            border-collapse: initial;
-            border-spacing: 0;
+            border-collapse: collapse;
             width: 100%;
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
+            table-layout: fixed;
+            word-wrap: break-word;
         }
 
         tr {
@@ -27,7 +25,8 @@
 
         th, td {
             text-align: left;
-            padding: 16px;
+            padding: 8px 5px;
+            width: 10%;
         }
 
         table tr:nth-child(even) {
@@ -97,7 +96,6 @@
                 <th>Nama Project</th>
                 <th>Tanggal</th>
                 <th>Item</th>
-                <th>Status</th>
             </tr>
                 @if ($ncr_open->count() > 0)
                 @foreach ($ncr_open as $ncr)
@@ -112,13 +110,11 @@
                         {{ $item->nama_item }},
                         @endforeach
                     </td>
-                    <td>{{$ncr->status}}</td>
-                    <td>
                 </tr>
                 @endforeach
                 @else
                 <tr>
-                    <td colspan="8" style="color: grey; text-align: center;">Tidak Ada Data</td>
+                    <td colspan="6" style="color: grey; text-align: center;">Tidak Ada Data</td>
                 </tr>
                 @endif
         </table>
@@ -134,7 +130,6 @@
                 <th>Nama Project</th>
                 <th>Tanggal</th>
                 <th>Item</th>
-                <th>Status</th>
             </tr>
             
                 @if ($ncr_closed->count() > 0)
@@ -150,13 +145,11 @@
                         {{ $item->nama_item }},
                         @endforeach
                     </td>
-                    <td>{{$ncr->status}}</td>
-                    <td>
                 </tr>
                 @endforeach
                 @else
                 <tr>
-                    <td colspan="8" style="color: grey;">Tidak Ada Data</td>
+                    <td colspan="6" style="color: grey;">Tidak Ada Data</td>
                 </tr>
                 @endif
         </table>
@@ -171,7 +164,6 @@
                 <th>Nama Project</th>
                 <th>Tanggal</th>
                 <th>Item</th>
-                <th>Status</th>
             </tr>
             
             @if ($ncr_confirmed->count() > 0)
@@ -187,13 +179,11 @@
                     {{ $item->nama_item }},
                     @endforeach
                 </td>
-                <td>{{$ncr->status}}</td>
-                <td>
             </tr>
             @endforeach
             @else
             <tr>
-                <td colspan="8" style="color: grey; text-align:center;">Tidak Ada Data</td>
+                <td colspan="6" style="color: grey; text-align:center;">Tidak Ada Data</td>
             </tr>
             @endif
             
