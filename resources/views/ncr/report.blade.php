@@ -13,6 +13,11 @@
             width: 100%;
             table-layout: fixed;
             word-wrap: break-word;
+
+        }
+
+        tr {
+            border-bottom: 1px solid #ddd;
         }
 
         th,
@@ -78,17 +83,14 @@
     <h4>Status : Open</h4>
     <div>
         <table>
-            <thead>
-                <tr>
-                    <th>No NCR</th>
-                    <th>No FPPP</th>
-                    <th>Mitra</th>
-                    <th>Nama Project</th>
-                    <th>Tanggal</th>
-                    <th>Item</th>
-                </tr>
-            </thead>
-            <tbody>
+            <tr>
+                <th>No NCR</th>
+                <th>No FPPP</th>
+                <th>Mitra</th>
+                <th>Nama Project</th>
+                <th>Tanggal</th>
+                <th>Item</th>
+            </tr>
                 @if ($ncr_open->count() > 0)
                 @foreach ($ncr_open as $ncr)
                 <tr>
@@ -116,17 +118,14 @@
     </h4>
     <div>
         <table>
-            <thead>
-                <tr>
-                    <th>No NCR</th>
-                    <th>No FPPP</th>
-                    <th>Mitra</th>
-                    <th>Nama Project</th>
-                    <th>Tanggal</th>
-                    <th>Item</th>
-                </tr>
-            </thead>
-            <tbody>
+            <tr>
+                <th>No NCR</th>
+                <th>No FPPP</th>
+                <th>Mitra</th>
+                <th>Nama Project</th>
+                <th>Tanggal</th>
+                <th>Item</th>
+            </tr>
                 @if ($ncr_closed->count() > 0)
                 @foreach ($ncr_closed as $ncr)
                 <tr>
@@ -153,38 +152,35 @@
     <h4>Status : Confirmed</h4>
     <div>
         <table>
-            <thead>
-                <tr>
-                    <th>No NCR</th>
-                    <th>No FPPP</th>
-                    <th>Mitra</th>
-                    <th>Nama Project</th>
-                    <th>Tanggal</th>
-                    <th>Item</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if ($ncr_confirmed->count() > 0)
-                @foreach ($ncr_confirmed as $ncr)
-                <tr>
-                    <td>{{ $ncr->nomor_ncr }}</td>
-                    <td>{{ $ncr->nomor_fppp }}</td>
-                    <td>{{ $ncr->nama_mitra }}</td>
-                    <td>{{ $ncr->nama_proyek }}</td>
-                    <td>{{ $ncr->tanggal_ncr->format('d-m-Y') }}</td>
-                    <td>
-                        @foreach ($ncr->ItemNcr as $item)
-                        {{ $item->nama_item }},
-                        @endforeach
-                    </td>
-                </tr>
-                @endforeach
-                @else
-                <tr>
-                    <td colspan="6" style="color: grey; text-align:center;">Tidak Ada Data</td>
-                </tr>
-                @endif
-            </tbody>
+            <tr>
+                <th>No NCR</th>
+                <th>No FPPP</th>
+                <th>Mitra</th>
+                <th>Nama Project</th>
+                <th>Tanggal</th>
+                <th>Item</th>
+            </tr>
+            
+            @if ($ncr_confirmed->count() > 0)
+            @foreach ($ncr_confirmed as $ncr)
+            <tr>
+                <td>{{ $ncr->nomor_ncr }}</td>
+                <td>{{ $ncr->nomor_fppp }}</td>
+                <td>{{ $ncr->nama_mitra }}</td>
+                <td>{{ $ncr->nama_proyek }}</td>
+                <td>{{ $ncr->tanggal_ncr->format('d-m-Y') }}</td>
+                <td>
+                    @foreach ($ncr->ItemNcr as $item)
+                    {{ $item->nama_item }},
+                    @endforeach
+                </td>
+            </tr>
+            @endforeach
+            @else
+            <tr>
+                <td colspan="6" style="color: grey; text-align:center;">Tidak Ada Data</td>
+            </tr>
+            @endif
         </table>
     </div>
 </body>

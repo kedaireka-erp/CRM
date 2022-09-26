@@ -108,7 +108,7 @@
                 <tr>
                     <th>No.</th>
                     <th>Item</th>
-                    <th>Ukuran</th>
+                    <th>Ukuran (l x t)</th>
                     <th>Return</th>
                     <th>Charge</th>
                     <th>Bukaan</th>
@@ -119,7 +119,7 @@
                 <tr>
                     <td>{{$nomor + 1}}</td>
                     <td>{{$item->nama_item}}</td>
-                    <td>{{$item->lebar}}cm & {{$item->tinggi}}cm</td>
+                    <td>{{$item->lebar}}mm x {{$item->tinggi}}mm</td>
                     <td>{{$item->return_barang}}</td>
                     <td>{{$item->charge}}</td>
                     <td>{{$item->bukaan}}</td>
