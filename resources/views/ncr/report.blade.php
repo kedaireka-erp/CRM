@@ -13,23 +13,21 @@
             width: 100%;
             table-layout: fixed;
             word-wrap: break-word;
+
         }
 
         tr {
             border-bottom: 1px solid #ddd;
         }
 
-        /* thead {
-            background-color: lightgrey;
-        } */
-
-        th, td {
+        th,
+        td {
             text-align: left;
             padding: 8px 5px;
             width: 10%;
         }
 
-        table tr:nth-child(even) {
+        tbody tr:nth-child(odd) {
             background-color: #f2f2f2;
         }
 
@@ -42,13 +40,9 @@
             border-radius: 20px;
             align-items: center;
             font-weight: normal;
-
-
         }
 
         nav {
-            display: flex;
-            background-color: white;
             font-weight: bold;
             margin-left: -40px;
             margin-bottom: 50px;
@@ -117,6 +111,7 @@
                     <td colspan="6" style="color: grey; text-align: center;">Tidak Ada Data</td>
                 </tr>
                 @endif
+            </tbody>
         </table>
     </div>
     <h4>Status : Closed</p>
@@ -131,7 +126,6 @@
                 <th>Tanggal</th>
                 <th>Item</th>
             </tr>
-            
                 @if ($ncr_closed->count() > 0)
                 @foreach ($ncr_closed as $ncr)
                 <tr>
@@ -152,6 +146,7 @@
                     <td colspan="6" style="color: grey;">Tidak Ada Data</td>
                 </tr>
                 @endif
+            </tbody>
         </table>
     </div>
     <h4>Status : Confirmed</h4>
@@ -186,7 +181,6 @@
                 <td colspan="6" style="color: grey; text-align:center;">Tidak Ada Data</td>
             </tr>
             @endif
-            
         </table>
     </div>
 </body>
