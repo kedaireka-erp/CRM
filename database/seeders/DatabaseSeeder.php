@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,19 +23,23 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        \App\Models\User::factory()->create([
+        Role::create(['name' => 'Admin']);
+        Role::create(['name' => 'Sales']);
+        Role::create(['name' => 'QC']);
+
+        User::factory()->create([
             'name' => 'Budi',
             'email' => 'budi@mail.com',
-        ]);
+        ])->assignRole('Admin');
 
-        \App\Models\User::factory()->create([
+        User::factory()->create([
             'name' => 'Susi Susanti',
             'email' => 'susi@mail.com',
-        ]);
+        ])->assignRole("Sales");
 
-        \App\Models\User::factory()->create([
+        User::factory()->create([
             'name' => 'Herman Sihombing',
             'email' => 'herman@mail.com',
-        ]);
+        ])->assignRole("QC");
     }
 }

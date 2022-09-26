@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NcrController;
 use App\Http\Controllers\MemoController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\DashboardController;
 
@@ -42,8 +43,12 @@ Route::middleware("auth")->group(function () {
     Route::post("/ncr/report", [NcrController::class, "report"]);
 
     Route::get("/memo/{ncr}", [MemoController::class, "show"]);
+
+    Route::get("/role", [RoleController::class, "index"]);
+
+    Route::post("/role/{user}", [RoleController::class, "update"]);
+
+    Route::get('/memo/{ncr}/cetak', [MemoController::class, 'createPDF']);
 });
 
 Auth::routes(["register"=>false]);
-
-Route::get('/memo/{ncr}/cetak', [MemoController::class, 'createPDF']);
