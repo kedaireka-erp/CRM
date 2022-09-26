@@ -19,7 +19,7 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::middleware("auth")->group(function () {
+Route::middleware("auth", "level:Sales,Admin,QC" )->group(function () {
     Route::get('/', [DashboardController::class, "index"]);
     
     Route::resource('ncr', NcrController::class);
@@ -49,6 +49,8 @@ Route::middleware("auth")->group(function () {
     Route::post("/role/{user}", [RoleController::class, "update"]);
 
     Route::get('/memo/{ncr}/cetak', [MemoController::class, 'createPDF']);
+    
 });
+
 
 Auth::routes(["register"=>false]);
