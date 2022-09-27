@@ -103,10 +103,10 @@
                                 <td>{{ $ncr->nomor_fppp }}</td>
                                 <td>{{ $ncr->nama_mitra }}</td>
                                 <td>{{ $ncr->nama_proyek }}</td>
-                                <td>{{ $ncr->tanggal_ncr->format('l jS \\of F Y') }}</td>
+                                <td>{{ $ncr->tanggal_ncr->format('j F Y') }}</td>
                                 <td>
-                                    @foreach ($ncr->ItemNcr as $item)
-                                    {{ $item->nama_item }},
+                                    @foreach ($ncr->ItemNcr as $keys => $item)
+                                    {{ $item->nama_item . ($keys < $ncr->ItemNcr->count() - 1 ? ', ' : "") }}
                                     @endforeach
                                 </td>
                                 <td>{{$ncr->status}}</td>
@@ -184,8 +184,8 @@
                                 <td>{{ $ncr->nama_proyek }}</td>
                                 <td>{{ $ncr->tanggal_ncr->format('l jS \\of F Y') }}</td>
                                 <td>
-                                    @foreach ($ncr->ItemNcr as $item)
-                                    {{ $item->nama_item }},
+                                    @foreach ($ncr->ItemNcr as $keys => $item)
+                                    {{ $item->nama_item . ($keys < $ncr->ItemNcr->count() - 1 ? ', ' : "") }}
                                     @endforeach
                                 </td>
                                 <td class="text-success">{{$ncr->status}}</td>

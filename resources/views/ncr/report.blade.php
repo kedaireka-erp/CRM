@@ -100,9 +100,9 @@
                     <td>{{ $ncr->nama_proyek }}</td>
                     <td>{{ $ncr->tanggal_ncr->format('d-m-Y') }}</td>
                     <td>
-                        @foreach ($ncr->ItemNcr as $item)
-                        {{ $item->nama_item }},
-                        @endforeach
+                        @foreach ($ncr->ItemNcr as $keys => $item)
+                                    {{ $item->nama_item . ($keys < $ncr->ItemNcr->count() - 1 ? ', ' : "") }}
+                                    @endforeach
                     </td>
                 </tr>
                 @endforeach
@@ -135,9 +135,9 @@
                     <td>{{ $ncr->nama_proyek }}</td>
                     <td>{{ $ncr->tanggal_ncr->format('d-m-Y') }}</td>
                     <td>
-                        @foreach ($ncr->ItemNcr as $item)
-                        {{ $item->nama_item }},
-                        @endforeach
+                        @foreach ($ncr->ItemNcr as $keys => $item)
+                                    {{ $item->nama_item . ($keys < $ncr->ItemNcr->count() - 1 ? ', ' : "") }}
+                                    @endforeach
                     </td>
                 </tr>
                 @endforeach
@@ -170,9 +170,9 @@
                 <td>{{ $ncr->nama_proyek }}</td>
                 <td>{{ $ncr->tanggal_ncr->format('d-m-Y') }}</td>
                 <td>
-                    @foreach ($ncr->ItemNcr as $item)
-                    {{ $item->nama_item }},
-                    @endforeach
+                    @foreach ($ncr->ItemNcr as $keys => $item)
+                                    {{ $item->nama_item . ($keys < $ncr->ItemNcr->count() - 1 ? ', ' : "") }}
+                                    @endforeach
                 </td>
             </tr>
             @endforeach
