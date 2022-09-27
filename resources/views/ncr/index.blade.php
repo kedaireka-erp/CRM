@@ -120,7 +120,7 @@
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                             @if ($ncr->Kontak->every(function ($kontak) {
                                             return $kontak->pivot->validated == 0;
-                                            }))
+                                            }) && $ncr->status == 'open')
                                             @can('edit-ncr')
                                                 <a class="dropdown-item" href="/ncr/{{ $ncr->id }}/edit"><i
                                                     class="dw dw-edit2"></i>
@@ -130,8 +130,8 @@
                                             <a class="dropdown-item" href="/ncr/{{ $ncr->id }}"><i
                                                     class="dw dw-eye"></i>
                                                 Show</a>
-                                            @if ($ncr->nomor_memo == null || $ncr->delete_memo != null)
-                                            @can('create-memo')
+                                            @if (($ncr->nomor_memo == null || $ncr->delete_memo != null) && $ncr->status == 'closed')
+                                            @can('add-memo')
                                                 <a class="dropdown-item" href="/memo/{{$ncr->id}}/create"><i
                                                     class="icon-copy dw dw-chat3"></i>Create Memo</a>
                                             @endcan
@@ -200,7 +200,7 @@
                                             <a class="dropdown-item" href="/ncr/{{ $ncr->id }}"><i class="dw dw-eye"></i>
                                                 Show</a>
                                             @if ($ncr->nomor_memo == null || $ncr->delete_memo != null)
-                                            @can('create-memo')
+                                            @can('add-memo')
                                                 <a class="dropdown-item" href="/memo/{{$ncr->id}}/create"><i
                                                     class="icon-copy dw dw-chat3"></i>Create Memo</a>
                                             @endcan
