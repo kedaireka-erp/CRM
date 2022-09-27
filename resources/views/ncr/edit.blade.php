@@ -326,6 +326,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @role("QC")
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
@@ -342,6 +343,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endrole
                             <input type="hidden" id="alamat_pengiriman" name="alamat_pengiriman"
                                 value="{{ $fppps['alamat'] }}">
                             <button type="submit" class="btn btn-success float-right">
