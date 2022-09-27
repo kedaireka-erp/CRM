@@ -31,11 +31,13 @@
                         <i class="micon bi bi-card-heading"></i> Memo
                     </a>
                 </li>
+                @role("Admin")
                 <li>
                     <a href="/role" class="dropdown-toggle no-arrow {{ $slot == 'Role' ? 'active' : '' }}">
                         <i class="micon dw dw-add-user"></i> Role
                     </a>
                 </li>
+                @endrole
             </ul>
         </div>
     </div>

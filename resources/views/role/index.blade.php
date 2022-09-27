@@ -29,9 +29,9 @@
             <div class="col-12 mb-20">
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <div class="text-blue h5">Need Approval</div>
+                        <div class="text-blue h5">User Role</div>
                         <small class="mb-0">
-                            list NCR yang memerlukan approval anda
+                            list User beserta role-nya
                         </small>
                     </div>
                     <div class="pb-20">
