@@ -165,8 +165,7 @@
                                 </div>
                             </div>
                         </div>
-                        @if (auth()->user()->level == 'Sales')
-                            <div class="row">
+                            <div class="row d-none">
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Analisa : </label>
@@ -174,7 +173,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row d-none">
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Solusi : </label>
@@ -182,7 +181,6 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
                         <input type="hidden" id="alamat_pengiriman" name="alamat_pengiriman">
                         <button type="submit" class="btn btn-success float-right">
                             Create NCR
