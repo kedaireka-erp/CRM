@@ -32,45 +32,49 @@
             </div>
             <div class="row">
                 <div class="col mb-20">
-                    <div class="pd-20 card-box mb-30">
-                        <div class="form-group">
+                    <div class="pd-20 card-box mb-30 row">
+                        <div class="form-group col-lg-6">
                             <label>Nomor NCR</label>
                             <input type="text" class="form-control" value="{{ $ncr->nomor_ncr }}" disabled>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-lg-6">
                             <label>Nomor FPPP</label>
                             <input type="text" class="form-control" value="{{ $ncr->nomor_fppp }}" disabled>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-lg-5">
                             <label>Nama Mitra</label>
                             <input type="text" class="form-control" value="{{ $ncr->nama_mitra }}" disabled>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-lg-7">
                             <label>Nama Proyek</label>
                             <input type="text" class="form-control" value="{{ $ncr->nama_proyek }}" disabled>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-lg-2">
                             <label>Tanggal NCR</label>
                             <input type="text" class="form-control date-picker"
-                                value="{{ $ncr->tanggal_ncr->format('l jS \\of F Y') }}" disabled>
+                                value="{{ $ncr->tanggal_ncr->format('j F Y') }}" disabled>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-lg-2">
                             <label>Pelapor</label>
                             <input type="text" class="form-control date-picker" value="{{ $ncr->pelapor }}" disabled>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-lg-8">
+                            <label>Item</label>
+                            <input type="text" class="form-control date-picker" value="@foreach ($ncr->ItemNcr as $keys => $item) {{ $item->nama_item . ($keys < $ncr->ItemNcr->count() - 1 ? ', ' : "")}} @endforeach" disabled>
+                        </div>
+                        <div class="form-group col-12">
                             <label>Deskripsi</label>
                             <textarea class="form-control" disabled>{{ $ncr->deskripsi }}</textarea>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-12">
                             <label>Analisa</label>
                             <textarea class="form-control" disabled>{{ $ncr->analisa }}</textarea>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-12">
                             <label>Perkiraan Solusi</label>
                             <textarea class="form-control" disabled>{{ $ncr->solusi }}</textarea>
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group col-12">
                             <label>Bukti Kecacatan</label>
                             <div>
                                 @if (explode('.', $ncr->bukti_kecacatan)[1] == 'jpg' ||
