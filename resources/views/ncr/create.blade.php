@@ -165,22 +165,22 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label>Analisa : </label>
-                                    <textarea class="form-control" name="analisa" placeholder="Enter text ..."></textarea>
+                            <div class="row d-none">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Analisa : </label>
+                                        <textarea class="form-control" name="analisa" placeholder="Enter text ..."></textarea>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label>Solusi : </label>
-                                    <textarea class="form-control" name="solusi" placeholder="Enter text ..."></textarea>
+                            <div class="row d-none">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Solusi : </label>
+                                        <textarea class="form-control" name="solusi" placeholder="Enter text ..."></textarea>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <input type="hidden" id="alamat_pengiriman" name="alamat_pengiriman">
                         <button type="submit" class="btn btn-success float-right">
                             Create NCR

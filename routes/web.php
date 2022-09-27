@@ -73,4 +73,5 @@ Route::middleware("auth")->group(function () {
     Route::post("/role/{user}", [RoleController::class, "update"])->middleware("role:Admin");
 });
 
+
 Auth::routes(["register"=>false]);
