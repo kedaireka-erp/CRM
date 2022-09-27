@@ -52,13 +52,6 @@ Route::middleware("auth")->group(function () {
 });
 
 Route::group(['middleware' => ['role:admin','permission:add-kontak|edit-kontak|delete-kontak|add-ncr|edit-ncr|delete-ncr|create-memo|edit-memo|delete-memo']], function () {
-    Route::get('/', [DashboardController::class, "index"]);
-    
-    Route::resource('ncr', NcrController::class);
-    
-    Route::resource('kontak', KontakController::class);
-    
-    Route::get("/memo", [MemoController::class, "index"]);
     
     Route::get("/memo/{ncr}/create", [MemoController::class, "create"]);
 
@@ -72,15 +65,9 @@ Route::group(['middleware' => ['role:admin','permission:add-kontak|edit-kontak|d
 
     Route::post("/ncr/validasi/{ncr}", [NcrController::class, "validasi"]);
 
-    Route::post("/ncr/report", [NcrController::class, "report"]);
-
-    Route::get("/memo/{ncr}", [MemoController::class, "show"]);
-
     Route::get("/role", [RoleController::class, "index"]);
 
     Route::post("/role/{user}", [RoleController::class, "update"]);
-
-    Route::get('/memo/{ncr}/cetak', [MemoController::class, 'createPDF']);
 });
 
 Auth::routes(["register"=>false]);
