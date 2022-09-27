@@ -128,7 +128,7 @@
                                                 {{ $item->nama_item }},
                                             @endforeach
                                         </td>
-                                        <td>{{$ncr->tanggal_ncr->format('l jS \\of F Y')}}</td>
+                                        <td>{{$ncr->tanggal_ncr->format('j F Y')}}</td>
                                         <td>
                                             <a href="/ncr/{{$ncr->id}}"><i class="dw dw-eye"></i> View to Approve</a>
                                         </td>

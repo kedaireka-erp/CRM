@@ -21,10 +21,34 @@ use App\Http\Controllers\DashboardController;
 
 Route::middleware("auth")->group(function () {
     Route::get('/', [DashboardController::class, "index"]);
-    
-    Route::resource('ncr', NcrController::class);
-    
-    Route::resource('kontak', KontakController::class);
+
+    Route::get('/ncr', [NcrController::class, "index"]);
+
+    Route::get('/ncr/create', [NcrController::class, "create"]);
+
+    Route::post('/ncr', [NcrController::class, "store"]);
+
+    Route::get('/ncr/{ncr}', [NcrController::class, "show"]);
+
+    Route::get('/ncr/{ncr}/edit', [NcrController::class, "edit"]);
+
+    Route::put('/ncr/{ncr}', [NcrController::class, "update"]);
+
+    Route::delete('/ncr/{ncr}', [NcrController::class, "destroy"]);
+
+    Route::get("/kontak", [KontakController::class, "index"]);
+
+    Route::get("/kontak/create", [KontakController::class, "create"]);
+
+    Route::post("/kontak", [KontakController::class, "store"]);
+
+    Route::get("/kontak/{kontak}", [KontakController::class, "show"]);
+
+    Route::get("/kontak/{kontak}/edit", [KontakController::class, "edit"]);
+
+    Route::put("/kontak/{kontak}", [KontakController::class, "update"]);
+
+    Route::delete("/kontak/{kontak}", [KontakController::class, "destroy"]);
     
     Route::get("/memo", [MemoController::class, "index"]);
     
@@ -43,12 +67,12 @@ Route::middleware("auth")->group(function () {
     Route::post("/ncr/report", [NcrController::class, "report"]);
 
     Route::get("/memo/{ncr}", [MemoController::class, "show"]);
-
-    Route::get("/role", [RoleController::class, "index"]);
-
-    Route::post("/role/{user}", [RoleController::class, "update"]);
-
+    
     Route::get('/memo/{ncr}/cetak', [MemoController::class, 'createPDF']);
+
+    Route::get("/role", [RoleController::class, "index"])->middleware("role:Admin");
+
+    Route::post("/role/{user}", [RoleController::class, "update"])->middleware("role:Admin");
 });
 
 Auth::routes(["register"=>false]);
