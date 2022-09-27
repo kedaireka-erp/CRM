@@ -72,9 +72,11 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="/ncr/create" class=" btn btn-primary fa-pull-right mr-2">
-                            <i class="micon bi bi-plus-lg"></i> Add
-                        </a>
+                        @can('add-ncr')
+                            <a href="/ncr/create" class=" btn btn-primary fa-pull-right mr-2">
+                                <i class="micon bi bi-plus-lg"></i> Add
+                            </a>
+                        @endcan
 
                     </div>
                 </div>
@@ -119,23 +121,29 @@
                                             @if ($ncr->Kontak->every(function ($kontak) {
                                             return $kontak->pivot->validated == 0;
                                             }))
-                                            <a class="dropdown-item" href="/ncr/{{ $ncr->id }}/edit"><i
+                                            @can('edit-ncr')
+                                                <a class="dropdown-item" href="/ncr/{{ $ncr->id }}/edit"><i
                                                     class="dw dw-edit2"></i>
                                                 Edit</a>
+                                            @endcan
                                             @endif
                                             <a class="dropdown-item" href="/ncr/{{ $ncr->id }}"><i
                                                     class="dw dw-eye"></i>
                                                 Show</a>
                                             @if ($ncr->nomor_memo == null || $ncr->delete_memo != null)
-                                            <a class="dropdown-item" href="/memo/{{$ncr->id}}/create"><i
+                                            @can('create-memo')
+                                                <a class="dropdown-item" href="/memo/{{$ncr->id}}/create"><i
                                                     class="icon-copy dw dw-chat3"></i>Create Memo</a>
+                                            @endcan
                                             @endif
                                             <form action="/ncr/{{ $ncr->id }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="dropdown-item" type="submit"><i class="dw dw-delete-3">
-                                                    </i>
-                                                    Delete</button>
+                                                @can('delete-ncr')
+                                                    <button class="dropdown-item" type="submit"><i class="dw dw-delete-3">
+                                                        </i>
+                                                        Delete</button>
+                                                @endcan
                                             </form>
                                         </div>
                                     </div>
@@ -192,8 +200,10 @@
                                             <a class="dropdown-item" href="/ncr/{{ $ncr->id }}"><i class="dw dw-eye"></i>
                                                 Show</a>
                                             @if ($ncr->nomor_memo == null || $ncr->delete_memo != null)
-                                            <a class="dropdown-item" href="/memo/{{$ncr->id}}/create"><i
+                                            @can('create-memo')
+                                                <a class="dropdown-item" href="/memo/{{$ncr->id}}/create"><i
                                                     class="icon-copy dw dw-chat3"></i>Create Memo</a>
+                                            @endcan
                                             @endif
                                         </div>
                                     </div>
