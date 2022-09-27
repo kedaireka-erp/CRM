@@ -75,4 +75,23 @@ Route::middleware("auth")->group(function () {
     Route::post("/role/{user}", [RoleController::class, "update"])->middleware("role:Admin");
 });
 
+Route::group(['middleware' => ['role:admin','permission:add-kontak|edit-kontak|delete-kontak|add-ncr|edit-ncr|delete-ncr|create-memo|edit-memo|delete-memo']], function () {
+    
+    Route::get("/memo/{ncr}/create", [MemoController::class, "create"]);
+
+    Route::get("/memo/{ncr}/edit", [MemoController::class, "edit"]);
+
+    Route::put("/memo/{ncr}", [MemoController::class, "update"]);
+
+    Route::delete("/memo/{ncr}", [MemoController::class, "destroy"]);
+
+    Route::post("/memo/{ncr}", [MemoController::class, "store"]);
+
+    Route::post("/ncr/validasi/{ncr}", [NcrController::class, "validasi"]);
+
+    Route::get("/role", [RoleController::class, "index"]);
+
+    Route::post("/role/{user}", [RoleController::class, "update"]);
+});
+
 Auth::routes(["register"=>false]);

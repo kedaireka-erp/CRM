@@ -36,9 +36,11 @@
                 <div class="pd-20 d-flex justify-content-between align-items-center">
                     <h4 class="text-black h4">List Kontak</h4>
                     <div class="mr-2">
+                        @can('add-kontak')
                         <a href="/kontak/create" class=" btn btn-primary fa-pull-right mr-2">
                             <i class="micon bi bi-plus-lg"></i> Add
                         </a>
+                        @endcan
                     </div>
                 </div>
                 <div class="pb-20">
@@ -65,14 +67,18 @@
                                             <i class="dw dw-more"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                            @can('edit-kontak')
                                             <a class="dropdown-item" href="/kontak/{{$kontak->id}}/edit"><i class="dw dw-eye"></i>
                                                 Edit</a>
+                                            @endcan
                                             <form action="/kontak/{{$kontak->id}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="dropdown-item" type="submit"><i class="dw dw-delete-3">
+                                                @can('delete-kontak')
+                                                    <button class="dropdown-item" type="submit"><i class="dw dw-delete-3">
                                                     </i>
                                                     Delete</button>
+                                                @endcan
                                             </form>
                                         </div>
                                     </div>
