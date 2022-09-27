@@ -19,7 +19,7 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::middleware("auth", "level:Sales,Admin,QC" )->group(function () {
+Route::middleware("auth")->group(function () {
     Route::get('/', [DashboardController::class, "index"]);
 
     Route::get('/ncr', [NcrController::class, "index"]);
