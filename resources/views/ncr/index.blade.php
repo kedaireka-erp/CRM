@@ -124,11 +124,9 @@
                                                         return $kontak->pivot->validated == 0;
                                                     }) && $ncr->status == 'open')
                                                         @can('edit-ncr')
-                                                            @hasanyrole('Admin|QC')
                                                                 <a class="dropdown-item" href="/ncr/{{ $ncr->id }}/edit"><i
                                                                         class="dw dw-edit2"></i>
                                                                     Edit</a>
-                                                            @endhasanyrole
                                                         @endcan
                                                     @endif
                                                     <a class="dropdown-item" href="/ncr/{{ $ncr->id }}"><i
@@ -136,10 +134,8 @@
                                                         Show</a>
                                                     @if (($ncr->nomor_memo == null || $ncr->delete_memo != null) && $ncr->status == 'closed')
                                                         @can('add-memo')
-                                                            @hasanyrole('Admin|Sales')
                                                                 <a class="dropdown-item" href="/memo/{{ $ncr->id }}/create"><i
                                                                         class="icon-copy dw dw-chat3"></i>Create Memo</a>
-                                                            @endhasanyrole
                                                         @endcan
                                                     @endif
                                                     <form action="/ncr/{{ $ncr->id }}" method="post">
