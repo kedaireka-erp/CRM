@@ -1,9 +1,8 @@
 $("document").ready(function () {
     $(".data-table").DataTable({
-        scrollY: 300,
-        scrollX: true,
         scrollCollapse: true,
-        fixedHeader: true,
+        autoWidth: false,
+        responsive: true,
         columnDefs: [
             {
                 targets: "datatable-nosort",
@@ -25,10 +24,9 @@ $("document").ready(function () {
     });
 
     $(".data-table-export").DataTable({
-        scrollY: 300,
-        scrollX: true,
         scrollCollapse: true,
-        fixedHeader: true,
+        autoWidth: false,
+        responsive: true,
         columnDefs: [
             {
                 targets: "datatable-nosort",
@@ -52,10 +50,9 @@ $("document").ready(function () {
     });
 
     $(".data-table-excel").DataTable({
-        scrollY: 300,
-        scrollX: true,
         scrollCollapse: true,
-        fixedHeader: true,
+        autoWidth: false,
+        responsive: true,
         columnDefs: [
             {
                 targets: "datatable-nosort",
@@ -101,10 +98,9 @@ $("document").ready(function () {
         $(this).toggleClass("selected");
     });
     var table = $(".checkbox-datatable").DataTable({
-        scrollY: 300,
-        scrollX: true,
         scrollCollapse: true,
-        fixedHeader: true,
+        autoWidth: false,
+        responsive: true,
         lengthMenu: [
             [10, 25, 50, -1],
             [10, 25, 50, "All"],
