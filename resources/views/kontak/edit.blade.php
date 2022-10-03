@@ -20,9 +20,9 @@
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/" style="color: grey;">Home</a></li>
                             <li class="breadcrumb-item">
-                                <a href="/kontak">Kontak</a>
+                                <a href="/kontak" style="color: grey;">Kontak</a>
                             </li>
                             <li aria-current="page" class="breadcrumb-item active">Edit Kontak</li>
                         </ol>
