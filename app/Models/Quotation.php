@@ -14,7 +14,7 @@ class Quotation extends Model
     use HasFactory;
     use SoftDeletes;
     protected $table = 'quotations';
-    protected $with = ['Item', 'DataQuotation'];
+    protected $with = ['Item'];
 
 
     public function Item() 
@@ -27,8 +27,8 @@ class Quotation extends Model
         return $this->hasMany(Fppp::class);
     }
 
-    public function DataQuotation()
-    {
-        return $this->hasOne(ProyekQuotation::class);
-    }
+    // public function DataQuotation()
+    // {
+    //     return $this->hasOne(ProyekQuotation::class);
+    // }
 }
