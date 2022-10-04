@@ -7,6 +7,7 @@ use App\Http\Controllers\MemoController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,5 +74,8 @@ Route::middleware("auth")->group(function () {
     Route::post("/role/{user}", [RoleController::class, "update"])->middleware("role:Admin");
 });
 
+Route::get("login", [LoginController::class, "index"])->name("login");
 
-Auth::routes(["register"=>false]);
+Route::post("login", [LoginController::class, "login"]);
+
+Route::post("logout", [LoginController::class, "logout"]);
