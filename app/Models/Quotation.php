@@ -14,7 +14,7 @@ class Quotation extends Model
     use HasFactory;
     use SoftDeletes;
     protected $table = 'quotations';
-    protected $with = ['Item', "DataQuotations"];
+    protected $with = ['Item', "DataQuotation"];
 
 
     public function Item() 
