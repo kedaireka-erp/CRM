@@ -81,6 +81,6 @@ Route::post("/login", [LoginController::class, "login"]);
 
 Route::post("/logout", [LoginController::class, "logout"])->name("logout");
 
-Route::get("/test", function(){Fppp::get();});
+Route::get("/test", function(){dd(Fppp::get());});
 
 

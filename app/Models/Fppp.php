@@ -13,18 +13,8 @@ class Fppp extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $with = ['dataQuotation', 'Item', 'Quotation'];
+    protected $with = ['Quotation'];
     protected $table = 'fppps';
-
-    public function dataQuotation()
-    {
-        return $this->hasOne(ProyekQuotation::class);
-    }
-
-    public function Item()
-    {
-        return $this->hasManyThrough(DetailQuotation::class, Quotation::class);
-    }
 
     public function Quotation()
     {
