@@ -12,6 +12,6 @@ class ProyekQuotation extends Model
 
     public function Quotation()
     {
-        return $this->belongsTo(Quotation::class);
+        return $this->hasOne(Quotation::class);
     }
 }
