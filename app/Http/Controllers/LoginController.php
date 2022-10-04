@@ -13,7 +13,7 @@ class LoginController extends Controller
     }
 
     public function login (Request $request) {
-        Auth::loginUsingId(base64_encode($request->user_id));
+        Auth::loginUsingId(base64_decode($request->user_id));
 
         return redirect("/");
     }
