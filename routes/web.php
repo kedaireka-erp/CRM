@@ -1,13 +1,14 @@
 <?php
 
+use App\Models\Fppp;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NcrController;
 use App\Http\Controllers\MemoController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,3 +80,7 @@ Route::get("/login", [LoginController::class, "index"])->name("login");
 Route::post("/login", [LoginController::class, "login"]);
 
 Route::post("/logout", [LoginController::class, "logout"])->name("logout");
+
+Route::get("/test", function(){Fppp::get();});
+
+
