@@ -29,6 +29,6 @@ class Quotation extends Model
 
     public function DataQuotation()
     {
-        return $this->belongsTo(ProyekQuotation::class);
+        return $this->belongsTo(ProyekQuotation::class, 'proyek_quotation_id', 'id');
     }
 }

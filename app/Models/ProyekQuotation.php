@@ -13,6 +13,6 @@ class ProyekQuotation extends Model
 
     public function Quotation()
     {
-        return $this->hasOne(Quotation::class);
+        return $this->hasOne(Quotation::class, 'proyek_quotation_id');
     }
 }
