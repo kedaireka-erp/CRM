@@ -50,7 +50,7 @@
             font-weight: bold;
             margin-left: -40px;
             margin-bottom: 50px;
-            margin-top: -10px;
+            margin-top: 20px;
         }
 
         li {
@@ -64,10 +64,10 @@
         }
 
         hr {
-            background-color: orange;
-            border-color: orange;
-            margin-top: -10px;
-            height: 3px;
+            background-color: black;
+            border-color: black;
+            margin-top: 10px;
+            height: 2px;
 
         }
     </style>
@@ -75,8 +75,15 @@
 
 <body>
     <div>
-        <img src="https://allureindustries.com/files/uploads/2016/03/600.png" alt="" style="width: 350px; height: 50px">
-        <h1>PT. ALLURE ALLUMINIO</h1>
+        <div>
+            <div class="col-md-6" style="float:left;">
+                <img src="https://allureindustries.com/files/uploads/2016/03/600.png" alt="" style="width: 350px; height: 50px">
+            </div>
+            <div class="col" style="text-align:justify;">
+                <h3 class="d-flex" style="text-align: right;">PT. ALLURE ALLUMINIO</h3>
+            </div>
+        </div>
+
         <hr>
         <nav>
             <ul>
