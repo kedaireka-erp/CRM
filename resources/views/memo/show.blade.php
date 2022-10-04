@@ -133,11 +133,7 @@
         alamat_pengiriman: "{{$ncr->alamat_pengiriman}}",
         deadline_pengambilan: '{{$ncr->deadline_pengambilan->format("Y-m-d")}}',
         tanggal_memo: '{{$ncr->tanggal_memo->format("Y-m-d")}}',
-        data_item: {
-            !!$items!!
-        }.length > 0 ? {
-            !!$items!!
-        } : [],
+        data_item: {!!$items!!}.length > 0 ? {!!$items!!} : [],
     };
 
     function Proses() {

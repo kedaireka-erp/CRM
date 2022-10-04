@@ -289,9 +289,7 @@
             })
         })();
 
-        let kontak = {
-            !!$ncr - > Kontak!!
-        }.sort(function(a, b) {
+        let kontak = {!!$ncr - > Kontak!!}.sort(function(a, b) {
             return a.pivot.id - b.pivot.id;
         });
 
@@ -312,9 +310,7 @@
         function add_kontak(kontaks = undefined) {
             $(document).ready(function() {
                 let select = document.createElement("select");
-                let kontak = {
-                    !!$Kontak!!
-                };
+                let kontak = {!!$Kontak!!};
                 let option = undefined;
                 $(select).append(`<option value="" selected hidden disabled>Pilih Validator</option>`)
                 kontak.forEach(function(kontak) {
@@ -342,9 +338,7 @@
         }
         console.log(kontak);
 
-        let itemmm = {
-            !!$ncr - > ItemNcr!!
-        };
+        let itemmm = {!!$ncr - > ItemNcr!!};
 
         if (itemmm.length >= 1) {
             itemmm.forEach(function(itemss, index) {
@@ -358,9 +352,7 @@
         function add_item(itemss = undefined) {
             $(document).ready(function() {
                 let select = document.createElement("select");
-                let fppps = {
-                    !!$fppp!!
-                }
+                let fppps = {!!$fppp!!}
                 let option = undefined;
                 let fppp = fppps.filter(function(elemen) {
                     return elemen["nomor_fppp"] == $("#nomor_fppp").val()
@@ -395,9 +387,7 @@
             element.parentElement.parentElement.remove();
         }
 
-        let fppps = {
-            !!$fppp!!
-        }
+        let fppps = {!!$fppp!!}
 
         function inputFppp(element) {
             let fppp = fppps.filter(function(elemen) {

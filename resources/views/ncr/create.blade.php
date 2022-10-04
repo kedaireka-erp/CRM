@@ -192,9 +192,7 @@
     function add_kontak() {
         $(document).ready(function() {
             let select = document.createElement("select");
-            let kontak = {
-                !!$Kontak!!
-            };
+            let kontak = {!!$Kontak!!};
             $(select).append(`<option value="" selected hidden disabled>Pilih Validator</option>`)
             kontak.forEach(function(kontak) {
                 $(select).append(
@@ -218,9 +216,7 @@
     function add_item(element) {
         $(document).ready(function() {
             let select = document.createElement("select");
-            let fppps = {
-                !!$fppp!!
-            }
+            let fppps = {!!$fppp!!}
             let fppp = fppps.filter(function(elemen) {
                 return elemen["nomor_fppp"] == $("#nomor_fppp").val()
             })
@@ -251,9 +247,7 @@
         element.parentElement.parentElement.remove();
     }
 
-    let fppps = {
-        !!$fppp!!
-    }
+    let fppps = {!!$fppp!!}
 
     function inputFppp(element) {
         let fppp = fppps.filter(function(elemen) {

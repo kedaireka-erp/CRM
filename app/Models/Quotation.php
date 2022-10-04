@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Fppp;
 use App\Models\DetailQuotation;
+use App\Models\MasterAplikator;
 use App\Models\ProyekQuotation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,7 +15,7 @@ class Quotation extends Model
     use HasFactory;
     use SoftDeletes;
     protected $table = 'quotations';
-    protected $with = ['Item', "DataQuotation"];
+    protected $with = ['Item', "DataQuotation", "Aplikator"];
 
 
     public function Item() 
@@ -30,5 +31,9 @@ class Quotation extends Model
     public function DataQuotation()
     {
         return $this->belongsTo(ProyekQuotation::class, 'proyek_quotation_id', 'id');
+    }
+
+    public function Aplikator () {
+        return $this->belongsTo(MasterAplikator::class);
     }
 }
