@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Quotation;
+use App\Models\DetailQuotation;
+use App\Models\ProyekQuotation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Fppp extends Model
 {
@@ -15,7 +18,7 @@ class Fppp extends Model
 
     public function dataQuotation()
     {
-        return $this->hasOneThrough(ProyekQuotation::class, Quotation::class);
+        return $this->hasOne(ProyekQuotation::class);
     }
 
     public function Item()
