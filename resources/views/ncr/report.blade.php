@@ -7,6 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style type="text/css">
+        @page {
+            size: A4;
+        }
+
         table {
             border: 1px solid #ddd;
             border-collapse: collapse;
@@ -71,6 +75,7 @@
 
 <body>
     <div>
+        <img src="https://allureindustries.com/files/uploads/2016/03/600.png" alt="" style="width: 350px; height: 50px">
         <h1>PT. ALLURE ALLUMINIO</h1>
         <hr>
         <nav>
@@ -91,26 +96,26 @@
                 <th>Tanggal</th>
                 <th>Item</th>
             </tr>
-                @if ($ncr_open->count() > 0)
-                @foreach ($ncr_open as $ncr)
-                <tr>
-                    <td>{{ $ncr->nomor_ncr }}</td>
-                    <td>{{ $ncr->nomor_fppp }}</td>
-                    <td>{{ $ncr->nama_mitra }}</td>
-                    <td>{{ $ncr->nama_proyek }}</td>
-                    <td>{{ $ncr->tanggal_ncr->format('d-m-Y') }}</td>
-                    <td>
-                        @foreach ($ncr->ItemNcr as $keys => $item)
-                                    {{ $item->nama_item . ($keys < $ncr->ItemNcr->count() - 1 ? ', ' : "") }}
-                                    @endforeach
-                    </td>
-                </tr>
-                @endforeach
-                @else
-                <tr>
-                    <td colspan="6" style="color: grey; text-align: center;">Tidak Ada Data</td>
-                </tr>
-                @endif
+            @if ($ncr_open->count() > 0)
+            @foreach ($ncr_open as $ncr)
+            <tr>
+                <td>{{ $ncr->nomor_ncr }}</td>
+                <td>{{ $ncr->nomor_fppp }}</td>
+                <td>{{ $ncr->nama_mitra }}</td>
+                <td>{{ $ncr->nama_proyek }}</td>
+                <td>{{ $ncr->tanggal_ncr->format('d-m-Y') }}</td>
+                <td>
+                    @foreach ($ncr->ItemNcr as $keys => $item)
+                    {{ $item->nama_item . ($keys < $ncr->ItemNcr->count() - 1 ? ', ' : "") }}
+                    @endforeach
+                </td>
+            </tr>
+            @endforeach
+            @else
+            <tr>
+                <td colspan="6" style="color: grey; text-align: center;">Tidak Ada Data</td>
+            </tr>
+            @endif
             </tbody>
         </table>
     </div>
@@ -126,26 +131,26 @@
                 <th>Tanggal</th>
                 <th>Item</th>
             </tr>
-                @if ($ncr_closed->count() > 0)
-                @foreach ($ncr_closed as $ncr)
-                <tr>
-                    <td>{{ $ncr->nomor_ncr }}</td>
-                    <td>{{ $ncr->nomor_fppp }}</td>
-                    <td>{{ $ncr->nama_mitra }}</td>
-                    <td>{{ $ncr->nama_proyek }}</td>
-                    <td>{{ $ncr->tanggal_ncr->format('d-m-Y') }}</td>
-                    <td>
-                        @foreach ($ncr->ItemNcr as $keys => $item)
-                                    {{ $item->nama_item . ($keys < $ncr->ItemNcr->count() - 1 ? ', ' : "") }}
-                                    @endforeach
-                    </td>
-                </tr>
-                @endforeach
-                @else
-                <tr>
-                    <td colspan="6" style="color: grey;">Tidak Ada Data</td>
-                </tr>
-                @endif
+            @if ($ncr_closed->count() > 0)
+            @foreach ($ncr_closed as $ncr)
+            <tr>
+                <td>{{ $ncr->nomor_ncr }}</td>
+                <td>{{ $ncr->nomor_fppp }}</td>
+                <td>{{ $ncr->nama_mitra }}</td>
+                <td>{{ $ncr->nama_proyek }}</td>
+                <td>{{ $ncr->tanggal_ncr->format('d-m-Y') }}</td>
+                <td>
+                    @foreach ($ncr->ItemNcr as $keys => $item)
+                    {{ $item->nama_item . ($keys < $ncr->ItemNcr->count() - 1 ? ', ' : "") }}
+                    @endforeach
+                </td>
+            </tr>
+            @endforeach
+            @else
+            <tr>
+                <td colspan="6" style="color: grey;">Tidak Ada Data</td>
+            </tr>
+            @endif
             </tbody>
         </table>
     </div>
@@ -160,7 +165,7 @@
                 <th>Tanggal</th>
                 <th>Item</th>
             </tr>
-            
+
             @if ($ncr_confirmed->count() > 0)
             @foreach ($ncr_confirmed as $ncr)
             <tr>
@@ -171,8 +176,8 @@
                 <td>{{ $ncr->tanggal_ncr->format('d-m-Y') }}</td>
                 <td>
                     @foreach ($ncr->ItemNcr as $keys => $item)
-                                    {{ $item->nama_item . ($keys < $ncr->ItemNcr->count() - 1 ? ', ' : "") }}
-                                    @endforeach
+                    {{ $item->nama_item . ($keys < $ncr->ItemNcr->count() - 1 ? ', ' : "") }}
+                    @endforeach
                 </td>
             </tr>
             @endforeach

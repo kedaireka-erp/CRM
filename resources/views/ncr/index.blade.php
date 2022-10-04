@@ -21,7 +21,7 @@
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
-                                        <a href="/">Home</a>
+                                        <a href="/" style="color: grey;">Home</a>
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page">
                                         NCR
@@ -34,7 +34,7 @@
                 <!-- Simple Datatable start -->
                 <div class="card-box mb-30 ">
                     <div class="pd-20 d-flex justify-content-between align-items-center">
-                        <h4 class="text-blue h4">List NCR</h4>
+                        <h4 class="text-blue h3" style="margin-left:15px;">List NCR</h4>
                         <div class="mr-2">
                             <a href="#" class="btn btn-warning fa-pull-right" data-toggle="modal"
                                 data-target="#Medium-modal" type="button">
@@ -82,7 +82,7 @@
 
                         </div>
                     </div>
-                    <div class="pb-20">
+                    <div class="pb-20" style="margin-right:15px; margin-left:15px;">
                         <table class="data-table-excel table stripe hover nowrap">
                             <thead>
                                 <tr>
@@ -134,7 +134,8 @@
                                                         Show</a>
                                                     @if (($ncr->nomor_memo == null || $ncr->delete_memo != null) && $ncr->status == 'closed')
                                                         @can('add-memo')
-                                                            <a class="dropdown-item" href="/memo/{{ $ncr->id }}/create"><i
+                                                            <a class="dropdown-item"
+                                                                href="/memo/{{ $ncr->id }}/create"><i
                                                                     class="icon-copy dw dw-chat3"></i>Create Memo</a>
                                                         @endcan
                                                     @endif
@@ -160,9 +161,9 @@
 
                 <div class="card-box mb-30 ">
                     <div class="pd-20 d-flex justify-content-between align-items-center">
-                        <h4 class="text-blue h4">Confirmed Report</h4>
+                        <h4 class="text-blue h3" style="margin-left:10px;">Confirmed Report</h4>
                     </div>
-                    <div class="pb-20">
+                    <div class="pb-20" style="margin-right:15px; margin-left:15px;">
                         <table class="data-table-excel table stripe hover nowrap">
                             <thead>
                                 <tr>
@@ -191,7 +192,7 @@
                                                 {{ $item->nama_item . ($keys < $ncr->ItemNcr->count() - 1 ? ', ' : '') }}
                                             @endforeach
                                         </td>
-                                        <td class="text-success">{{ $ncr->status }}</td>
+                                        <td class="text-green" style="font-weight:700">{{ $ncr->status }}</td>
                                         <td>
 
                                             <div class="dropdown">

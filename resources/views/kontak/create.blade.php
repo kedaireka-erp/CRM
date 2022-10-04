@@ -20,9 +20,9 @@
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/" style="color: grey;">Home</a></li>
                             <li class="breadcrumb-item">
-                                <a href="/kontak">Kontak</a>
+                                <a href="/kontak" style="color: grey;">Kontak</a>
                             </li>
                             <li aria-current="page" class="breadcrumb-item active">Buat Kontak</li>
                         </ol>
@@ -37,8 +37,7 @@
                         @csrf
                         <div class="form-group">
                             <label>Nama</label>
-                            <select class="custom-select2 form-control" name="kontak" style="width: 100%; height: 38px"
-                                required>
+                            <select class="custom-select2 form-control" name="kontak" style="width: 100%; height: 38px" required>
                                 <option value="" selected hidden disabled>Pilih Nama User</option>
                                 @foreach ($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
@@ -47,8 +46,7 @@
                         </div>
                         <div class="form-group">
                             <label>Nomor Whatsapp</label>
-                            <input type="text" class="form-control" name="nomor_whatsapp" required
-                                placeholder="08888....">
+                            <input type="text" class="form-control" name="nomor_whatsapp" required placeholder="08888....">
                         </div>
                         <div class="form-group">
                             <label>Divisi</label>

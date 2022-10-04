@@ -45,19 +45,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $nomor => $user) 
-                                    <tr id="role">
-                                        <td class="table-plus">{{$nomor+1}}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>
-                                            <select name="role" class="custom-select" id="{{$user->id}}">
-                                                @foreach ($roles as $role)
-                                                    <option value="{{ $role->name }}" {{ $user->roles[0]->id == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </td>
-                                    </tr>
+                                @foreach ($users as $nomor => $user)
+                                <tr id="role">
+                                    <td class="table-plus">{{$nomor+1}}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>
+                                        <select name="role" class="custom-select" id="{{$user->id}}">
+                                            @foreach ($roles as $role)
+                                            <option value="{{ $role->name }}" {{ $user->roles[0]->id == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>

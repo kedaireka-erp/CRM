@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header" style="padding: 0px 15px">
     <div class="header-left">
         <div class="menu-icon bi bi-list"></div>
         <div class="search-toggle-icon bi bi-search" data-toggle="header_search"></div>
@@ -16,7 +16,7 @@
                     {{-- <a class="dropdown-item" href="{{ route('login') }}"><i class="dw dw-logout"></i>Log Out</a> --}}
                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit" class="dropdown-item" ><i class="dw dw-logout"></i>Log Out</button>
+                        <button type="submit" class="dropdown-item"><i class="dw dw-logout"></i>Log Out</button>
                     </form>
                 </div>
             </div>
