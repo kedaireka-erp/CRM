@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function index () {
-        return redirect("http://erp.alluresystem.site/dashboard");
+        return redirect("http://erp.alluresystem.site/");
 //         Auth::loginUsingId(1);
 //         return redirect("/");
     }
