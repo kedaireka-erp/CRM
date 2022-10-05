@@ -289,7 +289,7 @@
             })
         })();
 
-        let kontak = {!!$ncr - > Kontak!!}.sort(function(a, b) {
+        let kontak = {!!$ncr -> Kontak!!}.sort(function(a, b) {
             return a.pivot.id - b.pivot.id;
         });
 
@@ -338,7 +338,7 @@
         }
         console.log(kontak);
 
-        let itemmm = {!!$ncr - > ItemNcr!!};
+        let itemmm = {!!$ncr -> ItemNcr!!};
 
         if (itemmm.length >= 1) {
             itemmm.forEach(function(itemss, index) {
