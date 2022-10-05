@@ -88,4 +88,5 @@ Route::get("/test", function () {
                 return $wo->no_surat_jalan == null;
             })->count() > 0 ? true : false) : false ;
         });
+    dd($fppps);
 });
