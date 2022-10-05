@@ -227,11 +227,7 @@
         } else {
             $(document).ready(function() {
                 $.ajax({
-                    url: "/memo/" + {
-                        {
-                            $ncr - > id
-                        }
-                    },
+                    url: "/memo/" + {{$ncr -> id}},
                     type: "POST",
                     data: {
                         _token: "{{ csrf_token() }}",
