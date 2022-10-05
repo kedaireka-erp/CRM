@@ -84,9 +84,8 @@ Route::post("/logout", [LoginController::class, "logout"])->name("logout");
 Route::get("/test", function () {
     $fppps = Fppp::get();
     $fppps = $fppps->filter(function ($fppp) {
-            return ($fppp->wo->count() > 0) ? $fppp->wo->filter(function($wo) {
-//                 return $wo->no_surat_jalan == null;
-                print_r($wo->no_surat_jalan);
-            }) : false ;
+            return ($fppp->wo->count() > 0) ? ($fppp->wo->filter(function($wo) {
+                return $wo->no_surat_jalan == null;
+            })->count() > 0 ? true : false) : false ;
         });
 });
