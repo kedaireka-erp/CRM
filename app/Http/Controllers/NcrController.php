@@ -43,9 +43,9 @@ class NcrController extends Controller
         $fppps = Fppp::get();
 
         $fppps = $fppps->filter(function ($fppp) {
-            return ($fppp->wo->count() > 0) ? $fppp->wo->filter(function($wo) {
-                return $wo->no_surat_jalan != null;
-            }) : false ;
+            return ($fppp->wo->count() > 0) ? ($fppp->wo->filter(function($wo) {
+                return $wo->no_surat_jalan == null;
+            })->count() > 0 ? true : false) : false ;
         });
 
         $array = [];
@@ -178,10 +178,10 @@ class NcrController extends Controller
             $fppps = Fppp::get();
 
             $fppps = $fppps->filter(function ($fppp) {
-                return ($fppp->wo->count() > 0) ? $fppp->wo->filter(function($wo) {
-                    return $wo->no_surat_jalan != null;
-                }) : false ;
-            });
+            return ($fppp->wo->count() > 0) ? ($fppp->wo->filter(function($wo) {
+                return $wo->no_surat_jalan == null;
+            })->count() > 0 ? true : false) : false ;
+        });
 
             $array = [];
 
