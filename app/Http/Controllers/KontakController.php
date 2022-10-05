@@ -107,6 +107,6 @@ class KontakController extends Controller
     public function destroy(Kontak $kontak)
     {
         $kontak->delete();
-        return redirect()->route('kontak.index');
+        return redirect("/kontak");
     }
 }
