@@ -85,8 +85,8 @@ Route::get("/test", function () {
     $fppps = Fppp::get();
     $fppps = $fppps->filter(function ($fppp) {
             return ($fppp->wo->count() > 0) ? $fppp->wo->filter(function($wo) {
-                return $wo->no_surat_jalan == null;
+//                 return $wo->no_surat_jalan == null;
+                print_r($wo);
             }) : false ;
         });
-    dd($fppps);
 });
