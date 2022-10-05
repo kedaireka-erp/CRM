@@ -102,29 +102,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <<<<<<< HEAD <div class="row">
-                                <div class="col">
-                                    <div class="form-group" id="itemm">
-                                        <label>Item</label>
-                                        <div class="row mb-4" id="form_item">
-                                            <div class="col" id="items">
-                                                <select class="custom-select2 d-block w-100 form-control" name="item_id[]">
-                                                    <option selected hidden disabled>
-                                                        Pilih Item
-                                                    </option>
-                                                    @foreach ($fppps['item'] as $item)
-                                                        <option value="{{ $item['kode_item'] . '-' . $item['nama_item'] }}"
-                                                            {{ $item['kode_item'] == $ncr->ItemNcr[0]->kode_item ? 'selected' : '' }}>
-                                                            {{ $item['kode_item'] . ' - ' . $item['nama_item'] }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-1">
-                                                <button onclick="add_item()" type="button" class="btn btn-outline-primary">
-                                                    +
-                                                </button>
-                                            </div>
-                                            =======
                                         </div>
                                         <div class="row">
                                             <div class="col">
@@ -151,72 +128,11 @@
                                                                 class="btn btn-outline-primary">
                                                                 +
                                                             </button>
-                                                            >>>>>>> 1fe208b7c86d9b5c27406333431cad209960b262
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <<<<<<< HEAD <div class="row">
-                                                <div class="col-md-4 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label>Dilaporkan Oleh :</label>
-                                                        <input value="{{ $ncr->pelapor }}" class="form-control"
-                                                            type="string" id="pelapor" name="pelapor" readonly />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label>Jenis Ketidaksesuaian</label>
-                                                        <input class="form-control" type="string" id="#"
-                                                            name="jenis_ketidaksesuaian"
-                                                            value="{{ $ncr->jenis_ketidaksesuaian }}" />
-                                                    </div>
-                                                </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Deskripsi Ketidaksesuaian</label>
-                                            <textarea class="form-control" name="deskripsi" placeholder="Enter text ...">{{ $ncr->deskripsi }}</textarea>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12">
-                                                <div class="form-group">
-                                                    <label for="bukti_kecacatan">Bukti Kecacatan</label>
-                                                    <input class="form-control-file form-control height-auto"
-                                                        value="" type="file" id="bukti_kecacatan"
-                                                        name="bukti_kecacatan" />
-                                                    <small class="form-text text-muted" style="color: red">* Lampiran file
-                                                        berformat PDF
-                                                        maks
-                                                        2MB</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @role('QC|Admin')
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="form-group">
-                                                        <label>Analisa : </label>
-                                                        <textarea class="form-control" name="analisa" placeholder="Enter text ...">{{ $ncr->analisa }}</textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="form-group">
-                                                        <label>Solusi : </label>
-                                                        <textarea class="form-control" name="solusi" placeholder="Enter text ...">{{ $ncr->solusi }}</textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endrole
-                                        <input type="hidden" id="alamat_pengiriman" name="alamat_pengiriman"
-                                            value="{{ $fppps['alamat'] }}">
-                                        <button type="submit" class="btn btn-success float-right">
-                                            Submit
-                                        </button>
-                    </form>
-                </div>
-                =======
+                                            
             </div>
             <div class="row">
                 <div class="col-md-4 col-sm-12">
@@ -273,7 +189,6 @@
                 Submit
             </button>
             </form>
-            >>>>>>> 1fe208b7c86d9b5c27406333431cad209960b262
         </div>
     </div>
     </div>
