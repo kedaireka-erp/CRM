@@ -34,14 +34,14 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
-                                    <label>Mitra</label>
+                                    <label>Mitra : </label>
                                     <input class="form-control" value="{{ $ncr->nama_mitra }}" type="text"
                                         id="nama_mitra" name="nama_mitra" readonly />
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
-                                    <label>Nama Project</label>
+                                    <label>Nama Project : </label>
                                     <input class="form-control" value="{{ $ncr->nama_proyek }}" type="text"
                                         id="nama_proyek" name="nama_proyek" readonly />
                                 </div>
@@ -50,7 +50,7 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    <label>No NCR</label>
+                                    <label>No NCR : </label>
                                     <input class="form-control" type="string" id="nomor_ncr" name="nomor_ncr"
                                         value="{{ $ncr->nomor_ncr }}" readonly />
                                 </div>
@@ -59,7 +59,7 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
-                                    <label>Tanggal</label>
+                                    <label>Tanggal : </label>
                                     <input value="{{ Carbon\Carbon::now()->toDateString() }}"
                                         class="form-control datetimepicker-range" type="date" id="tanggal_ncr"
                                         name="tanggal_ncr" readonly />
@@ -67,7 +67,7 @@
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
-                                    <label>No FPPP</label>
+                                    <label>No FPPP : </label>
                                     <select onchange="inputFppp(this)" class="custom-select2 d-block w-100 form-control"
                                         id="nomor_fppp" name="nomor_fppp">
                                         @foreach ($fppp as $fp)
@@ -83,7 +83,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group" id="kontak">
-                                    <label>Kepada (validator)</label>
+                                    <label>Kepada (validator) : </label>
                                     <div class="row mb-4" id="form_kontak">
                                         <div class="col">
                                             <select class="custom-select2 d-block w-100 form-control" name="kontak_id[]">
@@ -106,7 +106,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group" id="itemm">
-                                    <label>Item</label>
+                                    <label>Item : </label>
                                     <div class="row mb-4" id="form_item">
                                         <div class="col" id="items">
                                             <select class="custom-select2 d-block w-100 form-control" name="item_id[]">
@@ -142,20 +142,20 @@
                             </div>
                             <div class="col-md-8 col-sm-12">
                                 <div class="form-group">
-                                    <label>Jenis Ketidaksesuaian</label>
+                                    <label>Jenis Ketidaksesuaian : </label>
                                     <input class="form-control" type="string" id="#"
                                         name="jenis_ketidaksesuaian" value="{{ $ncr->jenis_ketidaksesuaian }}" />
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Deskripsi Ketidaksesuaian</label>
+                            <label>Deskripsi Ketidaksesuaian : </label>
                             <textarea class="form-control" name="deskripsi" placeholder="Enter text ...">{{ $ncr->deskripsi }}</textarea>
                         </div>
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    <label for="bukti_kecacatan">Bukti Kecacatan</label>
+                                    <label for="bukti_kecacatan">Bukti Kecacatan : </label>
                                     @role('QC')
                                         <a href="{{ asset('/storage/' . $ncr->bukti_kecacatan) }}" class="btn btn-primary"
                                             download>Unduh Bukti

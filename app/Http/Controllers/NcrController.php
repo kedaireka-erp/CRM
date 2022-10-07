@@ -258,7 +258,7 @@ class NcrController extends Controller
 
             $itemNcr = ItemNcr::where("ncr_id", $ncr->id)->get();
             foreach ($itemNcr as $item) {
-                $barang .= $item->kode_item . ", ";
+                $barang .= $item->kode_item . " - " . $item->nama_item . ", ";
             }
 
             if ($ncr->status == "closed") {
@@ -337,7 +337,7 @@ class NcrController extends Controller
         $barang = "";
         $itemNcr = ItemNcr::where("ncr_id", $request->ncr_id)->get();
         foreach ($itemNcr as $item) {
-            $barang .= $item->kode_item . ", ";
+            $barang .= $item->kode_item . " - " . $item->nama_item . ", ";
         }
 
         if (Kontak::withTrashed()->where("user_id", $request->user)->first()->id != DB::table("kontak_ncr")->where("id", $request->id)->first()->kontak_id) {
