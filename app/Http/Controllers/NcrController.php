@@ -340,7 +340,7 @@ class NcrController extends Controller
             $barang .= $item->kode_item . " - " . $item->nama_item . ", ";
         }
 
-        if (Kontak::withTrashed()->where("user_id", $request->user)->first()->id != DB::table("kontak_ncr")->where("id", $request->id)->first()->kontak_id) {
+        if (Kontak::withTrashed()->where("user_id", $request->user)->latest()->first()->id != DB::table("kontak_ncr")->where("id", $request->id)->first()->kontak_id) {
             return response()->json(["message" => "anda bukan user tersebut"], 403);
         } else {
             if ($request->posisi == 0 || DB::table('kontak_ncr')->where("id", $request->id - 1)->first()->validated == 1) {
