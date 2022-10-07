@@ -154,19 +154,20 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
-                                @role('QC')
-                                    <a href="{{ $ncr->bukti_kecacatan }}" class="btn btn-primary" download>Unduh Bukti
-                                        Kecacatan</a>
-                                @else
-                                    <div class="form-group">
-                                        <label for="bukti_kecacatan">Bukti Kecacatan</label>
+                                <div class="form-group">
+                                    <label for="bukti_kecacatan">Bukti Kecacatan</label>
+                                    @role('QC')
+                                        <a href="{{ asset('/storage/' . $ncr->bukti_kecacatan) }}" class="btn btn-primary"
+                                            download>Unduh Bukti
+                                            Kecacatan</a>
+                                    @else
                                         <input class="form-control-file form-control height-auto" value=""
                                             type="file" id="bukti_kecacatan" name="bukti_kecacatan" />
                                         <small class="form-text text-muted" style="color: red">* Lampiran file berformat PDF
                                             maks
                                             2MB</small>
-                                    </div>
-                                @endrole
+                                    @endrole
+                                </div>
                             </div>
                         </div>
                         @role('QC|Admin')
