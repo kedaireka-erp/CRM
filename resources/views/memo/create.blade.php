@@ -97,8 +97,8 @@
                         <th class="table-plus">Item</th>
                         <th class="table-plus">Warna</th>
                         <th class="table-plus">Bukaan</th>
+                        <th class="table-plus">Panjang</th>
                         <th class="table-plus">Lebar</th>
-                        <th class="table-plus">Tinggi</th>
                         <th class="table-plus">Charge</th>
                         <th class="table-plus">Return</th>
                         <th class="datatable-nosort">Act</th>
@@ -129,7 +129,7 @@
                     </div>
                     <div class="form-group">
                         <label>Item :</label>
-                        <select class="custom-select form-control" name="item_id">
+                        <select class="custom-select form-control" onchange="isiValue(this)" name="item_id">
                             <option value="" readonly selected hidden>Pilih</option>
                             @foreach ($ncr->ItemNcr as $item)
                             <option value="{{$item->id}}-{{$item->kode_item}}-{{$item->nama_item}}">
@@ -139,12 +139,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Warna :</label>
-                        <select class="custom-select form-control" name="warna">
-                            <option value="" readonly selected hidden>Pilih</option>
-                            <option value="Wood Finish">Wood Finish</option>
-                            <option value="Monochromatic">Monochromatic</option>
-                        </select>
+                        <label>Kode Warna :</label>
+                        <input type="text" class="form-control" name="warna">
                     </div>
                     <div class="form-group">
                         <label>Bukaan :</label>
@@ -156,11 +152,19 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Lebar(mm) :</label>
+                        <label>Daun :</label>
+                        <input type="text" class="form-control" name="daun">
+                    </div>
+                    <div class="form-group">
+                        <label>Jumlah</label>
+                        <input type="number" class="form-control" name="jumlah">
+                    </div>
+                    <div class="form-group">
+                        <label>Panjang(mm) :</label>
                         <input type="number" class="form-control" name="lebar">
                     </div>
                     <div class="form-group">
-                        <label>Tinggi(mm) :</label>
+                        <label>Lebar(mm) :</label>
                         <input type="number" class="form-control" name="tinggi">
                     </div>
                     <div class="form-group">
@@ -203,6 +207,19 @@
         tanggal_memo: undefined,
         data_item: [],
     };
+
+    let items = {!!$ncr->ItemNcr!!}
+
+    function isiValue(elemen) {
+        let item = items.find(item => {
+            return item.id == elemen.value.split('-')[0]
+        });
+        console.log(item);
+        elemen.parentElement.parentElement.querySelector('[name="warna"]').value = item.warna;
+        elemen.parentElement.parentElement.querySelector('[name="daun"]').value = item.daun;
+        elemen.parentElement.parentElement.querySelector('[name="lebar"]').value = item.lebar;
+        elemen.parentElement.parentElement.querySelector('[name="tinggi"]').value = item.tinggi;
+    }
 
     function Proses() {
         document.querySelectorAll("#form-memo .form-control").forEach(function(elemen) {
@@ -250,27 +267,19 @@
     function tambahForm(elemen) {
         elemen.previousElementSibling.classList.add("d-none");
         let input = document.querySelectorAll("#form-add-item .form-control");
-        let jumlah = input.length / 10;
+        let jumlah = input.length / 12;
         let table_add_item = document.querySelector("#table-add-item");
         let baris_table_add_item = document.createElement("tr");
         let kolom_table_add_item = undefined;
         let luas = 0;
         let item = {};
-        for (let i = (jumlah - 1) * 10; i < input.length; i++) {
+        for (let i = (jumlah - 1) * 12; i < input.length; i++) {
             if (input[i].name != "item_id") {
                 item[`${input[i].name}`] = input[i].value;
             }
-            if (input[i].name == "warna" || input[i].name == "bukaan" || input[i].name == "charge" || input[i].name == "return" || input[i].name == "lebar" || input[i].name == "tinggi") {
+            if (input[i].name == "warna" || input[i].name == "bukaan" || input[i].name == "charge" || input[i].name == "return" || input[i].name == "lebar" || input[i].name == "tinggi" || input[i].name == "jumlah" || input[i].name == "daun") {
                 kolom_table_add_item = document.createElement("td");
-                if (input[i].name == "charge" || input[i].name == "return") {
-                    if (input[i].value == "1") {
-                        kolom_table_add_item.innerHTML = "Ya";
-                    } else {
-                        kolom_table_add_item.innerHTML = "Tidak";
-                    }
-                } else {
-                    kolom_table_add_item.innerHTML = input[i].value;
-                }
+                kolom_table_add_item.innerHTML = input[i].value;
                 baris_table_add_item.appendChild(kolom_table_add_item);
             } else if (i == input.length - 1) {
                 kolom_table_add_item = document.createElement("td");
@@ -300,7 +309,7 @@
                         </div>
                         <div class="form-group">
                             <label>Item :</label>
-                            <select class="custom-select form-control" name="item_id">
+                            <select class="custom-select form-control" onchange="isiValue(this)" name="item_id">
                                 <option value="" readonly selected hidden>Pilih</option>
                                 @foreach ($ncr->ItemNcr as $item)
                                 <option value="{{$item->id}}-{{$item->kode_item}}-{{$item->nama_item}}">
@@ -309,12 +318,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Warna :</label>
-                            <select class="custom-select form-control" name="warna">
-                                <option value="" readonly selected hidden>Pilih</option>
-                                <option value="Wood Finish">Wood Finish</option>
-                                <option value="Monochromatic">Monochromatic</option>
-                            </select>
+                            <label>Kode Warna :</label>
+                            <input type="text" class="form-control" name="warna">
                         </div>
                         <div class="form-group">
                             <label>Bukaan :</label>
@@ -326,11 +331,19 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Lebar(mm) :</label>
+                            <label>Daun :</label>
+                            <input type="text" class="form-control" name="daun">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah :</label>
+                            <input type="number" class="form-control" name="jumlah">
+                        </div>
+                        <div class="form-group">
+                            <label>Panjang(mm) :</label>
                             <input type="number" class="form-control" name="lebar">
                         </div>
                         <div class="form-group">
-                            <label>Tinggi(mm) :</label>
+                            <label>Lebar(mm) :</label>
                             <input type="number" class="form-control" name="tinggi">
                         </div>
                         <div class="form-group">

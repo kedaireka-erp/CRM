@@ -16,7 +16,7 @@
                                     <li class="breadcrumb-item">
                                         <a href="/ncr" style="color: grey;">NCR</a>
                                     </li>
-                                </ol>       
+                                </ol>
                             </nav>
                         </div>
                     </div>
@@ -102,97 +102,101 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group" id="itemm">
+                                    <label>Item</label>
+                                    <div class="row mb-4" id="form_item">
+                                        <div class="col" id="items">
+                                            <select class="custom-select2 d-block w-100 form-control" name="item_id[]">
+                                                <option selected hidden disabled>
+                                                    Pilih Item
+                                                </option>
+                                                @foreach ($fppps['item'] as $item)
+                                                    <option
+                                                        value="{{ $item['kode_item'] . '_' . $item['nama_item'] . '_' . $item['daun'] . '_' . $item['panjang'] . '_' . $item['lebar'] . '_' . $item['warna'] }}"
+                                                        {{ $item['kode_item'] . '_' . $item['nama_item'] == $ncr->ItemNcr[0]->kode_item . '_' . $ncr->ItemNcr[0]->nama_item ? 'selected' : '' }}>
+                                                        {{ $item['kode_item'] }} - {{ $item['nama_item'] }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-group" id="itemm">
-                                                    <label>Item</label>
-                                                    <div class="row mb-4" id="form_item">
-                                                        <div class="col" id="items">
-                                                            <select class="custom-select2 d-block w-100 form-control"
-                                                                name="item_id[]">
-                                                                <option selected hidden disabled>
-                                                                    Pilih Item
-                                                                </option>
-                                                                @foreach ($fppps['item'] as $item)
-                                                                    <option
-                                                                        value="{{ $item['kode_item'] . '-' . $item['nama_item'] }}"
-                                                                        {{ $item['kode_item'] == $ncr->ItemNcr[0]->kode_item ? 'selected' : '' }}>
-                                                                        {{ $item['kode_item'] . ' - ' . $item['nama_item'] }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-lg-1">
-                                                            <button onclick="add_item()" type="button"
-                                                                class="btn btn-outline-primary">
-                                                                +
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-sm-12">
-                    <div class="form-group">
-                        <label>Dilaporkan Oleh :</label>
-                        <input value="{{ $ncr->pelapor }}" class="form-control" type="string" id="pelapor"
-                            name="pelapor" readonly />
-                    </div>
-                </div>
-                <div class="col-md-8 col-sm-12">
-                    <div class="form-group">
-                        <label>Jenis Ketidaksesuaian</label>
-                        <input class="form-control" type="string" id="#" name="jenis_ketidaksesuaian"
-                            value="{{ $ncr->jenis_ketidaksesuaian }}" />
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Deskripsi Ketidaksesuaian</label>
-                <textarea class="form-control" name="deskripsi" placeholder="Enter text ...">{{ $ncr->deskripsi }}</textarea>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div class="form-group">
-                        <label for="bukti_kecacatan">Bukti Kecacatan</label>
-                        <input class="form-control-file form-control height-auto" value="" type="file"
-                            id="bukti_kecacatan" name="bukti_kecacatan" />
-                        <small class="form-text text-muted" style="color: red">* Lampiran file berformat PDF
-                            maks
-                            2MB</small>
-                    </div>
-                </div>
-            </div>
-            @role('QC|Admin')
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Analisa : </label>
-                            <textarea class="form-control" name="analisa" placeholder="Enter text ...">{{ $ncr->analisa }}</textarea>
+                                        <div class="col-lg-1">
+                                            <button onclick="add_item()" type="button" class="btn btn-outline-primary">
+                                                +
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Solusi : </label>
-                            <textarea class="form-control" name="solusi" placeholder="Enter text ...">{{ $ncr->solusi }}</textarea>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label>Dilaporkan Oleh :</label>
+                                    <input value="{{ $ncr->pelapor }}" class="form-control" type="string" id="pelapor"
+                                        name="pelapor" readonly />
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-sm-12">
+                                <div class="form-group">
+                                    <label>Jenis Ketidaksesuaian</label>
+                                    <input class="form-control" type="string" id="#"
+                                        name="jenis_ketidaksesuaian" value="{{ $ncr->jenis_ketidaksesuaian }}" />
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label>Deskripsi Ketidaksesuaian</label>
+                            <textarea class="form-control" name="deskripsi" placeholder="Enter text ...">{{ $ncr->deskripsi }}</textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                @role('QC')
+                                    <a href="{{ $ncr->bukti_kecacatan }}" class="btn btn-primary" download>Unduh Bukti
+                                        Kecacatan</a>
+                                @else
+                                    <div class="form-group">
+                                        <label for="bukti_kecacatan">Bukti Kecacatan</label>
+                                        <input class="form-control-file form-control height-auto" value=""
+                                            type="file" id="bukti_kecacatan" name="bukti_kecacatan" />
+                                        <small class="form-text text-muted" style="color: red">* Lampiran file berformat PDF
+                                            maks
+                                            2MB</small>
+                                    </div>
+                                @endrole
+                            </div>
+                        </div>
+                        @role('QC|Admin')
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Analisa : </label>
+                                        <textarea class="form-control" name="analisa" placeholder="Enter text ...">{{ $ncr->analisa }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Solusi : </label>
+                                        <textarea class="form-control" name="solusi" placeholder="Enter text ...">{{ $ncr->solusi }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        @endrole
+                        <input type="hidden" id="alamat_pengiriman" name="alamat_pengiriman"
+                            value="{{ $fppps['alamat'] }}">
+                        <button type="submit" class="btn btn-success float-right">
+                            Submit
+                        </button>
+                    </form>
                 </div>
-            @endrole
-            <input type="hidden" id="alamat_pengiriman" name="alamat_pengiriman" value="{{ $fppps['alamat'] }}">
-            <button type="submit" class="btn btn-success float-right">
-                Submit
-            </button>
-            </form>
+            </div>
         </div>
-    </div>
-    </div>
-    <!-- horizontal Basic Forms End -->
+        <!-- horizontal Basic Forms End -->
     </div>
     @endsection @push('script')
     <script type="text/javascript">
@@ -204,7 +208,7 @@
             })
         })();
 
-        let kontak = {!!$ncr -> Kontak!!}.sort(function(a, b) {
+        let kontak = {!! $ncr->Kontak !!}.sort(function(a, b) {
             return a.pivot.id - b.pivot.id;
         });
 
@@ -225,7 +229,7 @@
         function add_kontak(kontaks = undefined) {
             $(document).ready(function() {
                 let select = document.createElement("select");
-                let kontak = {!!$Kontak!!};
+                let kontak = {!! $Kontak !!};
                 let option = undefined;
                 $(select).append(`<option value="" selected hidden disabled>Pilih Validator</option>`)
                 kontak.forEach(function(kontak) {
@@ -251,9 +255,9 @@
                 $("#kontak .row:last-child select").select2();
             });
         }
-        console.log(kontak);
 
-        let itemmm = {!!$ncr -> ItemNcr!!};
+        let itemmm = {!! $ncr->ItemNcr !!};
+        console.log(itemmm);
 
         if (itemmm.length >= 1) {
             itemmm.forEach(function(itemss, index) {
@@ -267,7 +271,7 @@
         function add_item(itemss = undefined) {
             $(document).ready(function() {
                 let select = document.createElement("select");
-                let fppps = {!!$fppp!!}
+                let fppps = {!! $fppp !!}
                 let option = undefined;
                 let fppp = fppps.filter(function(elemen) {
                     return elemen["nomor_fppp"] == $("#nomor_fppp").val()
@@ -275,9 +279,11 @@
                 $(select).append('<option value="" selected hidden disabled>Pilih Item</option>')
                 fppp[0]["item"].forEach(function(item) {
                     option = document.createElement("option");
-                    option.value = item.kode_item + '-' + item.nama_item;
+                    option.value = item.kode_item + '_' + item.nama_item + '_' + item.daun + '_' + item
+                        .panjang + "_" + item.lebar + "_" + item.warna;
                     option.innerHTML = item.kode_item + ' - ' + item.nama_item;
-                    if (itemss != undefined && itemss.kode_item == item.kode_item) {
+                    if (itemss != undefined && (itemss.kode_item + "_" + itemss.nama_item) == item
+                        .kode_item + "_" + item.nama_item) {
                         option.setAttribute('selected', true)
                     }
                     select.appendChild(option)
@@ -302,7 +308,7 @@
             element.parentElement.parentElement.remove();
         }
 
-        let fppps = {!!$fppp!!}
+        let fppps = {!! $fppp !!}
 
         function inputFppp(element) {
             let fppp = fppps.filter(function(elemen) {
@@ -316,7 +322,7 @@
                 $("#alamat_pengiriman").val(`${fppp[0]["alamat"]}`)
                 fppp[0]["item"].forEach(function(item) {
                     $("#item").append(`
-                <option value="${item["kode_item"]}-${item["nama_item"]}">${item["kode_item"]} - ${item["nama_item"]}</option>
+                    <option value="${item["kode_item"]}_${item["nama_item"]}_${item["daun"]}_${item["panjang"]}_${item["lebar"]}_${item["warna"]}">${item["kode_item"]} - ${item["nama_item"]}</option>
                 `)
                 })
             })

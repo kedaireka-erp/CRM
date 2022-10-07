@@ -44,12 +44,12 @@ class KontakController extends Controller
     public function store(Request $request)
     {
         Kontak::create([
-            'nama'=> User::find($request->kontak)->name,
+            'nama' => User::find($request->kontak)->name,
             "user_id" => $request->kontak,
-            'nomor_whatsapp'=> $request->nomor_whatsapp,
-            'divisi'=> $request->divisi
+            'nomor_whatsapp' => $request->nomor_whatsapp,
+            'divisi' => $request->divisi
         ]);
-            return redirect('/kontak');
+        return redirect('/kontak');
     }
 
     /**
@@ -89,10 +89,10 @@ class KontakController extends Controller
     public function update(Request $request, Kontak $kontak)
     {
         $kontak->update([
-            'nama'=> User::find($request->kontak)->name,
+            'nama' => User::find($request->kontak)->name,
             "user_id" => $request->kontak,
-            'nomor_whatsapp'=> $request->nomor_whatsapp,
-            'divisi'=> $request->divisi,
+            'nomor_whatsapp' => $request->nomor_whatsapp,
+            'divisi' => $request->divisi,
         ]);
 
         return redirect('/kontak');

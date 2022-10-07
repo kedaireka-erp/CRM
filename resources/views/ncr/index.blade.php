@@ -108,7 +108,7 @@
                                         <td>{{ $ncr->tanggal_ncr->format('j F Y') }}</td>
                                         <td>
                                             @foreach ($ncr->ItemNcr as $keys => $item)
-                                                {{ $item->nama_item . ($keys < $ncr->ItemNcr->count() - 1 ? ', ' : '') }}
+                                                {{ $item->kode_item . '-' . $item->nama_item . ($keys < $ncr->ItemNcr->count() - 1 ? ', ' : '') }}
                                             @endforeach
                                         </td>
                                         <td>{{ $ncr->status }}</td>
