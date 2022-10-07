@@ -47,7 +47,6 @@
                                 <th class="table-plus">Nama Project</th>
                                 <th class="table-plus">Tanggal Memo</th>
                                 <th class="table-plus">Deadline Pengambilan</th>
-                                <th class="table-plus">Charge</th>
                                 <th class="datatable-nosort">Action</th>
                             </tr>
                         </thead>
@@ -61,7 +60,6 @@
                                 <td>{{ $ncr->nama_proyek }}</td>
                                 <td>{{ $ncr->tanggal_memo->format('d-m-Y') }}</td>
                                 <td>{{ $ncr->deadline_pengambilan->format('d-m-Y') }}</td>
-                                <td>Tidak</td>
                                 <td>
                                     <div class="dropdown">
                                         <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

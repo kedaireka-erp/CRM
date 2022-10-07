@@ -60,7 +60,9 @@
                         </div>
                         <div class="form-group col-lg-8">
                             <label>Item</label>
-                            <input type="text" class="form-control date-picker" value="@foreach ($ncr->ItemNcr as $keys => $item) {{ $item->nama_item . ($keys < $ncr->ItemNcr->count() - 1 ? ', ' : "")}} @endforeach" disabled>
+                            <input type="text" class="form-control date-picker"
+                                value="@foreach ($ncr->ItemNcr as $keys => $item) {{ $item->kode_item . '-' . $item->nama_item . ($keys < $ncr->ItemNcr->count() - 1 ? ', ' : '') }} @endforeach"
+                                disabled>
                         </div>
                         <div class="form-group col-12">
                             <label>Deskripsi</label>

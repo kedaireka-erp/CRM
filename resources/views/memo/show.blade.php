@@ -95,8 +95,8 @@
                         <th class="table-plus">Item</th>
                         <th class="table-plus">Warna</th>
                         <th class="table-plus">Bukaan</th>
+                        <th class="table-plus">Panjang</th>
                         <th class="table-plus">Lebar</th>
-                        <th class="table-plus">Tinggi</th>
                         <th class="table-plus">Charge</th>
                         <th class="table-plus">Return</th>
                     </tr>

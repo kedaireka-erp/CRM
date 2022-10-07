@@ -20,11 +20,11 @@ class MemoController extends Controller
 
     public function create(Ncr $ncr)
     {
-        $jumlah = Ncr::whereNotNull("nomor_memo")->whereNull("delete_memo")->whereMonth("tanggal_memo", "=", Carbon::now()->month)->whereYear("tanggal_memo", "=", Carbon::now()->year)->count() +1;
+        $jumlah = Ncr::whereNotNull("nomor_memo")->whereNull("delete_memo")->whereMonth("tanggal_memo", "=", Carbon::now()->month)->whereYear("tanggal_memo", "=", Carbon::now()->year)->count() + 1;
         $nomor_memo = $jumlah;
 
         while ($jumlah < 100) {
-            $nomor_memo = "0".$nomor_memo;
+            $nomor_memo = "0" . $nomor_memo;
             $jumlah *= 10;
         }
 
@@ -35,12 +35,13 @@ class MemoController extends Controller
                 "jumlah_memo" => $nomor_memo,
             ]);
         }
-        
+
 
         return redirect("/ncr");
     }
 
-    public function store(Ncr $ncr, Request $request) {
+    public function store(Ncr $ncr, Request $request)
+    {
         $ncr->update([
             "nomor_memo" => $request->data_item["nomor_memo"],
             "tanggal_memo" => $request->data_item["tanggal_memo"],
@@ -52,6 +53,8 @@ class MemoController extends Controller
         foreach ($request->data_item["data_item"] as $item) {
             ItemNcr::find($item["item_id"])->update([
                 "tipe_item" => $item["tipe_item"],
+                "jumlah" => $item["jumlah"],
+                "daun" => $item["daun"],
                 "warna" => $item["warna"],
                 "lebar" => $item["lebar"],
                 "tinggi" => $item["tinggi"],
@@ -66,17 +69,19 @@ class MemoController extends Controller
         return response()->json($ncr, 200);
     }
 
-    public function edit(Ncr $ncr) {
+    public function edit(Ncr $ncr)
+    {
         return view("memo.edit", [
             "title" => "Memo",
             "ncr" => $ncr,
             "items" => $ncr->ItemNcr->filter(function ($item) {
-                return $item->tipe_item != null && $item->warna != null && $item->lebar != null && $item->tinggi != null && $item->alasan != null && $item->keterangan != null && $item->return_barang != null && $item->charge != null && $item->bukaan != null;
+                return $item->tipe_item != null && $item->alasan != null && $item->keterangan != null && $item->return_barang != null && $item->charge != null && $item->bukaan != null && $item->jumlah != null;
             })
         ]);
     }
 
-    public function update(Request $request, Ncr $ncr) {
+    public function update(Request $request, Ncr $ncr)
+    {
         $ncr->update([
             "nomor_memo" => $request->data_item["nomor_memo"],
             "tanggal_memo" => $request->data_item["tanggal_memo"],
@@ -86,9 +91,7 @@ class MemoController extends Controller
 
         ItemNcr::where("ncr_id", $ncr->id)->update([
             "tipe_item" => null,
-            "warna" => null,
-            "lebar" => null,
-            "tinggi" => null,
+            "jumlah" => null,
             "alasan" => null,
             "keterangan" => null,
             "return_barang" => null,
@@ -99,6 +102,8 @@ class MemoController extends Controller
         foreach ($request->data_item["data_item"] as $item) {
             ItemNcr::find($item["id"])->update([
                 "tipe_item" => $item["tipe_item"],
+                "jumlah" => $item["jumlah"],
+                "daun" => $item["daun"],
                 "warna" => $item["warna"],
                 "lebar" => $item["lebar"],
                 "tinggi" => $item["tinggi"],
@@ -116,16 +121,15 @@ class MemoController extends Controller
         ], 200);
     }
 
-    public function destroy (Ncr $ncr) {
+    public function destroy(Ncr $ncr)
+    {
         $ncr->update([
             "delete_memo" => Carbon::now()
         ]);
 
         ItemNcr::where("ncr_id", $ncr->id)->update([
             "tipe_item" => null,
-            "warna" => null,
-            "lebar" => null,
-            "tinggi" => null,
+            "jumlah" => null,
             "alasan" => null,
             "keterangan" => null,
             "return_barang" => null,
@@ -136,23 +140,25 @@ class MemoController extends Controller
         return redirect("/memo");
     }
 
-    public function show (Ncr $ncr) {
+    public function show(Ncr $ncr)
+    {
         return view("memo.show", [
             "title" => "Memo",
             "ncr" => $ncr,
             "items" => $ncr->ItemNcr->filter(function ($item) {
-                return $item->tipe_item != null && $item->warna != null && $item->lebar != null && $item->tinggi != null && $item->alasan != null && $item->keterangan != null && $item->return_barang != null && $item->charge != null && $item->bukaan != null;
+                return $item->tipe_item != null && $item->alasan != null && $item->keterangan != null && $item->return_barang != null && $item->charge != null && $item->bukaan != null && $item->jumlah != null;
             })
         ]);
     }
 
-    public function createPDF(Ncr $ncr) {
-    
+    public function createPDF(Ncr $ncr)
+    {
+
         $pdf = Pdf::loadView('memo.cetak', [
             "title" => "Memo",
             "ncrs" => $ncr,
             "items" => $ncr->ItemNcr->filter(function ($item) {
-                return $item->tipe_item != null && $item->warna != null && $item->lebar != null && $item->tinggi != null && $item->alasan != null && $item->keterangan != null && $item->return_barang != null && $item->charge != null && $item->bukaan != null;
+                return $item->tipe_item != null && $item->alasan != null && $item->keterangan != null && $item->return_barang != null && $item->charge != null && $item->bukaan != null && $item->jumlah != null;
             })
         ]);
         $pdf->setPaper('A4', 'potrait');

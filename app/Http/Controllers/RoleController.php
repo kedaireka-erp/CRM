@@ -10,7 +10,7 @@ class RoleController extends Controller
 {
     public function index()
     {
-        return view('role.index',[
+        return view('role.index', [
             'users' => User::all(),
             "roles" => \Spatie\Permission\Models\Role::all(),
             "title" => "Role",
