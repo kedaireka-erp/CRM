@@ -15,7 +15,7 @@ class DashboardController extends Controller
         $ncr = [];
         $ncrs = Ncr::get();
         $kontak_ncr = DB::table("kontak_ncr")->get();
-        if ($kontak_id = Kontak::withTrashed()->where("user_id", auth()->user()->id)->first()) {
+        if ($kontak_id = Kontak::withTrashed()->where("user_id", auth()->user()->id)->latest()->first()) {
             $ncr = Ncr::whereHas("Kontak", function ($ncr) use ($kontak_id) {
                 $ncr->where("kontak_id", $kontak_id->id)->where("validated", 0);
             })->get()->filter(function ($ncr) use ($kontak_id, $kontak_ncr) {
