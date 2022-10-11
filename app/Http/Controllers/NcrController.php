@@ -54,7 +54,7 @@ class NcrController extends Controller
             $nama_mitra = $fppp->Quotation->Aplikator->aplikator;
             $nomor_fppp = $fppp->fppp_no;
             $nama_proyek = $fppp->Quotation->DataQuotation->nama_proyek;
-            $alamat = $fppp->Quotation->DataQuotation->alamat_proyek;
+            $alamat = $fppp->wo[0]->alamat;
             $items = [];
             foreach ($fppp->Quotation->Item as $item) {
                 $items[] = [
