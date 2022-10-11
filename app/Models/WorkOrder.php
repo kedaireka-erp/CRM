@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class WorkOrder extends Model
 {
     use HasFactory;
-    protected $table = 'work_orders';
+    protected $table = 'logistics';
 
-    public function fppp () {
+    public function fppp()
+    {
         return $this->belongsTo(Fppp::class);
     }
 }

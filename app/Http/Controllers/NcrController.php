@@ -44,7 +44,7 @@ class NcrController extends Controller
 
         $fppps = $fppps->filter(function ($fppp) {
             return ($fppp->wo->count() > 0) ? ($fppp->wo->filter(function ($wo) {
-                return $wo->no_surat_jalan != null;
+                return $wo->no_logistic != null;
             })->count() > 0 ? true : false) : false;
         });
 
@@ -54,7 +54,7 @@ class NcrController extends Controller
             $nama_mitra = $fppp->Quotation->Aplikator->aplikator;
             $nomor_fppp = $fppp->fppp_no;
             $nama_proyek = $fppp->Quotation->DataQuotation->nama_proyek;
-            $alamat = $fppp->Quotation->DataQuotation->alamat_proyek;
+            $alamat = $fppp->wo[0]->alamat;
             $items = [];
             foreach ($fppp->Quotation->Item as $item) {
                 $items[] = [
@@ -265,7 +265,7 @@ class NcrController extends Controller
                 Http::get("https://app.whacenter.com/api/send", [
                     "device_id" => "0c3716536ed62ab28dca153271d515b8",
                     "number" => Kontak::find($request->kontak_id[0])->nomor_whatsapp,
-                    "message" => "NCR : " . $ncr->nomor_ncr . "\nAda NCR baru yang perlu Anda validasi, berikut data singkatnya:\n\nNomor NCR: " . $request->nomor_ncr . "\nNomor FPPP: " . $request->nomor_fppp . "\nTanggal NCR: " . $request->tanggal_ncr . "\nNama Mitra: " . $request->nama_mitra . "\nNama Proyek: " . $request->nama_proyek . "\nItem: " . $barang . "\nDeskripsi: " . $request->deskripsi . "\nAnalisa: " . $request->analisa . "\nSolusi: " . $request->solusi . "\nPelapor: " . $request->pelapor . "\nJenis Ketidaksesuaian: " . $request->jenis_ketidaksesuaian . "\nAlamat: " . $request->alamat_pengiriman . "\n\nSilahkan klik link berikut untuk lebih detailnya: http://crm.alluresystem.site/" . $ncr->id,
+                    "message" => "NCR : " . $ncr->nomor_ncr . "\nAda NCR baru yang perlu Anda validasi, berikut data singkatnya:\n\nNomor NCR: " . $request->nomor_ncr . "\nNomor FPPP: " . $request->nomor_fppp . "\nTanggal NCR: " . $request->tanggal_ncr . "\nNama Mitra: " . $request->nama_mitra . "\nNama Proyek: " . $request->nama_proyek . "\nItem: " . $barang . "\nDeskripsi: " . $request->deskripsi . "\nAnalisa: " . $request->analisa . "\nSolusi: " . $request->solusi . "\nPelapor: " . $request->pelapor . "\nJenis Ketidaksesuaian: " . $request->jenis_ketidaksesuaian . "\nAlamat: " . $request->alamat_pengiriman . "\n\nSilahkan klik link berikut untuk lebih detailnya: http://crm.alluresystem.site/ncr/" . $ncr->id,
                 ]);
                 Http::get("https://app.whacenter.com/api/send", [
                     "device_id" => "0c3716536ed62ab28dca153271d515b8",
@@ -353,7 +353,7 @@ class NcrController extends Controller
                     Http::get("https://app.whacenter.com/api/send", [
                         "device_id" => "0c3716536ed62ab28dca153271d515b8",
                         "number" => Kontak::find($kontak_ncr->kontak_id)->nomor_whatsapp,
-                        "message" => "Ada NCR baru yang perlu Anda validasi, berikut data singkatnya:\n\nNomor NCR: " . $ncr->nomor_ncr . "\nNomor FPPP: " . $ncr->nomor_fppp . "\nTanggal NCR: " . $ncr->tanggal_ncr . "\nNama Mitra: " . $ncr->nama_mitra . "\nNama Proyek: " . $ncr->nama_proyek . "\nItem: " . $barang . "\nDeskripsi: " . $ncr->deskripsi . "\nAnalisa: " . $ncr->analisa . "\nSolusi: " . $ncr->solusi . "\nPelapor: " . $ncr->pelapor . "\nJenis Ketidaksesuaian: " . $ncr->jenis_ketidaksesuaian . "\nAlamat: " . $ncr->alamat_pengiriman . "\n\nSilahkan klik link berikut untuk lebih detailnya: http://crm.alluresystem.site/" . $ncr->id,
+                        "message" => "Ada NCR baru yang perlu Anda validasi, berikut data singkatnya:\n\nNomor NCR: " . $ncr->nomor_ncr . "\nNomor FPPP: " . $ncr->nomor_fppp . "\nTanggal NCR: " . $ncr->tanggal_ncr . "\nNama Mitra: " . $ncr->nama_mitra . "\nNama Proyek: " . $ncr->nama_proyek . "\nItem: " . $barang . "\nDeskripsi: " . $ncr->deskripsi . "\nAnalisa: " . $ncr->analisa . "\nSolusi: " . $ncr->solusi . "\nPelapor: " . $ncr->pelapor . "\nJenis Ketidaksesuaian: " . $ncr->jenis_ketidaksesuaian . "\nAlamat: " . $ncr->alamat_pengiriman . "\n\nSilahkan klik link berikut untuk lebih detailnya: http://crm.alluresystem.site/ncr/" . $ncr->id,
                     ]);
                     Http::get("https://app.whacenter.com/api/send", [
                         "device_id" => "0c3716536ed62ab28dca153271d515b8",
