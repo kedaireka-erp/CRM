@@ -44,7 +44,7 @@ class NcrController extends Controller
 
         $fppps = $fppps->filter(function ($fppp) {
             return ($fppp->wo->count() > 0) ? ($fppp->wo->filter(function ($wo) {
-                return $wo->no_surat_jalan != null;
+                return $wo->no_logistic != null;
             })->count() > 0 ? true : false) : false;
         });
 
