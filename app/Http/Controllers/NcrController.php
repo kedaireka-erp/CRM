@@ -263,12 +263,12 @@ class NcrController extends Controller
 
             if ($ncr->status == "closed") {
                 Http::get("https://app.whacenter.com/api/send", [
-                    "device_id" => "0c3716536ed62ab28dca153271d515b8",
+                    "device_id" => "856420be1794b27391a36f964b4d1f1c",
                     "number" => Kontak::find($request->kontak_id[0])->nomor_whatsapp,
                     "message" => "NCR : " . $ncr->nomor_ncr . "\nAda NCR baru yang perlu Anda validasi, berikut data singkatnya:\n\nNomor NCR: " . $request->nomor_ncr . "\nNomor FPPP: " . $request->nomor_fppp . "\nTanggal NCR: " . $request->tanggal_ncr . "\nNama Mitra: " . $request->nama_mitra . "\nNama Proyek: " . $request->nama_proyek . "\nItem: " . $barang . "\nDeskripsi: " . $request->deskripsi . "\nAnalisa: " . $request->analisa . "\nSolusi: " . $request->solusi . "\nPelapor: " . $request->pelapor . "\nJenis Ketidaksesuaian: " . $request->jenis_ketidaksesuaian . "\nAlamat: " . $request->alamat_pengiriman . "\n\nSilahkan klik link berikut untuk lebih detailnya: http://crm.alluresystem.site/ncr/" . $ncr->id,
                 ]);
                 Http::get("https://app.whacenter.com/api/send", [
-                    "device_id" => "0c3716536ed62ab28dca153271d515b8",
+                    "device_id" => "856420be1794b27391a36f964b4d1f1c",
                     "number" => Kontak::find($request->kontak_id[0])->nomor_whatsapp,
                     "message" => "",
                     "file" => "http://crm.alluresystem.site/storage/" . $ncr->bukti_kecacatan
@@ -351,12 +351,12 @@ class NcrController extends Controller
                     $kontak_ncr = DB::table('kontak_ncr')->where("id", $request->id + 1)->first();
                     $ncr = Ncr::find($kontak_ncr->ncr_id);
                     Http::get("https://app.whacenter.com/api/send", [
-                        "device_id" => "0c3716536ed62ab28dca153271d515b8",
+                        "device_id" => "856420be1794b27391a36f964b4d1f1c",
                         "number" => Kontak::find($kontak_ncr->kontak_id)->nomor_whatsapp,
                         "message" => "Ada NCR baru yang perlu Anda validasi, berikut data singkatnya:\n\nNomor NCR: " . $ncr->nomor_ncr . "\nNomor FPPP: " . $ncr->nomor_fppp . "\nTanggal NCR: " . $ncr->tanggal_ncr . "\nNama Mitra: " . $ncr->nama_mitra . "\nNama Proyek: " . $ncr->nama_proyek . "\nItem: " . $barang . "\nDeskripsi: " . $ncr->deskripsi . "\nAnalisa: " . $ncr->analisa . "\nSolusi: " . $ncr->solusi . "\nPelapor: " . $ncr->pelapor . "\nJenis Ketidaksesuaian: " . $ncr->jenis_ketidaksesuaian . "\nAlamat: " . $ncr->alamat_pengiriman . "\n\nSilahkan klik link berikut untuk lebih detailnya: http://crm.alluresystem.site/ncr/" . $ncr->id,
                     ]);
                     Http::get("https://app.whacenter.com/api/send", [
-                        "device_id" => "0c3716536ed62ab28dca153271d515b8",
+                        "device_id" => "856420be1794b27391a36f964b4d1f1c",
                         "number" => Kontak::find($kontak_ncr->kontak_id)->nomor_whatsapp,
                         "message" => "",
                         "file" => "http://crm.alluresystem.site/storage/" . $ncr->bukti_kecacatan
