@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Ncr;
 use App\Models\Fppp;
-use App\Models\User;
 use App\Models\Kontak;
 use App\Models\ItemNcr;
-use App\Models\WorkOrder;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Routing\Controller;
@@ -43,9 +41,7 @@ class NcrController extends Controller
         $fppps = Fppp::get();
 
         $fppps = $fppps->filter(function ($fppp) {
-            return ($fppp->wo->count() > 0) ? ($fppp->wo->filter(function ($wo) {
-                return $wo->no_logistic != null;
-            })->count() > 0 ? true : false) : false;
+            return $fppp->wo->count() > 0;
         });
 
         $array = [];
@@ -180,9 +176,7 @@ class NcrController extends Controller
             $fppps = Fppp::get();
 
             $fppps = $fppps->filter(function ($fppp) {
-                return ($fppp->wo->count() > 0) ? ($fppp->wo->filter(function ($wo) {
-                    return $wo->no_surat_jalan != null;
-                })->count() > 0 ? true : false) : false;
+                return $fppp->wo->count() > 0;
             });
 
             $array = [];
