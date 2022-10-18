@@ -1,11 +1,9 @@
 <?php
 
 use App\Models\Fppp;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NcrController;
 use App\Http\Controllers\MemoController;
-use App\Http\Controllers\RoleController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\DashboardController;
@@ -49,9 +47,9 @@ Route::middleware("auth")->group(function () {
     Route::put("/kontak/{kontak}", [KontakController::class, "update"])->middleware("permission:edit-kontak");
 
     Route::delete("/kontak/{kontak}", [KontakController::class, "destroy"])->middleware("permission:delete-kontak");
-    
+
     Route::get("/memo", [MemoController::class, "index"]);
-    
+
     Route::get("/memo/{ncr}/create", [MemoController::class, "create"])->middleware("permission:add-memo");
 
     Route::get("/memo/{ncr}/edit", [MemoController::class, "edit"])->middleware("permission:edit-memo");
@@ -67,12 +65,8 @@ Route::middleware("auth")->group(function () {
     Route::post("/ncr/report", [NcrController::class, "report"]);
 
     Route::get("/memo/{ncr}", [MemoController::class, "show"]);
-    
+
     Route::get('/memo/{ncr}/cetak', [MemoController::class, 'createPDF']);
-
-    Route::get("/role", [RoleController::class, "index"])->middleware("role:Admin");
-
-    Route::post("/role/{user}", [RoleController::class, "update"])->middleware("role:Admin");
 });
 
 Route::get("/login", [LoginController::class, "index"])->name("login");
@@ -84,9 +78,9 @@ Route::post("/logout", [LoginController::class, "logout"])->name("logout");
 Route::get("/test", function () {
     $fppps = Fppp::get();
     $fppps = $fppps->filter(function ($fppp) {
-            return ($fppp->wo->count() > 0) ? ($fppp->wo->filter(function($wo) {
-                return $wo->no_surat_jalan == null;
-            })->count() > 0 ? true : false) : false ;
-        });
+        return ($fppp->wo->count() > 0) ? ($fppp->wo->filter(function ($wo) {
+            return $wo->no_surat_jalan == null;
+        })->count() > 0 ? true : false) : false;
+    });
     dd($fppps);
 });
