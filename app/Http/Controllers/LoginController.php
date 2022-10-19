@@ -16,6 +16,8 @@ class LoginController extends Controller
     }
 
     public function login (Request $request) {
+        dd($request->ip());
+        
         Auth::loginUsingId(base64_decode($request->user_id));
 
         return redirect("/");
