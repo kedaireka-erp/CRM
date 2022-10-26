@@ -40,9 +40,9 @@ class NcrController extends Controller
     {
         $fppps = Fppp::get();
 
-        // $fppps = $fppps->filter(function ($fppp) {
-        //     return $fppp->wo->count() > 0;
-        // });
+        $fppps = $fppps->filter(function ($fppp) {
+            return $fppp->wo->count() > 0;
+        });
 
         $array = [];
 
@@ -50,7 +50,7 @@ class NcrController extends Controller
             $nama_mitra = $fppp->Quotation->Aplikator->aplikator;
             $nomor_fppp = $fppp->fppp_no;
             $nama_proyek = $fppp->Quotation->nama_proyek;
-            // $alamat = $fppp->wo[0]->alamat;
+            $alamat = $fppp->wo[0]->alamat;
             $items = [];
             foreach ($fppp->Quotation->Item as $item) {
                 $items[] = [
@@ -70,7 +70,7 @@ class NcrController extends Controller
                 "nama_mitra" => $nama_mitra,
                 "nomor_fppp" => $nomor_fppp,
                 "nama_proyek" => $nama_proyek,
-                // "alamat" => $alamat,
+                "alamat" => $alamat,
                 "item" => $items,
             ];
         }
@@ -234,13 +234,12 @@ class NcrController extends Controller
      */
     public function update(Request $request, Ncr $ncr)
     {
-        $validateData = $request->validate([
-            'bukti_kecacatan' => 'mimes:pdf|max:2024',
-            "item" => "required",
-            "kontak_id" => "required"
-        ]);
-
         if ($request->file('bukti_kecacatan')) {
+            $validateData = $request->validate([
+                'bukti_kecacatan' => 'mimes:pdf|max:2024',
+                "item" => "required",
+                "kontak_id" => "required"
+            ]);
             $validateData['bukti_kecacatan'] = $request->file('bukti_kecacatan')->store('bukti');
         } else {
             $validateData['bukti_kecacatan'] = $ncr->bukti_kecacatan;
