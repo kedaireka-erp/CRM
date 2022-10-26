@@ -14,6 +14,7 @@ class LoginController extends Controller
         return redirect("http://erp.alluresystem.site/");
         // Auth::loginUsingId(1);
         // return redirect("/");
+
     }
 
     public function login(Request $request)
