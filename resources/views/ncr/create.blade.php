@@ -71,7 +71,7 @@
                                 <div class="form-group">
                                     <label>No FPPP : </label>
                                     <select onchange="inputFppp(this)" class="custom-select2 d-block w-100 form-control"
-                                        id="nomor_fppp" name="nomor_fppp">
+                                        id="nomor_fppp" name="nomor_fppp" required>
                                         <option value="" selected hidden disabled>
                                             Pilih Nomor FPPP
                                         </option>
@@ -109,6 +109,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                @error('kontak_id')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row">
@@ -131,6 +134,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                @error('item')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row">
@@ -145,23 +151,26 @@
                                 <div class="form-group">
                                     <label>Jenis Ketidaksesuaian : </label>
                                     <input class="form-control" type="string" id="#"
-                                        name="jenis_ketidaksesuaian" />
+                                        name="jenis_ketidaksesuaian" required />
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Deskripsi Ketidaksesuaian : </label>
-                            <textarea class="form-control" name="deskripsi" placeholder="Enter text ..."></textarea>
+                            <textarea class="form-control" name="deskripsi" placeholder="Enter text ..." required></textarea>
                         </div>
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label for="bukti_kecacatan">Bukti Kecacatan : </label>
-                                    <input class="form-control-file form-control height-auto" type="file"
-                                        id="bukti_kecacatan" name="bukti_kecacatan" />
+                                    <input
+                                        class="form-control-file form-control height-auto @error('bukti_kecacatan') is-invalid @enderror"
+                                        type="file" id="bukti_kecacatan" name="bukti_kecacatan" required />
+                                    @error('bukti_kecacatan')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                     <small class="form-text text-muted" style="color: red">* Lampiran file berformat PDF
-                                        maks
-                                        2MB</small>
+                                        maks 2MB</small>
                                 </div>
                             </div>
                         </div>
