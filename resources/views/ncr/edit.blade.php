@@ -100,6 +100,9 @@
                                             </button>
                                         </div>
                                     </div>
+                                    @error('kontak_id')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -128,6 +131,9 @@
                                             </button>
                                         </div>
                                     </div>
+                                    @error('item')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -161,8 +167,12 @@
                                             download>Unduh Bukti
                                             Kecacatan</a>
                                     @else
-                                        <input class="form-control-file form-control height-auto" value=""
-                                            type="file" id="bukti_kecacatan" name="bukti_kecacatan" />
+                                        <input
+                                            class="form-control-file form-control height-auto @error('bukti_kecacatan') is-invalid @enderror"
+                                            value="" type="file" id="bukti_kecacatan" name="bukti_kecacatan" />
+                                        @error('bukti_kecacatan')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                         <small class="form-text text-muted" style="color: red">* Lampiran file berformat PDF
                                             maks
                                             2MB</small>

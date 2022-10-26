@@ -13,12 +13,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Quotation extends Model
 {
     use HasFactory;
-    use SoftDeletes;
-    protected $table = 'quotations';
-    protected $with = ['Item', "DataQuotation", "Aplikator"];
+    protected $table = 'proyek_quotations';
+    protected $with = ['Item', "Aplikator"];
 
 
-    public function Item() 
+    public function Item()
     {
         return $this->hasMany(DetailQuotation::class);
     }
@@ -28,12 +27,13 @@ class Quotation extends Model
         return $this->hasMany(Fppp::class);
     }
 
-    public function DataQuotation()
-    {
-        return $this->belongsTo(ProyekQuotation::class, 'proyek_quotation_id', 'id');
-    }
+    // public function DataQuotation()
+    // {
+    //     return $this->belongsTo(ProyekQuotation::class, 'proyek_quotation_id', 'id');
+    // }
 
-    public function Aplikator () {
-        return $this->belongsTo(MasterAplikator::class);
+    public function Aplikator()
+    {
+        return $this->belongsTo(MasterAplikator::class, "kode_aplikator", "kode");
     }
 }

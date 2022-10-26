@@ -12,6 +12,6 @@ class DetailQuotation extends Model
 
     public function DetailQuotation()
     {
-        return $this->belongsTo(Quotation::class);
+        return $this->belongsTo(Quotation::class, "quotation_id", "id");
     }
 }
