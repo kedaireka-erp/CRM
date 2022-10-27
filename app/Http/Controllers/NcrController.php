@@ -40,9 +40,9 @@ class NcrController extends Controller
     {
         $fppps = Fppp::get();
 
-        $fppps = $fppps->filter(function ($fppp) {
-            return $fppp->wo->count() > 0;
-        });
+//         $fppps = $fppps->filter(function ($fppp) {
+//             return $fppp->wo->count() > 0;
+//         });
 
         $array = [];
 
@@ -50,7 +50,7 @@ class NcrController extends Controller
             $nama_mitra = $fppp->Quotation->Aplikator->aplikator;
             $nomor_fppp = $fppp->fppp_no;
             $nama_proyek = $fppp->Quotation->nama_proyek;
-            $alamat = $fppp->wo[0]->alamat;
+//             $alamat = $fppp->wo[0]->alamat;
             $items = [];
             foreach ($fppp->Quotation->Item as $item) {
                 $items[] = [
@@ -70,7 +70,7 @@ class NcrController extends Controller
                 "nama_mitra" => $nama_mitra,
                 "nomor_fppp" => $nomor_fppp,
                 "nama_proyek" => $nama_proyek,
-                "alamat" => $alamat,
+//                 "alamat" => $alamat,
                 "item" => $items,
             ];
         }
@@ -177,42 +177,42 @@ class NcrController extends Controller
         })) {
             $fppps = Fppp::get();
 
-            $fppps = $fppps->filter(function ($fppp) {
-                return $fppp->wo->count() > 0;
-            });
+//         $fppps = $fppps->filter(function ($fppp) {
+//             return $fppp->wo->count() > 0;
+//         });
 
-            $array = [];
+        $array = [];
 
-            foreach ($fppps as $fppp) {
-                $nama_mitra = $fppp->Quotation->Aplikator->aplikator;
-                $nomor_fppp = $fppp->fppp_no;
-                $nama_proyek = $fppp->Quotation->DataQuotation->nama_proyek;
-                $alamat = $fppp->Quotation->DataQuotation->alamat_proyek;
-                $items = [];
-                foreach ($fppp->Quotation->Item as $item) {
-                    $items[] = [
-                        "id" => $item->id,
-                        "nama_item" => $item->kode_tipe,
-                        "kode_item" => $item->kode_item,
-                        "daun" => $item->daun,
-                        "warna" => $item->kode_warna,
-                        "panjang" => $item->panjang,
-                        "lebar" => $item->lebar,
-                        "jumlah" => $item->qty,
-                        "harga" => $item->harga,
-                    ];
-                }
-
-                $array[] = [
-                    "nama_mitra" => $nama_mitra,
-                    "nomor_fppp" => $nomor_fppp,
-                    "nama_proyek" => $nama_proyek,
-                    "alamat" => $alamat,
-                    "item" => $items,
+        foreach ($fppps as $fppp) {
+            $nama_mitra = $fppp->Quotation->Aplikator->aplikator;
+            $nomor_fppp = $fppp->fppp_no;
+            $nama_proyek = $fppp->Quotation->nama_proyek;
+//             $alamat = $fppp->wo[0]->alamat;
+            $items = [];
+            foreach ($fppp->Quotation->Item as $item) {
+                $items[] = [
+                    "id" => $item->id,
+                    "nama_item" => $item->kode_tipe,
+                    "kode_item" => $item->kode_item,
+                    "daun" => $item->daun,
+                    "warna" => $item->kode_warna,
+                    "panjang" => $item->panjang,
+                    "lebar" => $item->lebar,
+                    "jumlah" => $item->qty,
+                    "harga" => $item->harga,
                 ];
             }
 
-            $fppp = collect($array);
+            $array[] = [
+                "nama_mitra" => $nama_mitra,
+                "nomor_fppp" => $nomor_fppp,
+                "nama_proyek" => $nama_proyek,
+//                 "alamat" => $alamat,
+                "item" => $items,
+            ];
+        }
+
+        $fppp = collect($array);
             $Kontak = Kontak::get();
 
             return view("ncr.edit", [
