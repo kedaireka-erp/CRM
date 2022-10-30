@@ -101,7 +101,7 @@ class NcrController extends Controller
     {
         $validateData = $request->validate([
             'bukti_kecacatan' => 'mimes:pdf|max:2024',
-            "item" => "required",
+            "item_id" => "required",
             "kontak_id" => "required"
         ]);
 
@@ -237,7 +237,7 @@ class NcrController extends Controller
         if ($request->file('bukti_kecacatan')) {
             $validateData = $request->validate([
                 'bukti_kecacatan' => 'mimes:pdf|max:2024',
-                "item" => "required",
+                "item_id" => "required",
                 "kontak_id" => "required"
             ]);
             $validateData['bukti_kecacatan'] = $request->file('bukti_kecacatan')->store('bukti');
