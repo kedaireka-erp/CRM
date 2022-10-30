@@ -134,7 +134,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @error('item')
+                                @error('item_id')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
