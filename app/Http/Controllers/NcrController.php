@@ -70,7 +70,7 @@ class NcrController extends Controller
                 "nama_mitra" => $nama_mitra,
                 "nomor_fppp" => $nomor_fppp,
                 "nama_proyek" => $nama_proyek,
-//                 "alamat" => $alamat,
+                "alamat" => "Semarang",
                 "item" => $items,
             ];
         }
@@ -207,7 +207,7 @@ class NcrController extends Controller
                 "nama_mitra" => $nama_mitra,
                 "nomor_fppp" => $nomor_fppp,
                 "nama_proyek" => $nama_proyek,
-//                 "alamat" => $alamat,
+                "alamat" => "Semarang",
                 "item" => $items,
             ];
         }
