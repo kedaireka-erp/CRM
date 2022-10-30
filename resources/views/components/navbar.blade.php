@@ -1,7 +1,5 @@
 <div class="header" style="padding: 0px 15px">
     <div class="header-left">
-        <div class="menu-icon bi bi-list"></div>
-        <div class="search-toggle-icon bi bi-search" data-toggle="header_search"></div>
     </div>
     <div class="header-right">
         <div class="user-info-dropdown">
