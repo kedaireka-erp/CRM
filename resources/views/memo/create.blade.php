@@ -70,8 +70,11 @@
                 <div class="col-md-4 col-sm-12">
                     <div class="form-group">
                         <label>Deadline Pengambilan</label>
-                        <input type="date" class="form-control" placeholder="Select Date" name="deadline_pengambilan">
+                        <input type="date" class="form-control @error("deadline_pengambilan") is-invalid @enderror" placeholder="Select Date" name="deadline_pengambilan">
                     </div>
+                    @error('deadline_pengambilan')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <div class="form-group">

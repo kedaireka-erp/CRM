@@ -162,97 +162,102 @@
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label for="bukti_kecacatan">Bukti Kecacatan : </label>
-                                    @role('QC')
-                                        <a href="{{ asset('/storage/' . $ncr->bukti_kecacatan) }}" class="btn btn-primary"
-                                            download>Unduh Bukti
-                                            Kecacatan</a>
-                                    @else
-                                        <input
-                                            class="form-control-file form-control height-auto @error('bukti_kecacatan') is-invalid @enderror"
-                                            value="" type="file" id="bukti_kecacatan" name="bukti_kecacatan" />
-                                        @error('bukti_kecacatan')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                        <small class="form-text text-muted" style="color: red">* Lampiran file berformat PDF
-                                            maks
-                                            2MB</small>
-                                    @endrole
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <a href="{{ asset('/storage/' . $ncr->bukti_kecacatan) }}"
+                                                class="btn btn-primary" download>Unduh Bukti
+                                                Kecacatan</a>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <input
+                                                class="form-control-file form-control height-auto @error('bukti_kecacatan') is-invalid @enderror"
+                                                value="" type="file" id="bukti_kecacatan"
+                                                name="bukti_kecacatan" />
+                                        </div>
+                                    </div>
+                                    @error('bukti_kecacatan')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                    <small class="form-text text-muted" style="color: red">* Lampiran file berformat PDF
+                                        maks
+                                        2MB</small>
+                                @endrole
+                            </div>
+                        </div>
+                    </div>
+                    @role('QC|Admin')
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Analisa : </label>
+                                    <textarea class="form-control" name="analisa" placeholder="Enter text ...">{{ $ncr->analisa }}</textarea>
                                 </div>
                             </div>
                         </div>
-                        @role('QC|Admin')
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>Analisa : </label>
-                                        <textarea class="form-control" name="analisa" placeholder="Enter text ...">{{ $ncr->analisa }}</textarea>
-                                    </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Solusi : </label>
+                                    <textarea class="form-control" name="solusi" placeholder="Enter text ...">{{ $ncr->solusi }}</textarea>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label>Solusi : </label>
-                                        <textarea class="form-control" name="solusi" placeholder="Enter text ...">{{ $ncr->solusi }}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        @endrole
-                        <input type="hidden" id="alamat_pengiriman" name="alamat_pengiriman"
-                            value="{{ $fppps['alamat'] }}">
-                        <button type="submit" class="btn btn-success float-right">
-                            Submit
-                        </button>
-                    </form>
-                </div>
+                        </div>
+                    @endrole
+                    <input type="hidden" id="alamat_pengiriman" name="alamat_pengiriman"
+                        value="{{ $fppps['alamat'] }}">
+                    <button type="submit" class="btn btn-success float-right">
+                        Submit
+                    </button>
+                </form>
             </div>
         </div>
-        <!-- horizontal Basic Forms End -->
     </div>
-    @endsection @push('script')
-    <script type="text/javascript">
-        (function() {
-            $(document).ready(function() {
-                document.querySelectorAll("textarea").forEach(function(elemen) {
-                    $(elemen).wysihtml5()
-                })
+    <!-- horizontal Basic Forms End -->
+</div>
+@endsection @push('script')
+<script type="text/javascript">
+    (function() {
+        $(document).ready(function() {
+            document.querySelectorAll("textarea").forEach(function(elemen) {
+                $(elemen).wysihtml5()
             })
-        })();
-
-        let kontak = {!! $ncr->Kontak !!}.sort(function(a, b) {
-            return a.pivot.id - b.pivot.id;
-        });
-
-        $('#form_kontak').children()[0].children[0].children[kontak[0].id - 1].selected = true;
-
-        $("#form_kontak").on("click", "button", function() {
-            add_kontak();
         })
+    })();
 
-        if (kontak.length >= 1) {
-            kontak.forEach(function(kontaks, index) {
-                if (index != 0) {
-                    add_kontak(kontaks)
+    let kontak = {!! $ncr->Kontak !!}.sort(function(a, b) {
+        return a.pivot.id - b.pivot.id;
+    });
+
+    $('#form_kontak').children()[0].children[0].children[kontak[0].id - 1].selected = true;
+
+    $("#form_kontak").on("click", "button", function() {
+        add_kontak();
+    })
+
+    if (kontak.length >= 1) {
+        kontak.forEach(function(kontaks, index) {
+            if (index != 0) {
+                add_kontak(kontaks)
+            }
+        })
+    }
+
+    function add_kontak(kontaks = undefined) {
+        $(document).ready(function() {
+            let select = document.createElement("select");
+            let kontak = {!! $Kontak !!};
+            let option = undefined;
+            $(select).append(`<option value="" selected hidden disabled>Pilih Validator</option>`)
+            kontak.forEach(function(kontak) {
+                option = document.createElement("option");
+                option.value = kontak.id;
+                option.innerHTML = kontak.nama + ' - ' + kontak.divisi;
+                if (kontaks != undefined && kontaks.id == kontak.id) {
+                    option.setAttribute("selected", true)
                 }
+                select.appendChild(option)
             })
-        }
-
-        function add_kontak(kontaks = undefined) {
-            $(document).ready(function() {
-                let select = document.createElement("select");
-                let kontak = {!! $Kontak !!};
-                let option = undefined;
-                $(select).append(`<option value="" selected hidden disabled>Pilih Validator</option>`)
-                kontak.forEach(function(kontak) {
-                    option = document.createElement("option");
-                    option.value = kontak.id;
-                    option.innerHTML = kontak.nama + ' - ' + kontak.divisi;
-                    if (kontaks != undefined && kontaks.id == kontak.id) {
-                        option.setAttribute("selected", true)
-                    }
-                    select.appendChild(option)
-                })
-                $("#kontak").append(`<div class="row mb-4" >
+            $("#kontak").append(`<div class="row mb-4" >
                                         <div class="col">
                                             <select class="custom-select form-control"
                                                 name="kontak_id[]">
@@ -263,44 +268,44 @@
                                             <button onclick="hapus_elemen(this)" type="button" class="btn btn-outline-danger"> - </button>
                                         </div>
                                     </div>`);
-                $("#kontak .row:last-child select").select2();
-            });
-        }
+            $("#kontak .row:last-child select").select2();
+        });
+    }
 
-        let itemmm = {!! $ncr->ItemNcr !!};
-        console.log(itemmm);
+    let itemmm = {!! $ncr->ItemNcr !!};
+    console.log(itemmm);
 
-        if (itemmm.length >= 1) {
-            itemmm.forEach(function(itemss, index) {
-                if (index != 0) {
-                    add_item(itemss)
-                }
+    if (itemmm.length >= 1) {
+        itemmm.forEach(function(itemss, index) {
+            if (index != 0) {
+                add_item(itemss)
+            }
+        })
+    }
+
+
+    function add_item(itemss = undefined) {
+        $(document).ready(function() {
+            let select = document.createElement("select");
+            let fppps = {!! $fppp !!}
+            let option = undefined;
+            let fppp = fppps.filter(function(elemen) {
+                return elemen["nomor_fppp"] == $("#nomor_fppp").val()
             })
-        }
+            $(select).append('<option value="" selected hidden disabled>Pilih Item</option>')
+            fppp[0]["item"].forEach(function(item) {
+                option = document.createElement("option");
+                option.value = item.kode_item + '_' + item.nama_item + '_' + item.daun + '_' + item
+                    .panjang + "_" + item.lebar + "_" + item.warna;
+                option.innerHTML = item.kode_item + ' - ' + item.nama_item;
+                if (itemss != undefined && (itemss.kode_item + "_" + itemss.nama_item) == item
+                    .kode_item + "_" + item.nama_item) {
+                    option.setAttribute('selected', true)
+                }
+                select.appendChild(option)
+            })
 
-
-        function add_item(itemss = undefined) {
-            $(document).ready(function() {
-                let select = document.createElement("select");
-                let fppps = {!! $fppp !!}
-                let option = undefined;
-                let fppp = fppps.filter(function(elemen) {
-                    return elemen["nomor_fppp"] == $("#nomor_fppp").val()
-                })
-                $(select).append('<option value="" selected hidden disabled>Pilih Item</option>')
-                fppp[0]["item"].forEach(function(item) {
-                    option = document.createElement("option");
-                    option.value = item.kode_item + '_' + item.nama_item + '_' + item.daun + '_' + item
-                        .panjang + "_" + item.lebar + "_" + item.warna;
-                    option.innerHTML = item.kode_item + ' - ' + item.nama_item;
-                    if (itemss != undefined && (itemss.kode_item + "_" + itemss.nama_item) == item
-                        .kode_item + "_" + item.nama_item) {
-                        option.setAttribute('selected', true)
-                    }
-                    select.appendChild(option)
-                })
-
-                $("#itemm").append(` <div class="row mb-4">
+            $("#itemm").append(` <div class="row mb-4">
                                         <div class="col">
                                             <select class="custom-select form-control" name="item_id[]">
                                                 ${select.innerHTML}
@@ -310,33 +315,33 @@
                                             <button onclick="hapus_elemen(this)" type="button" class="btn btn-outline-danger"> - </button>
                                         </div>
                                     </div>`);
-                $("#itemm .row:last-child select").select2();
-            });
+            $("#itemm .row:last-child select").select2();
+        });
 
-        }
+    }
 
-        function hapus_elemen(element) {
-            element.parentElement.parentElement.remove();
-        }
+    function hapus_elemen(element) {
+        element.parentElement.parentElement.remove();
+    }
 
-        let fppps = {!! $fppp !!}
+    let fppps = {!! $fppp !!}
 
-        function inputFppp(element) {
-            let fppp = fppps.filter(function(elemen) {
-                return elemen["nomor_fppp"] == element.value
-            })
-            $(document).ready(function() {
-                document.getElementById("item").innerHTML = "";
+    function inputFppp(element) {
+        let fppp = fppps.filter(function(elemen) {
+            return elemen["nomor_fppp"] == element.value
+        })
+        $(document).ready(function() {
+            document.getElementById("item").innerHTML = "";
 
-                $("#nama_mitra").val(`${fppp[0]["nama_mitra"]}`)
-                $("#nama_proyek").val(`${fppp[0]["nama_proyek"]}`)
-                $("#alamat_pengiriman").val(`${fppp[0]["alamat"]}`)
-                fppp[0]["item"].forEach(function(item) {
-                    $("#item").append(`
+            $("#nama_mitra").val(`${fppp[0]["nama_mitra"]}`)
+            $("#nama_proyek").val(`${fppp[0]["nama_proyek"]}`)
+            $("#alamat_pengiriman").val(`${fppp[0]["alamat"]}`)
+            fppp[0]["item"].forEach(function(item) {
+                $("#item").append(`
                     <option value="${item["kode_item"]}_${item["nama_item"]}_${item["daun"]}_${item["panjang"]}_${item["lebar"]}_${item["warna"]}">${item["kode_item"]} - ${item["nama_item"]}</option>
                 `)
-                })
             })
-        }
-    </script>
+        })
+    }
+</script>
 @endpush
