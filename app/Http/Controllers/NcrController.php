@@ -271,7 +271,7 @@ class NcrController extends Controller
                     "file" => "http://crm.alluresystem.site/storage/" . $ncr->bukti_kecacatan
                 ]);
             }
-        } else {
+        } else if (Auth::user()->hasAnyRole("Admin|Sales")) {
             $ncr->update([
                 "nama_mitra" => $request->nama_mitra ?? $ncr->nama_mitra,
                 "nama_proyek" => $request->nama_proyek ?? $ncr->nama_proyek,
