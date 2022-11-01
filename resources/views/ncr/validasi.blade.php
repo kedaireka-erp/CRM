@@ -150,7 +150,7 @@
                                                 onClick="validasi(this)"
                                                 @if ($validator->pivot->validated == 1) checked disabled @endif>
                                             <label class="custom-control-label"
-                                                for="{{ $validator->pivot->id }}-{{ $nomor }}">{{ $validator->pivot->validated == 1 ? 'validasi' : 'validated' }}</label>
+                                                for="{{ $validator->pivot->id }}-{{ $nomor }}">{{ $validator->pivot->validated == 1 ? 'validated' : 'validate' }}</label>
                                         </div>
                                     </td>
                                 </tr>
