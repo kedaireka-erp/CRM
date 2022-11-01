@@ -95,6 +95,8 @@
                         <th class="table-plus">Item</th>
                         <th class="table-plus">Warna</th>
                         <th class="table-plus">Bukaan</th>
+                        <th class="table-plus">Daun</th>
+                        <th class="table-plus">Jumlah</th>
                         <th class="table-plus">Panjang</th>
                         <th class="table-plus">Lebar</th>
                         <th class="table-plus">Charge</th>
@@ -107,6 +109,8 @@
                         <td>{{$item->kode_item}}-{{$item->nama_item}}</td>
                         <td>{{$item->warna}}</td>
                         <td>{{$item->bukaan}}</td>
+                        <td>{{$item->daun}}</td>
+                        <td>{{$item->jumlah}}</td>
                         <td>{{$item->lebar}}</td>
                         <td>{{$item->tinggi}}</td>
                         <td>{{$item->charge}}</td>

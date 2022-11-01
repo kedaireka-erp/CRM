@@ -42,10 +42,6 @@ class MemoController extends Controller
 
     public function store(Ncr $ncr, Request $request)
     {
-        $request->validate([
-            "deadline_pengambilan" => "required",
-        ]);
-
         $ncr->update([
             "nomor_memo" => $request->data_item["nomor_memo"],
             "tanggal_memo" => $request->data_item["tanggal_memo"],

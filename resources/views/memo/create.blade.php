@@ -87,34 +87,6 @@
             <button class="btn btn-primary" onClick="Proses()">Process</button>
         </div>
 
-        <div class="card-box mb-30 d-none form-add-item">
-            <div class="pd-20">
-                <div class="text-blue h5">List Item Memo</div>
-                <small class="mb-0">
-                    List item memo yang sudah ditambahkan
-                </small>
-            </div>
-            <table class="table stripe hover nowrap">
-                <thead>
-                    <tr>
-                        <th class="table-plus">Item</th>
-                        <th class="table-plus">Warna</th>
-                        <th class="table-plus">Bukaan</th>
-                        <th class="table-plus">Panjang</th>
-                        <th class="table-plus">Lebar</th>
-                        <th class="table-plus">Charge</th>
-                        <th class="table-plus">Return</th>
-                        <th class="datatable-nosort">Act</th>
-                    </tr>
-                </thead>
-                <tbody id="table-add-item">
-                </tbody>
-            </table>
-            <div class="pd-20">
-                <button class="btn btn-primary" onClick="Finish(this)">Finish</button>
-            </div>
-        </div>
-
         <div class="pd-20 card-box mb-30 d-none form-add-item" id="form-add-item">
             <div class="clearfix">
                 <h4 class="text-blue h4">Add Items Memo</h4>
@@ -198,6 +170,36 @@
             </div>
             <button class="btn btn-primary" onClick="tambahForm(this)" id="addItem">Add Item</button>
         </div>
+
+        <div class="card-box mb-30 d-none form-add-item">
+            <div class="pd-20">
+                <div class="text-blue h5">List Item Memo</div>
+                <small class="mb-0">
+                    List item memo yang sudah ditambahkan
+                </small>
+            </div>
+            <table class="table stripe hover nowrap">
+                <thead>
+                    <tr>
+                        <th class="table-plus">Item</th>
+                        <th class="table-plus">Warna</th>
+                        <th class="table-plus">Bukaan</th>
+                        <th class="table-plus">Daun</th>
+                        <th class="table-plus">Jumlah</th>
+                        <th class="table-plus">Panjang</th>
+                        <th class="table-plus">Lebar</th>
+                        <th class="table-plus">Charge</th>
+                        <th class="table-plus">Return</th>
+                        <th class="datatable-nosort">Act</th>
+                    </tr>
+                </thead>
+                <tbody id="table-add-item">
+                </tbody>
+            </table>
+            <div class="pd-20">
+                <button class="btn btn-primary" onClick="Finish(this)">Finish</button>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
@@ -256,6 +258,9 @@
                     success: function(response) {
                         window.location = "/memo";
                     },
+                    error: function(response) {
+                        console.log(response);
+                    }
                 });
             });
         }
