@@ -181,7 +181,6 @@
                                     <small class="form-text text-muted" style="color: red">* Lampiran file berformat PDF
                                         maks
                                         2MB</small>
-                                @endrole
                             </div>
                         </div>
                     </div>
