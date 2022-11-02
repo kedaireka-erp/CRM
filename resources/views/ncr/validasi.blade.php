@@ -176,34 +176,39 @@
             let id = checkbox.id.split("-")[0];
             let posisi = checkbox.id.split("-")[1];
             let checked = checkbox.checked;
-            $(document).ready(function() {
-                $.ajax({
-                    url: "/ncr/validasi/" + id,
-                    method: 'POST',
-                    data: {
-                        posisi: posisi,
-                        id: id,
-                        checked: 1,
-                        ncr_id: "{{ $ncr->id }}",
-                        user: "{{ auth()->user()->id }}",
-                        _token: "{{ csrf_token() }}"
-                    },
-                    statusCode: {
-                        200: function(data) {
-                            alert('Validasi Berhasil');
-                            checkbox.setAttribute("disabled", true);
+            let warning = window.warning("apakah anda yaking memvalidasi NCR ini ?");
+            if (warning) {
+                $(document).ready(function() {
+                    $.ajax({
+                        url: "/ncr/validasi/" + id,
+                        method: 'POST',
+                        data: {
+                            posisi: posisi,
+                            id: id,
+                            checked: 1,
+                            ncr_id: "{{ $ncr->id }}",
+                            user: "{{ auth()->user()->id }}",
+                            _token: "{{ csrf_token() }}"
                         },
-                        403: function(data) {
-                            alert(data.responseJSON.message);
-                            checkbox.checked = false;
-                        },
-                        406: function(data) {
-                            alert(data.responseJSON.message);
-                            checkbox.checked = false;
+                        statusCode: {
+                            200: function(data) {
+                                alert('Validasi Berhasil');
+                                checkbox.setAttribute("disabled", true);
+                            },
+                            403: function(data) {
+                                alert(data.responseJSON.message);
+                                checkbox.checked = false;
+                            },
+                            406: function(data) {
+                                alert(data.responseJSON.message);
+                                checkbox.checked = false;
+                            }
                         }
-                    }
+                    });
                 });
-            });
+            } else {
+                checkbox.checked = false;
+            }
         }
     </script>
 @endpush
