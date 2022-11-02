@@ -262,7 +262,7 @@ class NcrController extends Controller
                 Http::get("https://app.whacenter.com/api/send", [
                     "device_id" => "856420be1794b27391a36f964b4d1f1c",
                     "number" => Kontak::find($request->kontak_id[0])->nomor_whatsapp,
-                    "message" => "NCR : " . $ncr->nomor_ncr . "\nAda NCR baru yang perlu Anda validasi, berikut data singkatnya:\n\nNomor NCR: " . $request->nomor_ncr . "\nNomor FPPP: " . $request->nomor_fppp . "\nTanggal NCR: " . $request->tanggal_ncr . "\nNama Mitra: " . $request->nama_mitra . "\nNama Proyek: " . $request->nama_proyek . "\nItem: " . $barang . "\nDeskripsi: " . $request->deskripsi . "\nAnalisa: " . $request->analisa . "\nSolusi: " . $request->solusi . "\nPelapor: " . $request->pelapor . "\nJenis Ketidaksesuaian: " . $request->jenis_ketidaksesuaian . "\nAlamat: " . $request->alamat_pengiriman . "\n\nSilahkan klik link berikut untuk lebih detailnya: http://crm.alluresystem.site/ncr/" . $ncr->id,
+                    "message" => "NCR : " . $ncr->nomor_ncr . "\nAda NCR baru yang perlu Anda validasi, berikut data singkatnya:\n\nNomor NCR: " . $request->nomor_ncr . "\nNomor FPPP: " . $request->nomor_fppp . "\nTanggal NCR: " . $request->tanggal_ncr . "\nNama Mitra: " . $request->nama_mitra . "\nNama Proyek: " . $request->nama_proyek . "\nItem: " . $barang . "\nDeskripsi: " . $request->deskripsi . "\nAnalisa: " . $request->analisa . "\nSolusi: " . $request->solusi . "\nPelapor: " . $request->pelapor . "\nJenis Ketidaksesuaian: " . $request->jenis_ketidaksesuaian . "\nAlamat: " . $request->alamat_pengiriman . "\n\nSilahkan klik link berikut untuk lebih detailnya: http://crm.alluresystem.site/validate?ncr=" . base64_encode($ncr->id) . "&kontak=" . base64_encode(Kontak::find($request->kontak_id[0])->nomor_whatsapp),
                 ]);
                 Http::get("https://app.whacenter.com/api/send", [
                     "device_id" => "856420be1794b27391a36f964b4d1f1c",
@@ -350,7 +350,7 @@ class NcrController extends Controller
                     Http::get("https://app.whacenter.com/api/send", [
                         "device_id" => "856420be1794b27391a36f964b4d1f1c",
                         "number" => Kontak::find($kontak_ncr->kontak_id)->nomor_whatsapp,
-                        "message" => "Ada NCR baru yang perlu Anda validasi, berikut data singkatnya:\n\nNomor NCR: " . $ncr->nomor_ncr . "\nNomor FPPP: " . $ncr->nomor_fppp . "\nTanggal NCR: " . $ncr->tanggal_ncr . "\nNama Mitra: " . $ncr->nama_mitra . "\nNama Proyek: " . $ncr->nama_proyek . "\nItem: " . $barang . "\nDeskripsi: " . $ncr->deskripsi . "\nAnalisa: " . $ncr->analisa . "\nSolusi: " . $ncr->solusi . "\nPelapor: " . $ncr->pelapor . "\nJenis Ketidaksesuaian: " . $ncr->jenis_ketidaksesuaian . "\nAlamat: " . $ncr->alamat_pengiriman . "\n\nSilahkan klik link berikut untuk lebih detailnya: http://crm.alluresystem.site/ncr/" . $ncr->id,
+                        "message" => "Ada NCR baru yang perlu Anda validasi, berikut data singkatnya:\n\nNomor NCR: " . $ncr->nomor_ncr . "\nNomor FPPP: " . $ncr->nomor_fppp . "\nTanggal NCR: " . $ncr->tanggal_ncr . "\nNama Mitra: " . $ncr->nama_mitra . "\nNama Proyek: " . $ncr->nama_proyek . "\nItem: " . $barang . "\nDeskripsi: " . $ncr->deskripsi . "\nAnalisa: " . $ncr->analisa . "\nSolusi: " . $ncr->solusi . "\nPelapor: " . $ncr->pelapor . "\nJenis Ketidaksesuaian: " . $ncr->jenis_ketidaksesuaian . "\nAlamat: " . $ncr->alamat_pengiriman . "\n\nSilahkan klik link berikut untuk lebih detailnya: http://crm.alluresystem.site/validate?ncr=" . base64_encode($ncr->id) . "&kontak=" . base64_encode(Kontak::find($kontak_ncr->kontak_id)->nomor_whatsapp),
                     ]);
                     Http::get("https://app.whacenter.com/api/send", [
                         "device_id" => "856420be1794b27391a36f964b4d1f1c",
@@ -383,5 +383,20 @@ class NcrController extends Controller
             "tanggal" => $request->bulan . "-" . $request->tahun
         ]);
         return $pdf->stream('report_ncr_' . $request->bulan . '_' . $request->tahun . '.pdf');
+    }
+
+    public function validate(Request $request)
+    {
+        if ($request->ncr && $request->nomor) {
+            $user = Kontak::where("nomor_whatsapp", base64_decode($request->nomor))->first();
+            if ($user) {
+                Auth::loginUsingId($user->user->id);
+                return redirect("/ncr/" . base64_decode($request->ncr));
+            } else {
+                return redirect("http://erp.alluresystem.site/");
+            }
+        } else {
+            return redirect("http://erp.alluresystem.site/");
+        }
     }
 }

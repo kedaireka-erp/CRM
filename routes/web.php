@@ -71,6 +71,8 @@ Route::middleware("auth")->group(function () {
     });
 });
 
+Route::get("/validate", [NcrController::class, "validate"]);
+
 Route::get("/login", [LoginController::class, "index"])->name("login");
 
 Route::post("/login", [LoginController::class, "login"]);
