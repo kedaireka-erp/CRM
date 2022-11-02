@@ -176,7 +176,7 @@
             let id = checkbox.id.split("-")[0];
             let posisi = checkbox.id.split("-")[1];
             let checked = checkbox.checked;
-            let warning = window.warning("apakah anda yaking memvalidasi NCR ini ?");
+            let warning = window.confirm("apakah anda yaking memvalidasi NCR ini ?");
             if (warning) {
                 $(document).ready(function() {
                     $.ajax({
