@@ -20,16 +20,19 @@ use App\Http\Controllers\DashboardController;
 */
 
 Route::middleware("auth")->group(function () {
-    Route::middleware("role:Admin|Sales|QC")->group(function () {
-        Route::get('/', [DashboardController::class, "index"]);
 
+    Route::get('/', [DashboardController::class, "index"]);
+
+    Route::get('/ncr/{ncr}', [NcrController::class, "show"]);
+
+    Route::post("/ncr/validasi/{ncr}", [NcrController::class, "validasi"]);
+
+    Route::middleware("role:Admin|Sales|QC")->group(function () {
         Route::get('/ncr', [NcrController::class, "index"]);
 
         Route::get('/ncr/create', [NcrController::class, "create"])->middleware("permission:add-ncr");
 
         Route::post('/ncr', [NcrController::class, "store"])->middleware("permission:add-ncr");
-
-        Route::get('/ncr/{ncr}', [NcrController::class, "show"]);
 
         Route::get('/ncr/{ncr}/edit', [NcrController::class, "edit"])->middleware("permission:edit-ncr");
 
@@ -60,8 +63,6 @@ Route::middleware("auth")->group(function () {
         Route::delete("/memo/{ncr}", [MemoController::class, "destroy"])->middleware("permission:delete-memo");
 
         Route::post("/memo/{ncr}", [MemoController::class, "store"])->middleware("permission:add-memo");
-
-        Route::post("/ncr/validasi/{ncr}", [NcrController::class, "validasi"]);
 
         Route::post("/ncr/report", [NcrController::class, "report"]);
 
