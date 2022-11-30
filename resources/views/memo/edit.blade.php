@@ -302,7 +302,7 @@
     @push('script')
     <script>
         let data_item = {
-            nomor_memo: {{$ncr->nomor_memo}},
+            nomor_memo: "{{$ncr->nomor_memo}}",
             alamat_pengiriman: "{{$ncr->alamat_pengiriman}}",
             deadline_pengambilan: '{{$ncr->deadline_pengambilan->format("Y-m-d")}}',
             tanggal_memo : '{{$ncr->tanggal_memo->format("Y-m-d")}}',
