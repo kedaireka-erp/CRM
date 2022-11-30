@@ -32,7 +32,7 @@
                             <i class="micon bi bi-card-heading"></i> Memo
                         </a>
                     </li>
-                    @endhasnyrole
+                    @endhasanyrole
                 </ul>
             </div>
         </div>
