@@ -28,6 +28,7 @@ Route::middleware("auth")->group(function () {
     Route::post("/ncr/validasi/{ncr}", [NcrController::class, "validasi"]);
 
     Route::middleware("role:Admin|Sales|QC")->group(function () {
+
         Route::get('/ncr', [NcrController::class, "index"]);
 
         Route::get('/ncr/create', [NcrController::class, "create"])->middleware("permission:add-ncr");
