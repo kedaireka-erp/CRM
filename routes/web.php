@@ -23,8 +23,6 @@ Route::middleware("auth")->group(function () {
 
     Route::get('/', [DashboardController::class, "index"]);
 
-    Route::get('/ncr/{ncr}', [NcrController::class, "show"]);
-
     Route::post("/ncr/validasi/{ncr}", [NcrController::class, "validasi"]);
 
     Route::get('/ncr', [NcrController::class, "index"]);
@@ -32,6 +30,8 @@ Route::middleware("auth")->group(function () {
     Route::get('/ncr/create', [NcrController::class, "create"])->middleware("permission:add-ncr");
 
     Route::post('/ncr', [NcrController::class, "store"])->middleware("permission:add-ncr");
+
+    Route::get('/ncr/{ncr}', [NcrController::class, "show"]);
 
     Route::get('/ncr/{ncr}/edit', [NcrController::class, "edit"])->middleware("permission:edit-ncr");
 
